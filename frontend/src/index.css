@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 60 5% 4%;
+        --foreground: 60 11% 95%;
+        --card: 60 4% 7%;
+        --card-foreground: 60 11% 95%;
+        --popover: 60 4% 7%;
+        --popover-foreground: 60 11% 95%;
+        --primary: 46 65% 52%;
+        --primary-foreground: 60 5% 4%;
+        --secondary: 40 6% 10%;
+        --secondary-foreground: 60 11% 95%;
+        --muted: 40 6% 10%;
+        --muted-foreground: 45 4% 55%;
+        --accent: 46 65% 52%;
+        --accent-foreground: 60 5% 4%;
+        --destructive: 0 62.8% 45%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 45 13% 15%;
+        --input: 45 13% 18%;
+        --ring: 46 65% 52%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Manrope', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    ::selection {
+        background: rgba(212, 175, 55, 0.3);
+        color: #f4f4f0;
+    }
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a09;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a2820;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d4af37;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
+
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+.gold-glow {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.45), 0 0 80px rgba(212, 175, 55, 0.18);
+}
+
+.glass {
+    background: rgba(18, 18, 17, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.card-lift {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spin-slow 40s linear infinite;
+}
+
+@keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+    50% { box-shadow: 0 0 0 14px rgba(212, 175, 55, 0); }
+}
+.animate-pulse-gold {
+    animation: pulse-gold 2.4s ease-in-out infinite;
+}
+
+@keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+.animate-float {
+    animation: float-soft 5s ease-in-out infinite;
+}
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}

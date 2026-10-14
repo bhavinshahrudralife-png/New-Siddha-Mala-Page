@@ -1,0 +1,94 @@
+{
+  "typography": {
+    "primary_heading": "Playfair Display, serif",
+    "secondary_body": "Manrope, sans-serif",
+    "scale": {
+      "h1": "text-5xl sm:text-6xl md:text-7xl tracking-tighter leading-none",
+      "h2": "text-4xl sm:text-5xl tracking-tight",
+      "h3": "text-2xl sm:text-3xl",
+      "h4": "text-xl font-semibold",
+      "body": "text-base leading-relaxed tracking-wide",
+      "overline": "text-sm uppercase tracking-[0.2em] font-semibold text-primary"
+    },
+    "guidelines": "Do not use Inter. Playfair Display must be used for all H1-H3 to impart the ancient, premium, spiritual look. Manrope for clean, legible data and body copy."
+  },
+  "colors": {
+    "palette": {
+      "background": "#0a0a09",
+      "foreground": "#f4f4f0",
+      "primary": "#d4af37",
+      "primary_foreground": "#0a0a09",
+      "card": "#121211",
+      "border": "#2a2820",
+      "muted": "#1a1917",
+      "muted_foreground": "#8a8880"
+    },
+    "guidelines": "Strict dark theme. Archetype: Luxury. Deep Obsidian base with pure Gold (#D4AF37) accents. Never use pure black #000000, use #0a0a09 (tinted warm black). Apply gold text only for emphasis (Bej mantras, highlights)."
+  },
+  "visual_enhancers": {
+    "surfaces": "Glassmorphism for floating nav and interactive bead selector: bg-[#121211]/60 backdrop-blur-xl border border-[#d4af37]/20.",
+    "textures": "Include a fixed background with a very subtle noise/grain filter (opacity 0.03) to kill digital flatness.",
+    "borders": "Use 1px borders colored with border-white/10 or border-primary/20. No harsh standard borders."
+  },
+  "component_name": {
+    "Hero3D": "Fixed R3F Canvas showing the floating Rudraksha. HTML overlay with Title and Subtitle.",
+    "MalaAssembly": "Scroll-triggered section where 108 beads (or representative loop) assemble. Use R3F.",
+    "InteractiveBeadSelector": "Split layout. Interactive sidebar of 16 slots (1-14 Mukhi, Ganesh, Gaurishankar). Central display updates text and R3F bead focus.",
+    "CelebrityStories": "Large immersive cards with portrait images, quotes, and smooth fade-in.",
+    "ExpertsGrid": "Grid of tap-to-reveal cards.",
+    "TrustedMarquee": "Continuous scrolling ribbon of names.",
+    "EnquiryForm": "Shadcn Form inside a Glassmorphism card.",
+    "WhatsAppFloat": "Fixed bottom-right corner FAB with pulse animation."
+  },
+  "grids": {
+    "features": "Bento Grid Protocol: grid-cols-1 md:grid-cols-12 gap-8. Mix spans (col-span-8, col-span-4) for asynchronous visual tension.",
+    "experts": "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6. Dense but breathable."
+  },
+  "layouts": {
+    "spacing": "Extremely generous. py-24 to py-32 for main sections. Allow the 3D canvas to breathe. Don't cram text.",
+    "alignment": "Mobile-first. Keep text left-aligned for long copy, center-aligned only for massive hero headers or section titles."
+  },
+  "motion": {
+    "scroll": "Lenis for smooth scrolling (MANDATORY).",
+    "3d_scroll": "Link Framer Motion's useScroll with R3F using framer-motion-3d or @react-three/drei ScrollControls.",
+    "micro_interactions": "Hover states on cards: slight lift (-translate-y-1) and glow (shadow-[0_0_15px_rgba(212,175,55,0.15)]).",
+    "stagger": "Fade up elements using Framer Motion with 0.1s stagger on children."
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on #0a0a09 background passes APCA. Gold #d4af37 must be large enough if used for text.",
+    "motion": "Respect prefers-reduced-motion for the 3D scene (fallback to static rendering).",
+    "testing": "All interactive elements MUST have data-testid."
+  },
+  "media": {
+    "strategy": "High-end portrait photography for experts. Dark abstract textures for section grounding.",
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxwcmVtaXVtJTIwZGFyayUyMHRleHR1cmV8ZW58MHx8fHwxNzkxOTYxNTEyfDA&ixlib=rb-4.1.0&q=85",
+        "category": "background",
+        "description": "Premium dark textured wall for overlay backgrounds"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1634867458242-5ce026e688aa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxtZWRpdGF0aW9uJTIwYmVhZHMlMjB3b29kZW58ZW58MHx8fHwxNzkxOTYxNTEyfDA&ixlib=rb-4.1.0&q=85",
+        "category": "product_placeholder",
+        "description": "Wooden beads for fallback imagery where 3D is not loaded"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1655249493799-9cee4fe983bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGluZGlhbnxlbnwwfHx8fDE3OTE5NjE1MTJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "expert_portrait",
+        "description": "Female expert portrait (Shruti/Hemlata placeholder)"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1609436132311-e4b0c9370469?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGluZGlhbnxlbnwwfHx8fDE3OTE5NjE1MTJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "celebrity_portrait",
+        "description": "Female celebrity portrait (Dimple Kapadia placeholder)"
+      }
+    ]
+  },
+  "3d_libraries": {
+    "libraries_to_install": "@react-three/fiber @react-three/drei framer-motion framer-motion-3d @studio-freight/react-lenis",
+    "implementation": "MOCKED 3D ASSETS: We do not have a .glb file. You MUST mock the Rudraksha using `<Sphere args={[1, 64, 64]}>` combined with `<MeshDistortMaterial color='#4a2010' distort={0.3} speed={1} roughness={0.9} />` from @react-three/drei to simulate the textured organic surface. For the scroll integration, use `<ScrollControls pages={5}>` from Drei, and place the UI sections inside `<Scroll html>`. Bind the bead's rotation and Y-position to the scroll offset using `useScroll`."
+  },
+  "instructions_to_main_agent": "1. Build the frontend using React (.js/.jsx), NOT TypeScript (.tsx). 2. Create a global R3F Canvas covering the screen (fixed inset-0, z-[-1]). 3. Implement `<ScrollControls>` to drive the 3D bead animation (falling, rotating) as the user scrolls through the HTML pages overlaid via `<Scroll html>`. 4. In the Interactive Bead Selector, use state to highlight the active slot, and smoothly transition the bead's material/texture properties based on the selected Mukhi. 5. Include an enquiry form with Shadcn components (Form, Input, Textarea, Button). 6. Use `react-fast-marquee` for the Trusted By section. 7. Do not use generic Shadcn borders/colors, strictly follow the luxury dark/gold palette.",
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": "Avoid 'AI slop'. No generic centered layouts, simplistic gradients, or uniform styling. Create depth using glass-morphism (backdrop-blur-xl) and z-index layers. DO NOT apply universal transition (`transition: all`). Apply transitions to specific properties. DO NOT use emojis for icons (use lucide-react). Implement Lenis for smooth momentum scrolling. Prioritize UI uniqueness.",
+  "GENERAL_UI_UX_DESIGN_GUIDELINES": "All interactive and key informational elements MUST include a `data-testid` attribute (kebab-case, role-based) for testing. DO NOT use complete transparent backgrounds for overlays or headers. Ensure 4.5:1 contrast for text. Use optical alignment (e.g., icons in buttons). Ensure spacing multipliers are generous (p-8 to p-12)."
+}

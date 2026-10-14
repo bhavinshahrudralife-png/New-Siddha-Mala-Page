@@ -15,6 +15,7 @@ import uuid
 import logging
 import bcrypt
 import jwt
+from login_limits import account_key, check_lock, record_failure
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -85,12 +86,12 @@ class LoginInput(BaseModel):
     password: str
 
 DEFAULT_CONTENT: Dict[str, Any] = {
-    "hero_title": "Are you searching for something more — a stillness, a strength, a sense of destiny awakening within you?",
-    "hero_subtitle": "For thousands of years, seekers, sages, and kings turned to a single sacred treasure to align mind, body and soul — the Siddha Mala. Today, that same sacred power finds its way to those who are ready.",
-    "phone": "+91 98203 02028",
+    "hero_title": "One mala. A complete spiritual companion.",
+    "hero_subtitle": "Handcrafted with authentic Rudraksha. A sacred combination of 1 to 14 Mukhi, Gauri Shankar and Ganesh.",
+    "phone": "+91 72088 19922",
     "email": "info@rudralife.com",
-    "whatsapp": "919820302028",
-    "address": "Rudralife®, Mumbai, Maharashtra, India",
+    "whatsapp": "919619990717",
+    "address": "901, Sri Krishna, New Link Road, Andheri (West), Mumbai — 400 053",
     "hours": "Mon – Sat · 10:00 AM to 7:00 PM (IST)",
     "website": "www.rudralife.com",
     "stat_certified": "100%",
@@ -121,20 +122,13 @@ async def get_content():
 @api_router.post("/auth/login")
 async def login(input: LoginInput, response: Response, request: Request):
     email = input.email.lower().strip()
-    identifier = f"{request.client.host}:{email}"
-    attempts = await db.login_attempts.find_one({"identifier": identifier})
-    if attempts and attempts.get("count", 0) >= 5:
-        locked_at = datetime.fromisoformat(attempts["updated_at"])
-        if datetime.now(timezone.utc) - locked_at < timedelta(minutes=15):
-            raise HTTPException(status_code=429, detail="Too many failed attempts. Try again in 15 minutes.")
+    identifier = account_key(email)
+    await check_lock(db, identifier)
     user = await db.users.find_one({"email": email})
     if not user or not verify_password(input.password, user["password_hash"]):
-        await db.login_attempts.update_one(
-            {"identifier": identifier},
-            {"$inc": {"count": 1}, "$set": {"updated_at": datetime.now(timezone.utc).isoformat()}},
-            upsert=True)
+        await record_failure(db, identifier)
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    await db.login_attempts.delete_one({"identifier": identifier})
+    await db.login_attempts.delete_one({"_id": identifier})
     token = create_access_token(user["id"], email)
     response.set_cookie(key="access_token", value=token, httponly=True, secure=True,
                         samesite="none", max_age=43200, path="/")
@@ -174,7 +168,7 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=[os.environ.get("FRONTEND_URL", "http://localhost:3000")],
+    allow_origins=[os.environ["FRONTEND_URL"]],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -185,9 +179,9 @@ logger = logging.getLogger(__name__)
 @app.on_event("startup")
 async def startup():
     await db.users.create_index("email", unique=True)
-    await db.login_attempts.create_index("identifier")
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@rudralife.com").lower()
-    admin_password = os.environ.get("ADMIN_PASSWORD", "Rudralife@2025")
+    await db.login_attempts.create_index("expires_at", expireAfterSeconds=0)
+    admin_email = os.environ["ADMIN_EMAIL"].lower()
+    admin_password = os.environ["ADMIN_PASSWORD"]
     existing = await db.users.find_one({"email": admin_email})
     if not existing:
         await db.users.insert_one({
@@ -201,6 +195,18 @@ async def startup():
                                   {"$set": {"password_hash": hash_password(admin_password)}})
     if not await db.site_content.find_one({"key": "main"}):
         await db.site_content.insert_one({**DEFAULT_CONTENT, "key": "main"})
+    # Replace only the previous starter copy; never overwrite admin custom edits.
+    legacy_copy = {
+        "hero_title": "Are you searching for something more — a stillness, a strength, a sense of destiny awakening within you?",
+        "hero_subtitle": "For thousands of years, seekers, sages, and kings turned to a single sacred treasure to align mind, body and soul — the Siddha Mala. Today, that same sacred power finds its way to those who are ready.",
+        "phone": "+91 98203 02028",
+        "whatsapp": "919820302028",
+        "address": "Rudralife®, Mumbai, Maharashtra, India",
+    }
+    for field, previous in legacy_copy.items():
+        await db.site_content.update_one(
+            {"key": "main", field: previous}, {"$set": {field: DEFAULT_CONTENT[field]}}
+        )
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

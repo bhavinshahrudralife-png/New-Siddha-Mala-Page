@@ -8,8 +8,8 @@ import { fetchMe, logout, fetchLeads, deleteLead, fetchContent, updateContent, f
 import { toast } from "sonner";
 
 const CONTENT_FIELDS = [
-  { key: "hero_title", label: "Hero Title", textarea: true },
-  { key: "hero_subtitle", label: "Hero Subtitle", textarea: true },
+  { key: "hero_title", label: "Hero Tagline", textarea: true },
+  { key: "hero_subtitle", label: "Hero Description", textarea: true },
   { key: "phone", label: "Phone Number" },
   { key: "whatsapp", label: "WhatsApp Number (with country code, no +)" },
   { key: "email", label: "Email" },
@@ -18,7 +18,6 @@ const CONTENT_FIELDS = [
   { key: "hours", label: "Working Hours" },
   { key: "stat_certified", label: "Stat: Certified (e.g. 100%)" },
   { key: "stat_years", label: "Stat: Years (e.g. 25+)" },
-  { key: "stat_souls", label: "Stat: Happy Souls (e.g. 5,00,000+)" },
 ];
 
 export default function AdminDashboard() {

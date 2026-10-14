@@ -1,95 +1,47 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BEADS } from "../data/content";
+import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { BEADS, IMAGES } from '../data/content';
 
 export default function BeadSelector() {
-  const [active, setActive] = useState(BEADS[0]);
-
-  return (
-    <section id="collection" data-testid="bead-selector-section" className="relative py-24 sm:py-32 px-5 sm:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.3em] text-primary mb-3">The Sacred Composition</p>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold">
-            1 to 14 Mukhi · <span className="text-gold italic">Gaurishankar · Ganesh</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-            Select a bead — each one is a deity, a planet, a power woven into the Siddha Mala.
-          </p>
+  const [selected, setSelected] = useState(0);
+  const bead = BEADS[selected];
+  const reduced = useReducedMotion();
+  const next = delta => setSelected(i => (i + delta + BEADS.length) % BEADS.length);
+  const onKey = e => {
+    if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(e.key)) {
+      e.preventDefault();
+      const n = e.key === 'Home' ? 0 : e.key === 'End' ? 15 : (selected + (['ArrowRight','ArrowDown'].includes(e.key) ? 1 : 15)) % 16;
+      setSelected(n); document.querySelector(`[data-testid="bead-slot-${n+1}"]`)?.focus();
+    }
+  };
+  return <section id="collection" className="collection-section section-space" data-testid="bead-selector-section">
+    <div className="site-container">
+      <div className="section-heading collection-heading"><div><p className="eyebrow">THE SACRED COMPOSITION</p><h2 className="editorial-title">Individually extraordinary.<br/><em>Together, Siddha.</em></h2></div><p className="section-caption">1 to 14 Mukhi. Gauri Shankar. Ganesh.<br/>Sixteen distinct forms of Rudraksha.<br/>One complete spiritual companion.</p></div>
+      <div className="collection-layout">
+        <div className="bead-dial" data-testid="bead-selector-dial" role="tablist" aria-label="Rudraksha beads" onKeyDown={onKey}>
+          <div className="dial-orbit" aria-hidden="true"/><div className="dial-inner-orbit" aria-hidden="true"/>
+          <div className="dial-centrepiece" aria-hidden="true"><img src={IMAGES.malaHero} alt="" loading="lazy"/><span>THE SIDDHA MALA</span></div>
+          {BEADS.map((b, i) => {
+            const a = i / 16 * Math.PI * 2 - Math.PI / 2;
+            return <button key={b.id} id={`bead-tab-${b.id}`} role="tab" aria-selected={selected === i} aria-controls="bead-detail" tabIndex={selected === i ? 0 : -1} data-testid={`bead-slot-${b.id}`} className={`bead-node ${selected === i ? 'selected' : ''}`} style={{ left: `${50 + 42 * Math.cos(a)}%`, top: `${50 + 42 * Math.sin(a)}%` }} onClick={() => setSelected(i)}>
+              <span className="node-photo"><img src={b.img} alt="" loading="lazy"/></span><span>{b.name}</span>
+            </button>;
+          })}
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Slots */}
-          <div className="lg:col-span-4 order-2 lg:order-1">
-            <div className="glass rounded-2xl p-4 grid grid-cols-4 lg:grid-cols-2 gap-2.5 max-h-[480px] overflow-y-auto">
-              {BEADS.map((b) => (
-                <button
-                  key={b.id}
-                  data-testid={`bead-slot-${b.id}`}
-                  onClick={() => setActive(b)}
-                  className={`rounded-xl p-2.5 text-left transition-[background-color,border-color,transform] duration-300 border ${
-                    active.id === b.id
-                      ? "bg-primary/15 border-primary/60 shadow-[0_0_18px_rgba(212,175,55,0.2)]"
-                      : "bg-card/60 border-border hover:border-primary/40 hover:-translate-y-0.5"
-                  }`}
-                >
-                  <div className="w-full aspect-square rounded-lg overflow-hidden mb-2 bg-muted">
-                    <img src={b.img} alt={b.name} className="w-full h-full object-cover" loading="lazy" />
-                  </div>
-                  <p className="text-[11px] sm:text-xs font-semibold leading-tight">{b.name}</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{b.deity}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Center display */}
-          <div className="lg:col-span-8 order-1 lg:order-2">
-            <div className="glass rounded-3xl p-6 sm:p-10 h-full min-h-[420px] flex flex-col sm:flex-row items-center gap-8 relative overflow-hidden">
-              <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.id}
-                  initial={{ opacity: 0, rotateY: 70, scale: 0.85 }}
-                  animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotateY: -70, scale: 0.85 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-52 h-52 sm:w-72 sm:h-72 shrink-0 rounded-full overflow-hidden border-2 border-primary/50 shadow-[0_0_60px_rgba(212,175,55,0.25)] animate-float"
-                >
-                  <img
-                    src={active.img}
-                    alt={active.name}
-                    data-testid="bead-display-image"
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`t-${active.id}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.45 }}
-                  className="text-center sm:text-left"
-                >
-                  <span className="inline-block text-[11px] uppercase tracking-[0.25em] text-primary border border-primary/40 rounded-full px-3 py-1 mb-4">
-                    In the Mala {active.qty}
-                  </span>
-                  <h3 data-testid="bead-display-name" className="font-display text-3xl sm:text-4xl font-bold text-gold">
-                    {active.name}
-                  </h3>
-                  <p className="mt-1.5 text-sm uppercase tracking-[0.2em] text-muted-foreground">{active.deity}</p>
-                  <p className="mt-4 font-display text-xl text-primary/90 italic">{active.mantra}</p>
-                  <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md">
-                    {active.desc}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+        <div className="bead-detail" id="bead-detail" role="tabpanel" aria-labelledby={`bead-tab-${bead.id}`} data-testid="bead-detail-panel">
+          <div className="bead-detail-top"><span className="small-index" data-testid="bead-counter">{String(bead.id).padStart(2, '0')} / 16</span><span className="detail-rule"/><span className="small-index">SACRED RUDRAKSHA</span></div>
+          <AnimatePresence mode="wait" initial={false}><motion.div key={bead.id} initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }} transition={{ duration: 0.22 }}>
+            <div className="bead-feature-image"><img src={bead.img} alt={`${bead.name} Rudraksha from Rudralife`} data-testid="bead-display-image"/></div>
+            <p className="eyebrow" data-testid="bead-display-theme">{bead.theme}</p><h3 className="bead-detail-name" data-testid="bead-display-name">{bead.name}<em> Rudraksha</em></h3>
+            <p className="bead-deity" data-testid="bead-display-deity">{bead.deity} <span>·</span> {bead.qty} in the mala</p>
+            <p className="bead-description" data-testid="bead-display-description">{bead.desc}</p>
+            <a href={bead.source} target="_blank" rel="noopener noreferrer" className="text-link" data-testid="bead-source-link">Explore at Rudralife <ArrowUpRight size={15}/></a>
+          </motion.div></AnimatePresence>
+          <div className="bead-controls"><button onClick={() => next(-1)} className="icon-button" aria-label="Previous bead" title="Previous bead" data-testid="bead-previous"><ArrowLeft size={18}/></button><span>{bead.id <= 14 ? `${bead.id} MUKHI` : bead.name.toUpperCase()}</span><button onClick={() => next(1)} className="icon-button" aria-label="Next bead" title="Next bead" data-testid="bead-next"><ArrowRight size={18}/></button></div>
         </div>
       </div>
-    </section>
-  );
+      <p className="belief-note">Traditional associations are based on spiritual beliefs. Individual experiences vary.</p>
+    </div>
+  </section>;
 }

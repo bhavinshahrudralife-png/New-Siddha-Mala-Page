@@ -1,48 +1,9 @@
-import { Flower2, Phone, Mail, Globe, MapPin, Clock } from "lucide-react";
-
+import { ArrowUpRight } from 'lucide-react';
+import { IMAGES } from '../data/content';
 export default function Footer({ content }) {
-  return (
-    <footer data-testid="footer" className="relative border-t border-primary/15 bg-card/40 px-5 sm:px-8 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div>
-          <div className="flex items-center gap-2.5 mb-4">
-            <span className="w-9 h-9 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center">
-              <Flower2 className="text-primary" size={18} />
-            </span>
-            <span className="font-display text-2xl font-bold">Rudra<span className="text-gold">life</span></span>
-          </div>
-          <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-            At Rudralife, we believe that Rudraksha is not just a bead — it is a divine connection. For over 25
-            years, we have guided thousands of seekers with authenticity, trust, and sacred knowledge.
-          </p>
-        </div>
-        <div>
-          <h4 className="font-display text-lg font-semibold mb-4">Contact Us</h4>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li className="flex items-center gap-3"><Phone size={15} className="text-primary shrink-0" />{content.phone}</li>
-            <li className="flex items-center gap-3"><Mail size={15} className="text-primary shrink-0" />{content.email}</li>
-            <li className="flex items-center gap-3"><Globe size={15} className="text-primary shrink-0" />{content.website}</li>
-            <li className="flex items-center gap-3"><MapPin size={15} className="text-primary shrink-0" />{content.address}</li>
-            <li className="flex items-center gap-3"><Clock size={15} className="text-primary shrink-0" />{content.hours}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-display text-lg font-semibold mb-4">Quick Links</h4>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><a href="#enquiry" data-testid="footer-link-recommendation" className="hover:text-primary transition-colors">Get FREE Recommendation</a></li>
-            <li><a href="#experts" data-testid="footer-link-experts" className="hover:text-primary transition-colors">Meet Our Experts</a></li>
-            <li><a href="#faq" data-testid="footer-link-faq" className="hover:text-primary transition-colors">FAQs</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-border">
-        <p className="text-xs text-muted-foreground text-center">© 2025 Rudralife®. All rights reserved.</p>
-        <p className="mt-3 text-[11px] text-muted-foreground/70 leading-relaxed text-center max-w-4xl mx-auto">
-          Disclaimer: Wearing Rudraksha is a matter of faith and belief. All information provided is based on
-          scriptures, published books, and individual experiences. Rudralife guarantees the quality of the beads
-          and not the effects. Wearer discretion is advised.
-        </p>
-      </div>
-    </footer>
-  );
+  return <footer className="site-footer" data-testid="footer"><div className="site-container">
+    <div className="footer-top"><div><a href="#top" data-testid="footer-logo"><img src={IMAGES.logo} alt="Rudralife" className="brand-logo"/></a><p>Rudraksha power for you.</p></div><div className="footer-contact"><a href={`tel:${content.phone.replace(/\s/g,'')}`} data-testid="footer-phone">{content.phone}<ArrowUpRight size={15}/></a><a href={`mailto:${content.email}`} data-testid="footer-email">{content.email}</a><span data-testid="footer-address">{content.address}</span><span data-testid="footer-hours">{content.hours}</span></div><div className="footer-links"><a href="#collection" data-testid="footer-link-collection">The sacred beads</a><a href="#experts" data-testid="footer-link-experts">Our experts</a><a href="#faq" data-testid="footer-link-faq">Your questions</a><a href="https://www.rudralife.com" target="_blank" rel="noopener noreferrer" data-testid="footer-website">{content.website}<ArrowUpRight size={14}/></a></div></div>
+    <div className="footer-bottom"><p>© {new Date().getFullYear()} Rudralife Services Pvt Ltd. All rights reserved.</p><div><a href="https://www.rudralife.com/privacy-policy" target="_blank" rel="noopener noreferrer" data-testid="footer-privacy">Privacy</a><a href="https://www.rudralife.com/terms-and-conditions" target="_blank" rel="noopener noreferrer" data-testid="footer-terms">Terms</a></div></div>
+    <p className="footer-disclaimer" data-testid="footer-disclaimer">Rudraksha is worn as a matter of faith and belief. Traditional associations are based on scriptures and individual experiences, not guaranteed outcomes or medical advice. Rudralife guarantees the quality of its beads, not their effects.</p>
+  </div></footer>;
 }

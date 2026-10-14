@@ -1,63 +1,51 @@
-import { motion } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { useRef } from 'react';
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Play, Pause, BadgeCheck } from 'lucide-react';
+import { IMAGES } from '../data/content';
+import Scene3D from '../components/Scene3D';
+import MalaAssembly from './MalaAssembly';
+import { useJourneyPlayback } from '../hooks/useJourneyPlayback';
 
 export default function Hero({ content }) {
-  return (
-    <section
-      id="top"
-      data-testid="hero-section"
-      className="relative min-h-[130vh] flex flex-col items-center justify-start pt-36 sm:pt-44 px-5"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center max-w-4xl mx-auto relative z-10"
-      >
-        <motion.div
-          initial={{ scale: 0, rotate: -90 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mb-8 w-20 h-20 rounded-full border border-primary/40 bg-primary/5 flex items-center justify-center"
-        >
-          <span className="font-display text-4xl text-gold gold-glow">ॐ</span>
-        </motion.div>
-        <p className="text-sm uppercase tracking-[0.35em] text-primary mb-6 flex items-center justify-center gap-2">
-          <Sparkles size={14} /> Rudralife® Presents <Sparkles size={14} />
-        </p>
-        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] gold-glow">
-          The Sacred <span className="text-gold italic">Siddha Mala</span>
-        </h1>
-        <p className="mt-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          {content.hero_title}
-        </p>
-        <p className="mt-4 text-sm sm:text-base text-muted-foreground/80 leading-relaxed max-w-2xl mx-auto">
-          {content.hero_subtitle}
-        </p>
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#enquiry"
-            data-testid="hero-enquiry-button"
-            className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-[#e5c04a] transition-colors duration-300 shadow-[0_0_40px_rgba(212,175,55,0.25)]"
-          >
-            Enquiry Now
-          </a>
-          <a
-            href="#about"
-            data-testid="hero-discover-button"
-            className="px-8 py-4 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-colors duration-300"
-          >
-            Discover the Sacred →
-          </a>
-        </div>
+  const ref = useRef(null);
+  const reduced = useReducedMotion();
+  const visible = useInView(ref);
+  const { scrollYProgress: progress } = useScroll({ target: ref, offset: ['start start','end end'] });
+  const fade = useTransform(progress, [0, 0.25, 0.45], [1, 1, 0]);
+  const titleY = useTransform(progress, [0, 0.45], [0, -65]);
+  const imageY = useTransform(progress, [0, 0.35, 0.75, 1], ['-4%', '2%', '5%', '5%']);
+  const imageRotate = useTransform(progress, [0, 0.65, 1], [-8, 5, 0]);
+  const imageScale = useTransform(progress, [0, 0.65, 1], [0.96, 1.02, 1]);
+  const { playing, toggle } = useJourneyPlayback();
+  return <section ref={ref} id="top" className={`hero-journey ${reduced ? 'reduced-journey' : ''}`} data-testid="hero-section">
+    <div className="hero-sticky">
+      <div className="hero-engraving" aria-hidden="true"><span/><span/><span/></div>
+      <motion.div className="hero-heading" style={reduced ? {} : { opacity: fade, y: titleY }}>
+        <p className="eyebrow" data-testid="hero-eyebrow"><span className="gold-line"/> RUDRALIFE’S SIGNATURE CREATION <span className="gold-line"/></p>
+        <h1 data-testid="hero-title">The <em>Siddha Mala.</em></h1>
+        <p className="hero-tagline" data-testid="hero-tagline">{content.hero_title}</p>
       </motion.div>
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-16 left-1/2 -translate-x-1/2 text-primary/60 z-10"
-      >
-        <ChevronDown size={28} />
+      <Scene3D progress={progress} visible={visible}/>
+      <motion.div className="hero-necklace" style={reduced ? {} : { y: imageY, rotate: imageRotate, scale: imageScale }}>
+        <img src={IMAGES.malaHero} alt="Complete Rudralife Siddha Mala with natural Rudraksha and gold fittings" data-testid="hero-mala-image" fetchPriority="high"/>
       </motion.div>
-    </section>
-  );
+      <motion.div className="hero-aside hero-aside-left" style={reduced ? {} : { opacity: fade }}>
+        <span className="small-index">01 — THE SACRED COMBINATION</span>
+        <p data-testid="hero-composition">1–14 Mukhi.<br/>Gauri Shankar.<br/>Ganesh.</p>
+        <span className="hero-fine-print">Every bead, a purpose.<br/>Together, a complete whole.</span>
+      </motion.div>
+      <motion.div className="hero-aside hero-aside-right" style={reduced ? {} : { opacity: fade }}>
+        <div className="hero-certified"><BadgeCheck size={18}/><span>AUTHENTIC. LAB-CERTIFIED.</span></div>
+        <p data-testid="hero-description">{content.hero_subtitle}</p>
+        <a className="text-link" href="#collection" data-testid="hero-discover-button">Discover the mala <ArrowUpRight size={18}/></a>
+      </motion.div>
+      {!reduced && <MalaAssembly progress={progress}/>}
+      <div className="hero-bottom">
+        <a href="#about" data-testid="hero-scroll-cue" className="scroll-cue"><span><ArrowDown size={15}/></span> A sacred journey, bead by bead</a>
+        {!reduced && <button className={`journey-play ${playing ? 'is-playing' : ''}`} data-testid="journey-play-button" onClick={toggle} aria-pressed={playing}>{playing ? <Pause size={13}/> : <Play size={13}/>} {playing ? 'Pause journey' : 'Play journey'}</button>}
+        <span className="hero-edition">NEPAL RUDRAKSHA · HANDCRAFTED</span>
+      </div>
+      <motion.div className="journey-progress" style={{ scaleX: reduced ? 1 : progress }}/>
+    </div>
+  </section>;
 }

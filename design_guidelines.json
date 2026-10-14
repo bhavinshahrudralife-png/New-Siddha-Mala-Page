@@ -1,94 +1,302 @@
 {
-  "typography": {
-    "primary_heading": "Playfair Display, serif",
-    "secondary_body": "Manrope, sans-serif",
-    "scale": {
-      "h1": "text-5xl sm:text-6xl md:text-7xl tracking-tighter leading-none",
-      "h2": "text-4xl sm:text-5xl tracking-tight",
-      "h3": "text-2xl sm:text-3xl",
-      "h4": "text-xl font-semibold",
-      "body": "text-base leading-relaxed tracking-wide",
-      "overline": "text-sm uppercase tracking-[0.2em] font-semibold text-primary"
-    },
-    "guidelines": "Do not use Inter. Playfair Display must be used for all H1-H3 to impart the ancient, premium, spiritual look. Manrope for clean, legible data and body copy."
+  "project_name": "Rudralife Siddha Mala Redesign",
+  "version": "2.0.0",
+  "last_updated": "14 October 2026",
+  "context_type": "MARKETING_PAGE",
+  "design_archetype": "Organic & Earthy Heritage Luxury",
+  "visual_theme": {
+    "mode": "LIGHT_ONLY",
+    "background_philosophy": "Warm organic ivory off-white palette with rich warm dark mahogany text and royal golden accents. ABSOLUTELY NO black backgrounds or dark mode slate panels.",
+    "aesthetic_reference": "Inspired by capsul-in-pro.com fluid product scroll mechanics, combined with Swiss high-end luxury print typography and sacred Vedic authenticity."
   },
   "colors": {
-    "palette": {
-      "background": "#0a0a09",
-      "foreground": "#f4f4f0",
-      "primary": "#d4af37",
-      "primary_foreground": "#0a0a09",
-      "card": "#121211",
-      "border": "#2a2820",
-      "muted": "#1a1917",
-      "muted_foreground": "#8a8880"
+    "background": {
+      "primary": "#FAF7F2",
+      "secondary": "#F3EDE2",
+      "accent_surface": "#EFE6D5",
+      "card_surface": "#FFFFFF",
+      "glass_surface": "rgba(255, 255, 255, 0.82)"
     },
-    "guidelines": "Strict dark theme. Archetype: Luxury. Deep Obsidian base with pure Gold (#D4AF37) accents. Never use pure black #000000, use #0a0a09 (tinted warm black). Apply gold text only for emphasis (Bej mantras, highlights)."
+    "text": {
+      "primary": "#2D1810",
+      "secondary": "#5C3E2E",
+      "muted": "#8A6956",
+      "accent_gold": "#966E1D",
+      "on_dark_gold": "#FFFFFF"
+    },
+    "accent": {
+      "gold_primary": "#D4AF37",
+      "gold_hover": "#B89324",
+      "gold_light": "#F7EAB9",
+      "gold_border": "#E2C366",
+      "terracotta": "#C95D3B",
+      "copper": "#B85D1B"
+    },
+    "border": {
+      "subtle": "#E6DBCB",
+      "medium": "#D5C4AD",
+      "gold_highlight": "rgba(212, 175, 55, 0.45)"
+    },
+    "shadows": {
+      "card_ambient": "0 10px 30px -5px rgba(61, 35, 20, 0.05)",
+      "gold_glow": "0 8px 25px -3px rgba(212, 175, 55, 0.25)",
+      "floating_elevated": "0 20px 40px -10px rgba(45, 24, 16, 0.08)"
+    }
   },
-  "visual_enhancers": {
-    "surfaces": "Glassmorphism for floating nav and interactive bead selector: bg-[#121211]/60 backdrop-blur-xl border border-[#d4af37]/20.",
-    "textures": "Include a fixed background with a very subtle noise/grain filter (opacity 0.03) to kill digital flatness.",
-    "borders": "Use 1px borders colored with border-white/10 or border-primary/20. No harsh standard borders."
+  "typography": {
+    "font_family": {
+      "heading": "'Playfair Display', 'Cormorant Garamond', serif",
+      "subheading": "'Cinzel', 'Outfit', sans-serif",
+      "body": "'Plus Jakarta Sans', 'Inter', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "scale": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-[#2D1810] leading-[1.15]",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold tracking-tight text-[#2D1810]",
+      "section_h3": "text-xl sm:text-2xl font-serif font-medium text-[#2D1810]",
+      "card_title": "text-lg sm:text-xl font-sans font-bold text-[#2D1810]",
+      "body_large": "text-lg sm:text-xl font-sans text-[#5C3E2E] leading-relaxed",
+      "body_regular": "text-base font-sans text-[#5C3E2E] leading-relaxed",
+      "label_overline": "text-xs font-mono uppercase tracking-[0.2em] text-[#966E1D] font-semibold"
+    }
   },
-  "component_name": {
-    "Hero3D": "Fixed R3F Canvas showing the floating Rudraksha. HTML overlay with Title and Subtitle.",
-    "MalaAssembly": "Scroll-triggered section where 108 beads (or representative loop) assemble. Use R3F.",
-    "InteractiveBeadSelector": "Split layout. Interactive sidebar of 16 slots (1-14 Mukhi, Ganesh, Gaurishankar). Central display updates text and R3F bead focus.",
-    "CelebrityStories": "Large immersive cards with portrait images, quotes, and smooth fade-in.",
-    "ExpertsGrid": "Grid of tap-to-reveal cards.",
-    "TrustedMarquee": "Continuous scrolling ribbon of names.",
-    "EnquiryForm": "Shadcn Form inside a Glassmorphism card.",
-    "WhatsAppFloat": "Fixed bottom-right corner FAB with pulse animation."
+  "layout_and_spacing": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-20 lg:py-32",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12",
+    "card_padding": "p-6 sm:p-8 lg:p-10",
+    "radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-full",
+      "badge": "rounded-full"
+    }
   },
-  "grids": {
-    "features": "Bento Grid Protocol: grid-cols-1 md:grid-cols-12 gap-8. Mix spans (col-span-8, col-span-4) for asynchronous visual tension.",
-    "experts": "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6. Dense but breathable."
-  },
-  "layouts": {
-    "spacing": "Extremely generous. py-24 to py-32 for main sections. Allow the 3D canvas to breathe. Don't cram text.",
-    "alignment": "Mobile-first. Keep text left-aligned for long copy, center-aligned only for massive hero headers or section titles."
-  },
-  "motion": {
-    "scroll": "Lenis for smooth scrolling (MANDATORY).",
-    "3d_scroll": "Link Framer Motion's useScroll with R3F using framer-motion-3d or @react-three/drei ScrollControls.",
-    "micro_interactions": "Hover states on cards: slight lift (-translate-y-1) and glow (shadow-[0_0_15px_rgba(212,175,55,0.15)]).",
-    "stagger": "Fade up elements using Framer Motion with 0.1s stagger on children."
-  },
-  "accessibility": {
-    "contrast": "Ensure white text on #0a0a09 background passes APCA. Gold #d4af37 must be large enough if used for text.",
-    "motion": "Respect prefers-reduced-motion for the 3D scene (fallback to static rendering).",
-    "testing": "All interactive elements MUST have data-testid."
-  },
-  "media": {
-    "strategy": "High-end portrait photography for experts. Dark abstract textures for section grounding.",
-    "image_urls": [
+  "image_urls": {
+    "logo": "https://www.rudralife.com/_next/static/media/logoDark.ef9912c5.png",
+    "hero_intro_jpg": "https://www.rudralife.com/siddha-mala/assets/siddha-mala-intro.jpg",
+    "hero_peacock_png": "https://www.rudralife.com/siddha-mala/assets/hero-banner-peacock.png",
+    "siddha_mala_gold_hero": "https://customer-assets.emergentagent.com/job_siddha-mala-sacred/artifacts/dxvn2os4_siddamala.jpg",
+    "siddha_mala_full_assembly": "https://customer-assets.emergentagent.com/job_siddha-mala-sacred/artifacts/ulfhur9a_Siddha%20Mala%20RL-16%20edit.JPG",
+    "celebrities": {
+      "milind_soman": "https://www.rudralife.com/siddha-mala/assets/milind-soman.png",
+      "dimple_kapadia": "https://rudralife.com/rudraksha-recommendation/images/clients/17.jpg"
+    },
+    "experts": [
       {
-        "url": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxwcmVtaXVtJTIwZGFyayUyMHRleHR1cmV8ZW58MHx8fHwxNzkxOTYxNTEyfDA&ixlib=rb-4.1.0&q=85",
-        "category": "background",
-        "description": "Premium dark textured wall for overlay backgrounds"
+        "id": 1,
+        "name": "Dr. Tanay Seetha",
+        "role": "Founder of Rudralife",
+        "years": "25+ Years",
+        "title": "Founder & Visionary",
+        "desc": "Pioneer of Rudraksha research and spiritual guidance for over two decades.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_1.c35d2a3f.png&w=640&q=80"
       },
       {
-        "url": "https://images.unsplash.com/photo-1634867458242-5ce026e688aa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxtZWRpdGF0aW9uJTIwYmVhZHMlMjB3b29kZW58ZW58MHx8fHwxNzkxOTYxNTEyfDA&ixlib=rb-4.1.0&q=85",
-        "category": "product_placeholder",
-        "description": "Wooden beads for fallback imagery where 3D is not loaded"
+        "id": 2,
+        "name": "Hemlata Sojitra",
+        "role": "Director – Operations",
+        "years": "12+ Years",
+        "title": "Operations Head",
+        "desc": "Ensures stringent quality verification and authentic sourcing of every sacred bead.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_2.e651f08c.png&w=640&q=80"
       },
       {
-        "url": "https://images.unsplash.com/photo-1655249493799-9cee4fe983bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGluZGlhbnxlbnwwfHx8fDE3OTE5NjE1MTJ8MA&ixlib=rb-4.1.0&q=85",
-        "category": "expert_portrait",
-        "description": "Female expert portrait (Shruti/Hemlata placeholder)"
+        "id": 3,
+        "name": "Saumil Seetha",
+        "role": "Director & Head Panel Expert",
+        "years": "15+ Years",
+        "title": "Head Panel Expert",
+        "desc": "Authority in Vedic astrology and custom Rudraksha recommendation.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_3.eb6727a1.png&w=640&q=80"
       },
       {
-        "url": "https://images.unsplash.com/photo-1609436132311-e4b0c9370469?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGluZGlhbnxlbnwwfHx8fDE3OTE5NjE1MTJ8MA&ixlib=rb-4.1.0&q=85",
-        "category": "celebrity_portrait",
-        "description": "Female celebrity portrait (Dimple Kapadia placeholder)"
+        "id": 4,
+        "name": "Dhruv Prakash Sinha",
+        "role": "Panel Expert & Spiritual Advisor",
+        "years": "7+ Years",
+        "title": "Numerology & Energy Expert",
+        "desc": "Specialist in personal energy matrix alignment and numerology analysis.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_4.71881110.png&w=640&q=80"
+      },
+      {
+        "id": 5,
+        "name": "Shruti Sharma",
+        "role": "Senior Panel Expert",
+        "years": "10+ Years",
+        "title": "Senior Consultant",
+        "desc": "Guides patrons on high-value mala selection and personalized energization routines.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_5.ffd195c5.png&w=640&q=80"
+      },
+      {
+        "id": 6,
+        "name": "Madhulika Namboodiri",
+        "role": "Senior Vedic Consultant",
+        "years": "10+ Years",
+        "title": "Vedic Scholar",
+        "desc": "Deep authority in Vedic shastras, Upanishads and sacred ritual consecration.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_6.6954b2a8.jpg&w=640&q=80"
+      },
+      {
+        "id": 7,
+        "name": "Shilpa Agarwal",
+        "role": "Panel Expert",
+        "years": "8+ Years",
+        "title": "Spiritual Counselor",
+        "desc": "Specializes in emotional balance, holistic wellness and mantra sadhana with Rudraksha.",
+        "url": "https://www.rudralife.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FExpert_7.12160fc3.png&w=640&q=80"
       }
     ]
   },
-  "3d_libraries": {
-    "libraries_to_install": "@react-three/fiber @react-three/drei framer-motion framer-motion-3d @studio-freight/react-lenis",
-    "implementation": "MOCKED 3D ASSETS: We do not have a .glb file. You MUST mock the Rudraksha using `<Sphere args={[1, 64, 64]}>` combined with `<MeshDistortMaterial color='#4a2010' distort={0.3} speed={1} roughness={0.9} />` from @react-three/drei to simulate the textured organic surface. For the scroll integration, use `<ScrollControls pages={5}>` from Drei, and place the UI sections inside `<Scroll html>`. Bind the bead's rotation and Y-position to the scroll offset using `useScroll`."
+  "sections_blueprint": [
+    {
+      "name": "Navigation Bar",
+      "component_path": "src/components/Nav.jsx",
+      "data_testid": "nav-header",
+      "design": {
+        "layout": "Sticky glassmorphism header over warm ivory background (backdrop-blur-xl bg-white/80 border-b border-[#E6DBCB])",
+        "elements": [
+          "Rudralife Official Dark Logo (data-testid='nav-logo')",
+          "Nav Links: Siddha Mala, 16-Bead Selector, Benefits, Story, Celebrities, Experts, FAQ",
+          "Primary Action CTA Button: 'Book Free Consultation' (Gold pill button data-testid='nav-consultation-btn')",
+          "Direct Phone Contact link: '+91 22 6825 8000'"
+        ]
+      }
+    },
+    {
+      "name": "Hero Section & 3D Falling Rudraksha Canvas",
+      "component_path": "src/sections/Hero.jsx & src/components/Scene3D.jsx",
+      "data_testid": "hero-section",
+      "design": {
+        "layout": "Capsul-in-pro style scrollytelling canvas where 3D Rudraksha beads float and descend gracefully top-to-bottom upon scroll.",
+        "content": {
+          "badge": "THE ULTIMATE SACRED COMBINATION · RUDRA LIFE",
+          "h1": "Experience the Cosmic Energy of Sacred Siddha Mala",
+          "subtitle": "An auspicious combination of 1 to 14 Mukhi, Gaurishankar & Ganesh Rudraksha — lab-certified and energised by Vedic rituals for ultimate protection, wealth & spiritual transformation.",
+          "cta_primary": "Explore 16 Sacred Beads",
+          "cta_secondary": "Request Lead Consultation"
+        },
+        "canvas_behavior": "Use actual Rudralife bead cutouts on curved Three.js surfaces, never distorted glowing spheres, Om symbols or stardust. Descending beads stay in reserved side lanes and fade before crossing copy; full necklace PNG stays completely visible. This is photo-based depth, not a scanned 360-degree model."
+      }
+    },
+    {
+      "name": "Interactive 16-Bead Circular Selector",
+      "component_path": "src/sections/BeadSelector.jsx",
+      "data_testid": "bead-selector-section",
+      "design": {
+        "layout": "Spacious circular layout of 16 beads (1-14 Mukhi + Gaurishankar + Ganesh). NO Om symbol or mantra at the center.",
+        "circular_arrangement": "16 bead nodes positioned evenly around a 450px spatial dial with active gold halo indicator, smooth rotatable interaction, and center preview card.",
+        "active_card_details": "Displays genuine selected Mukhi photo, name, deity, quantity in mala, traditional association and official product link. NO mantra or Om symbols. Distinct forms: 1-14 Mukhi, Gauri Shankar, Ganesh.",
+        "data_testids": [
+          "bead-selector-dial",
+          "bead-node-{id}",
+          "active-bead-card",
+          "active-bead-name",
+          "active-bead-deity"
+        ]
+      }
+    },
+    {
+      "name": "Sacred Mala Assembly & Descending PNG Showcase",
+      "component_path": "src/sections/MalaAssembly.jsx",
+      "data_testid": "mala-assembly-section",
+      "design": {
+        "layout": "Full high-resolution PNG photo of the complete Siddha Mala in pure gold/silver casing, descending smooth visual effect over warm ivory canvas.",
+        "features": [
+          "Anatomy breakdown of 28 sacred beads stringed in gold/silver capped structure",
+          "Interactive hotspots pointing out key beads in the complete mala assembly",
+          "ISO certification and laboratory test badge showcase"
+        ]
+      }
+    },
+    {
+      "name": "Brand Story & Heritage",
+      "component_path": "src/sections/Story.jsx",
+      "data_testid": "story-section",
+      "design": {
+        "layout": "Asymmetric bento grid highlighting Rudralife's 23+ years legacy",
+        "highlights": [
+          "23+ Years of Pioneer Research & Vedic Authenticity",
+          "100% Lab Tested & Certified by Recognized Gemological Labs",
+          "Aura Consecration & Vedic Energization Rituals"
+        ]
+      }
+    },
+    {
+      "name": "Benefits & Spiritual Matrix",
+      "component_path": "src/sections/Benefits.jsx",
+      "data_testid": "benefits-section",
+      "design": {
+        "layout": "4x2 Bento grid with warm ivory card backgrounds, gold stroke borders, and crisp serif typography for each life domain (Spiritual Awakening, Wealth, Health, Protection, Career).",
+        "cards_data_testid": "benefit-card-{index}"
+      }
+    },
+    {
+      "name": "Celebrities & Eminent Patrons",
+      "component_path": "src/sections/Celebrity.jsx",
+      "data_testid": "celebrities-section",
+      "design": {
+        "layout": "High-impact editorial spotlight featuring authentic Rudralife patrons including Milind Soman and Dimple Kapadia.",
+        "patron_cards": [
+          "Milind Soman (Supermodel & Fitness Icon)",
+          "Dimple Kapadia (Veteran Award-Winning Actress)"
+        ],
+        "ticker_marquee": "Infinite marquee of eminent patrons across corporate, public service & art sectors."
+      }
+    },
+    {
+      "name": "Panel of Experts",
+      "component_path": "src/sections/Experts.jsx",
+      "data_testid": "experts-section",
+      "design": {
+        "layout": "Grid of 7 official Rudralife panel experts with genuine portrait photos, titles, and consultation expertise.",
+        "expert_card_data_testid": "expert-card-{id}"
+      }
+    },
+    {
+      "name": "Frequently Asked Questions (FAQ)",
+      "component_path": "src/sections/FAQ.jsx",
+      "data_testid": "faq-section",
+      "design": {
+        "layout": "Clean accordion list with warm border accents and comfortable typography.",
+        "accordion_item_data_testid": "faq-item-{index}"
+      }
+    },
+    {
+      "name": "Lead Consultation Enquiry Form",
+      "component_path": "src/sections/Enquiry.jsx",
+      "data_testid": "enquiry-section",
+      "design": {
+        "layout": "Premium form card with full backend submission integration.",
+        "fields": [
+          "Name (data-testid='enquiry-input-name')",
+          "Email (data-testid='enquiry-input-email')",
+          "Phone (data-testid='enquiry-input-phone')",
+          "City (data-testid='enquiry-input-city')",
+          "Profession (data-testid='enquiry-input-profession')",
+          "Message (data-testid='enquiry-input-message')"
+        ],
+        "submit_button": "Submit Lead Enquiry (data-testid='enquiry-submit-btn')"
+      }
+    },
+    {
+      "name": "Footer",
+      "component_path": "src/sections/Footer.jsx",
+      "data_testid": "footer-section",
+      "design": {
+        "layout": "Off-white footer with brown text, authentic Rudralife logo, functional contact links and belief/outcomes disclaimer. No dark footer."
+      }
+    }
+  ],
+  "accessibility_and_testing": {
+    "data_testid_policy": "All key buttons, inputs, section cards, dial nodes, and navigation links MUST include explicit data-testid attributes.",
+    "apca_contrast": "Ensure dark brown text (#2D1810) on ivory background (#FAF7F2) achieves minimum 7.5:1 APCA contrast for body text and headers.",
+    "motion_policy": "Respect prefers-reduced-motion media query by falling back from 3D scroll physics to smooth static views."
   },
-  "instructions_to_main_agent": "1. Build the frontend using React (.js/.jsx), NOT TypeScript (.tsx). 2. Create a global R3F Canvas covering the screen (fixed inset-0, z-[-1]). 3. Implement `<ScrollControls>` to drive the 3D bead animation (falling, rotating) as the user scrolls through the HTML pages overlaid via `<Scroll html>`. 4. In the Interactive Bead Selector, use state to highlight the active slot, and smoothly transition the bead's material/texture properties based on the selected Mukhi. 5. Include an enquiry form with Shadcn components (Form, Input, Textarea, Button). 6. Use `react-fast-marquee` for the Trusted By section. 7. Do not use generic Shadcn borders/colors, strictly follow the luxury dark/gold palette.",
-  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": "Avoid 'AI slop'. No generic centered layouts, simplistic gradients, or uniform styling. Create depth using glass-morphism (backdrop-blur-xl) and z-index layers. DO NOT apply universal transition (`transition: all`). Apply transitions to specific properties. DO NOT use emojis for icons (use lucide-react). Implement Lenis for smooth momentum scrolling. Prioritize UI uniqueness.",
-  "GENERAL_UI_UX_DESIGN_GUIDELINES": "All interactive and key informational elements MUST include a `data-testid` attribute (kebab-case, role-based) for testing. DO NOT use complete transparent backgrounds for overlays or headers. Ensure 4.5:1 contrast for text. Use optical alignment (e.g., icons in buttons). Ensure spacing multipliers are generous (p-8 to p-12)."
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Follow the warm off-white canvas theme strictly. Never apply black or dark gray backgrounds.",
+    "Do NOT place any Om symbol or mantra text in the center of the bead selector circular dial.",
+    "Ensure all 16 beads (1-14 Mukhi, Gaurishankar, Ganesh) are correctly rendered in the circular selector.",
+    "Use real image URLs provided in image_urls list for experts, celebrities, and mala assets.",
+    "Ensure all interactive components maintain data-testid attributes for automated testing."
+  ]
 }

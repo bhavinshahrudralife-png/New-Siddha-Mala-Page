@@ -1,109 +1,76 @@
-import { useRef, useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { MeshDistortMaterial, Sparkles, Float } from "@react-three/drei";
-import * as THREE from "three";
+import { Component, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useTexture } from '@react-three/drei';
+import { useReducedMotion } from 'framer-motion';
+import * as THREE from 'three';
+import { BEADS } from '../data/content';
 
-function useScrollProgress() {
-  const ref = useRef(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      ref.current = max > 0 ? window.scrollY / max : 0;
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+// Curved, dimensional photo surfaces preserve the actual Rudralife bead details.
+// These are not scanned 360-degree models; rotations deliberately stay front-facing.
+function PhotoBead({ bead, origin, size, speed, progress, index }) {
+  const mesh = useRef();
+  const texture = useTexture(bead.img);
+  const geometry = useMemo(() => {
+    const g = new THREE.PlaneGeometry(1, 1, 40, 40);
+    const positions = g.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      const x = positions.getX(i), y = positions.getY(i);
+      positions.setZ(i, Math.sqrt(Math.max(0, 1 - 4 * (x*x + y*y))) * 0.18);
+    }
+    g.computeVertexNormals(); return g;
   }, []);
-  return ref;
-}
-
-function Rudraksha({ progressRef }) {
-  const group = useRef();
-  const bead = useRef();
-  const mat = useRef();
-  const ring = useRef();
-  useFrame((state, delta) => {
-    const p = progressRef.current; // 0..1 whole page
-    const journey = Math.min(p / 0.22, 1); // hero journey over first 22% of scroll
-    const wide = state.viewport.width > 6.5;
-    if (group.current) {
-      group.current.rotation.y += delta * 0.35;
-      group.current.rotation.x = journey * Math.PI * 2.2;
-      group.current.position.y = THREE.MathUtils.lerp(0.2, -30, Math.pow(journey, 1.6));
-      const xBase = wide ? 2.3 : 0;
-      group.current.position.x = xBase + Math.sin(journey * Math.PI * 2) * 1.2;
-      const s = (wide ? 0.85 : 0.7) + journey * 0.5;
-      group.current.scale.setScalar(s);
-    }
-    if (mat.current) {
-      // fade out after the journey
-      const fade = p > 0.2 ? Math.max(0, 1 - (p - 0.2) / 0.04) : 1;
-      mat.current.opacity = fade;
-      mat.current.transparent = true;
-    }
-    if (ring.current) {
-      ring.current.rotation.x += delta * 0.4;
-      ring.current.rotation.z += delta * 0.2;
-      const fade = p > 0.2 ? Math.max(0, 1 - (p - 0.2) / 0.04) : 1;
-      ring.current.material.opacity = 0.5 * fade;
-    }
+  useEffect(() => () => geometry.dispose(), [geometry]);
+  useFrame(({ clock, viewport, size: canvasSize }, delta) => {
+    if (!mesh.current) return;
+    const p = progress.get();
+    const mobile = canvasSize.width <= 600;
+    const compact = canvasSize.width < 1800;
+    // Small screens reserve the entire title and lower copy areas. Only the
+    // two side-lane beads remain, never crossing the necklace or text.
+    mesh.current.visible = mobile ? index < 2 : !compact || index < 2;
+    const laneX = mobile ? (index === 0 ? -0.38 : 0.38) : origin[0];
+    const laneY = mobile ? (index === 0 ? 0.08 : -0.03) : origin[1];
+    const descent = mobile ? 0.33 : speed;
+    const screenY = 0.5 - laneY + p * descent;
+    const x = laneX * viewport.width;
+    const y = laneY * viewport.height - p * viewport.height * descent;
+    mesh.current.position.x = THREE.MathUtils.damp(mesh.current.position.x, x, 8, delta);
+    mesh.current.position.y = THREE.MathUtils.damp(mesh.current.position.y, y + Math.sin(clock.elapsedTime * 0.65 + index) * 0.055, 8, delta);
+    mesh.current.rotation.set(Math.sin(p * 4 + index) * 0.18, Math.sin(clock.elapsedTime * 0.24 + index) * 0.22, p * (index % 2 ? 1.5 : -1.3) + index * 0.15);
+    const scale = mobile ? viewport.height * 0.074 : Math.min(size, viewport.width * 0.073);
+    mesh.current.scale.setScalar(scale);
+    const laneFade = mobile ? 1 - THREE.MathUtils.smoothstep(screenY, 0.67, 0.73) : compact ? 1 - THREE.MathUtils.smoothstep(screenY, 0.36, 0.43) : 1;
+    mesh.current.material.opacity = laneFade * (1 - THREE.MathUtils.smoothstep(p, 0.52, 0.88));
   });
-  return (
-    <group ref={group}>
-      <Float speed={1.6} rotationIntensity={0.4} floatIntensity={0.9}>
-        <mesh ref={bead}>
-          <sphereGeometry args={[1.15, 96, 96]} />
-          <MeshDistortMaterial
-            ref={mat}
-            color="#7a3a14"
-            emissive="#1f0d02"
-            emissiveIntensity={0.4}
-            distort={0.34}
-            speed={1.4}
-            roughness={0.68}
-            metalness={0.3}
-          />
-        </mesh>
-        <mesh ref={ring} rotation={[Math.PI / 2.4, 0, 0]}>
-          <torusGeometry args={[2.15, 0.02, 16, 128]} />
-          <meshBasicMaterial color="#d4af37" transparent opacity={0.5} />
-        </mesh>
-      </Float>
-    </group>
-  );
+  return <mesh ref={mesh} geometry={geometry} position={[0, 20, 0]}>
+    <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} toneMapped={false}/>
+  </mesh>;
 }
 
-export default function Scene3D() {
-  const progressRef = useScrollProgress();
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const fn = (e) => setReduced(e.matches);
-    mq.addEventListener("change", fn);
-    return () => mq.removeEventListener("change", fn);
-  }, []);
+class SceneBoundary extends Component {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
+}
 
-  return (
-    <div
-      data-testid="scene-3d"
-      className="fixed inset-0 z-0 pointer-events-none"
-      aria-hidden="true"
-    >
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 45 }}
-        dpr={[1, 1.75]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        frameloop={reduced ? "demand" : "always"}
-      >
-        <ambientLight intensity={0.9} />
-        <pointLight position={[5, 5, 5]} intensity={60} color="#ffd98a" />
-        <pointLight position={[-6, -3, 2]} intensity={30} color="#c96b2a" />
-        <pointLight position={[0, -4, 5]} intensity={22} color="#d4af37" />
-        <directionalLight position={[0, 4, 6]} intensity={2.4} color="#fff3d6" />
-        <Rudraksha progressRef={progressRef} />
-        <Sparkles count={110} scale={[14, 14, 6]} size={2.2} speed={0.25} color="#d4af37" opacity={0.55} />
-      </Canvas>
-    </div>
-  );
+export default function Scene3D({ progress, visible }) {
+  const reduced = useReducedMotion();
+  const [supported, setSupported] = useState(false);
+  useEffect(() => {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+    setSupported(Boolean(gl));
+    gl?.getExtension('WEBGL_lose_context')?.loseContext();
+  }, []);
+  if (reduced || !supported) return null;
+  const composition = [
+    [4, [-0.39, 0.29], 1.25, 0.72], [10, [0.37, 0.18], 0.78, 0.85],
+    [6, [-0.45, -0.22], 0.62, 0.9], [13, [0.45, -0.3], 1.05, 0.7],
+    [2, [0.44, 0.68], 0.48, 1.15],
+  ];
+  return <div className="bead-canvas" data-testid="scene-3d" aria-hidden="true">
+    <SceneBoundary><Canvas camera={{ position: [0, 0, 10], fov: 38 }} dpr={[1, 1.5]} frameloop={visible ? 'always' : 'never'} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}>
+      <Suspense fallback={null}>{composition.map(([id, origin, size, speed], i) => <PhotoBead key={id} bead={BEADS[id]} origin={origin} size={size} speed={speed} progress={progress} index={i}/>)}</Suspense>
+    </Canvas></SceneBoundary>
+  </div>;
 }

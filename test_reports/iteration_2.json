@@ -1,0 +1,38 @@
+{
+  "summary": "Targeted retest completed for login-limit fix and responsive bead-collision fix on preview URL. Backend lockout behaviors passed all requested scenarios; hero responsiveness and WebGL motion checks passed across 320/390/768/1024/1440/1920 at scroll 0/20/40/70 with no horizontal overflow and no observed text overlap.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_login_limit_regression.py",
+    "/app/test_reports/pytest/pytest_results_iteration2_login_limit.xml"
+  ],
+  "action_items": [
+    "Optional cleanup: remove legacy startup index creation on login_attempts.identifier since lockout now keys by _id hash.",
+    "Optional: investigate recurring frontend console warning about non-static scroll container from animation stack (not blocking behavior)."
+  ],
+  "critical_code_review_comments": [
+    "Lockout implementation now correctly normalizes account identity via sha256(email.lower().strip()) and no longer depends on proxy IP/forwarded headers.",
+    "Atomic failure aggregation with expiry-aware reset and Retry-After responses behaves correctly under sequential and concurrent attempts.",
+    "Auth cookie flags (HttpOnly/Secure/SameSite=None), CORS credentials with explicit origin, bcrypt $2b$ hash format, and protected admin auth flow are all validated working."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_login_limit_regression.py",
+    "/app/test_reports/iteration_2.json"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "100%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Focused regression only. Added pytest file for lockout/casing/header/concurrency/expiry-reset/counter-clear/cookie/CORS/bcrypt checks. UI retest used browser automation artifacts under /app/test_reports/artifacts/iteration2_ui* with hero screenshots at required widths and scroll states plus WebGL canvas nonblank/change checks.",
+  "rca of the issue": "Previously lockout keying split counters by proxy-dependent identifiers. Current implementation fixes root cause by stable normalized account hash key and atomic update logic; retest confirms first five 401 then 429, concurrent burst handling, expiry reset without TTL wait, and successful login clearing counter."
+}

@@ -1,0 +1,63 @@
+{
+  "summary": "Completed backend + frontend regression on NEW preview (/ and /siddha-mala.html), including enquiry flows, auth/admin, CMS, media, responsive checks, and error-path validation.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/admin/leads/{lead_id}",
+        "issue": "Delete API allows deletion of any lead; no QA-only guard enforced though requirement says delete ONLY QA leads.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ConsultationForm country selector render",
+        "issue": "Console/hydration error: invalid DOM nesting (<span> rendered inside <option>) observed during landing render.",
+        "selector": "[data-testid='enquiry-country-code'] option",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Hero Scene3D pixel verification",
+        "issue": "Acceptance check 'canvas pixel nonblank/change with scroll' could not be conclusively validated via 2D readback; WebGL canvas exposes no 2D context in runtime checks.",
+        "affected_selectors": [
+          "[data-testid='scene-3d'] canvas"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_rudralife_iteration4_regression.py",
+    "/app/backend/tests/test_login_limit_regression.py",
+    "/app/test_reports/pytest/pytest_results_iteration4.xml"
+  ],
+  "action_items": [
+    "Enforce QA-only delete policy in lead deletion logic (or add explicit role/flag gate matching requirement).",
+    "Fix invalid option markup generation causing hydration warning in country dropdown rendering path.",
+    "Provide deterministic Scene3D verification hook (e.g., test mode canvas snapshot/state telemetry) for nonblank/change assertion.",
+    "Re-run full UI regression after above fixes, especially consultation form render and hero motion evidence checks."
+  ],
+  "critical_code_review_comments": [
+    "Auth and login lockout controls remain correct: bcrypt $2b$, cookie flags, explicit CORS origin with credentials, and lockout behavior all passed.",
+    "Enquiry API now enforces country/country_code consistency and E.164 normalization; idempotent submission_id behavior is working.",
+    "CMS validation rules (blank headline, stale revision, unverified stats visibility) correctly return 422/409 as expected.",
+    "Media metadata response correctly excludes internal storage fields (_id/storage_path) in public/admin responses."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_rudralife_iteration4_regression.py",
+    "/app/test_reports/iteration_4.json"
+  ],
+  "success_rate": {
+    "backend": "100% (20 passed, 1 skipped)",
+    "frontend": "88%"
+  },
+  "seed_data_creation": "Created QA media fixtures (/app/tests/qa_upload.png, /app/tests/qa_upload.pdf) and temporary QA leads; QA leads were cleaned up after verification.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Public preview URL was used throughout. Inline + popup submissions reached /thank-you with name confirmation; popup 503 interception showed no fake success and retry worked. Admin login/logout/guard, lead search/detail/status-note update, CMS section count=21, media upload UI, brochure PDF (200, application/pdf, 9,224,883 bytes), responsive overflow checks at 320/390/768/1024/1440/1920 all executed. Hero tagline was restored to 'One mala. A complete spiritual companion.' and QA leads deleted.",
+  "rca of the issue": "1) Lead delete policy gap: backend delete handler performs unconditional delete by id and does not check QA marker/source/flag. 2) Country dropdown hydration warning likely introduced by editor instrumentation/wrapping injecting span nodes in option children at runtime. 3) Scene3D verification gap: WebGL canvas readback path unavailable via 2D context; test cannot prove pixel-change criterion without dedicated observability hook."
+}

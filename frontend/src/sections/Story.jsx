@@ -1,8 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
-import { IMAGES } from '../data/content';
+import { usePage } from '../context/PageContext';
+import { Reveal, ProductImage } from '../components/Editorial';
 export default function Story() {
-  return <section id="story" className="story-section section-space" data-testid="story-section"><div className="site-container story-layout">
-    <figure className="story-image"><img src={IMAGES.malaSatin} alt="Rudralife Siddha Mala with gold fittings, presented on silk beside its wooden box" loading="lazy" data-testid="story-product-image"/><figcaption>A SIGNATURE CREATION BY RUDRALIFE</figcaption></figure>
-    <div className="story-copy"><p className="eyebrow">THE RUDRALIFE STORY</p><h2 className="editorial-title">Ancient wisdom.<br/><em>Uncompromising care.</em></h2><p>Rudralife’s journey is built around a single sacred bead. A dedication to sourcing, studying and sharing authentic Rudraksha, with knowledge at the heart of every recommendation.</p><p>The Siddha Mala is a registered and trademarked Rudralife creation, handcrafted with authentic Nepal Rudraksha and prepared with the ACE Energization process.</p><div className="story-signoff"><span>Authenticity, before everything.</span><a href="https://www.rudralife.com/profile-mission" target="_blank" rel="noopener noreferrer" className="text-link" data-testid="story-source-link">The Rudralife legacy <ArrowUpRight size={16}/></a></div></div>
-  </div></section>;
+  const {story:s} = usePage();
+  return <section id="story" className="story-section section-space" data-testid="story-section"><div className="site-container story-layout"><Reveal><figure className="story-image"><ProductImage src={s.image} alt={s.image_alt} loading="lazy" data-testid="story-product-image"/><figcaption>{s.caption}</figcaption></figure></Reveal><Reveal className="story-copy" delay={.15}><p className="eyebrow">{s.eyebrow}</p><h2 className="editorial-title multiline" data-testid="story-heading">{s.title}</h2>{s.paragraphs.map((p,i)=><p key={i}>{p}</p>)}<div className="story-signoff"><span>{s.signoff}</span><a href={s.source} target="_blank" rel="noopener noreferrer" className="text-link" data-testid="story-source-link">{s.link_label}<ArrowUpRight size={16}/></a></div></Reveal></div></section>;
 }

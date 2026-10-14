@@ -1,0 +1,8 @@
+import { ArrowUpRight } from 'lucide-react';
+import { usePage } from '../context/PageContext';
+import { useConsultation } from '../context/ConsultationContext';
+import { Reveal,SectionHeading } from '../components/Editorial';
+export default function Community() {
+  const {community:s}=usePage(); const {openConsultation}=useConsultation(); const stats=s.stats.filter(stat=>stat.visible&&stat.verified&&stat.source&&stat.value!=='');
+  return <section className="community-section section-space" data-testid="community-section"><div className="site-container"><SectionHeading section={s} id="community"/>{stats.length>0 && <div className="community-statistics" data-testid="community-statistics">{stats.map(stat=><Reveal className="community-stat" key={stat.id}><strong data-testid={`community-stat-value-${stat.id}`}>{Number.isFinite(Number(stat.value))?new Intl.NumberFormat('en-IN').format(Number(stat.value)):stat.value}{stat.suffix}</strong><span>{stat.label}</span><a href={stat.source} target="_blank" rel="noopener noreferrer" data-testid={`community-stat-source-${stat.id}`}>Source<ArrowUpRight size={12}/></a></Reveal>)}</div>}<div className="community-steps">{s.points.map((item,i)=><Reveal key={item.id} delay={i*.1}><span>0{i+1}</span><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}</div><Reveal><button className="text-link" onClick={()=>openConsultation()} data-testid="community-consult-button">{s.cta_label}<ArrowUpRight size={17}/></button></Reveal></div></section>;
+}

@@ -1,149 +1,167 @@
 # PRD — Rudralife Siddha Mala
 
-## Original request
-Build a premium Siddha Mala landing experience inspired by the scroll-driven product
-presentation at capsul-in-pro.com/home-compost-capsule/. Include descending Rudraksha,
-a complete mala presentation, 1–14 Mukhi plus Gauri Shankar and Ganesh selector,
-brand story, benefits, Milind Soman and Dimple Kapadia, expert panel, FAQs, enquiry
-form (name/email/phone/city/profession/message), thank-you route and protected admin
-for leads and page content.
+## User goal / original scope
+Premium Rudralife Siddha Mala landing page with scroll-driven Rudraksha descent,
+full mala imagery and an interactive 1–14 Mukhi + Gauri Shankar + Ganesh selector.
+Include hero, emotional introduction, Sacred Signature, story, collection, Milind
+Soman/Dimple Kapadia, educational content, composition, responsible spiritual
+benefits, trust, panel experts, community, FAQs, consultation and footer.
+Reference: https://siddha-mala-sacred.preview.emergentagent.com/siddha-mala.html
+The reference is a DIFFERENT project; this job updates the current workspace app.
+Current frontend origin MUST come from frontend/.env REACT_APP_BACKEND_URL.
 
-## Latest user requirements — 14 October 2026
-- Respond in Hinglish. User wants actual implementation, not elaborate assurances.
-- Previous dark, symbol-led design was explicitly rejected as looking "local".
-- Off-white background, brown typography, restrained gold details.
-- NO Om symbols, mantras, or 27+1 Nakshatra presentation in the visible site.
-- Full transparent Siddha Mala photo, genuine Rudraksha descending top-to-bottom
-  with scroll, optional automated journey, no text/image collisions.
-- Spacious circle using the CORRECT images for all 16 bead forms: 1–14 Mukhi,
-  Gauri Shankar and Ganesh (not repeating unrelated products).
-- Authentic Rudralife logo, photos, names and sourced content.
+## Explicit preferences and approval
+- User primarily uses Hinglish; latest approval was in English.
+- Off-white background, brown text, gold details; no dark template, Om/mantra or
+  decorative 27+1 Nakshatra pattern.
+- Genuine, better-quality gold-fitted Mala PNG and Rudraksha photos; longer smooth
+  scroll journey with animated content; stronger Milind/Dimple presentation.
+- Both visible inline and button-triggered popup consultation forms. Mandatory
+  country-code selection and actual backend lead persistence.
+- Complete admin editing of ALL sections, images, text, banners, form settings and
+  other content; lead management; PRESERVE existing admin credentials.
+- No fabricated endorsements, customer counts or certification details. No medical
+  or financial guarantees. Verify before claiming completion.
+- Explicit user approval: "Perfect, please proceed with the implementation as
+  discussed." Requested working preview/admin URLs and VERIFIED existing login.
 
-## Architecture
-- React 19, React Router, Tailwind/shadcn form and accordion, Manrope + Cormorant Garamond.
-- Framer Motion scroll transforms, Three.js/R3F/drei actual-photo curved bead meshes,
-  Lenis smooth anchors. Optional play/pause journey stops on wheel/touch/Escape.
-- FastAPI + Motor/MongoDB. JWT access-token httpOnly secure cookie, bcrypt.
-- Mongo account lockout helper: stable normalized-email hash, atomic fixed-window
-  counter, five failures then 429, 15-minute expiry, TTL cleanup, Retry-After.
-- Routes: `/`, `/thank-you`, `/admin/login`, `/admin`.
-- APIs: GET `/api/content`; POST `/api/enquiries`; POST `/api/auth/login|logout`;
-  GET `/api/auth/me`; GET/DELETE `/api/admin/leads`; PUT `/api/admin/content`.
-- Always use frontend REACT_APP_BACKEND_URL and backend MONGO_URL, DB_NAME from env.
-  Do not rely on old preview URLs. Current credentials in test_credentials.md.
+## Current status — implemented and verified, 14 October 2026
+### Public experience
+- Routes `/` and `/siddha-mala.html` render the updated experience.
+- 3.8-viewport hero journey (admin-adjustable2–6), full transparent product photo,
+  photo-textured Three.js bead surfaces, longer scroll descent and chapter reveals.
+- Authentic gold-fitted product photograph prepared as PNG using LOCAL background
+  segmentation (rembg/u2netp); no generated/fabricated product imagery.
+- Actual Rudralife blog visit photos replace the low-resolution client thumbnail:
+  Milind source2048×1152; Dimple source1200×800. Framed without cropping subjects.
+- 13 configurable body sections plus hero/footer. New emotional intro, Sacred
+  Signature, gallery/lightbox, educational accordion, trust and community sections.
+- Correct16 distinct bead forms, source-confirmed28bead total and quantities.
+- All7 experts,10FAQs,3educational questions; accessible expansion and consultation
+  CTAs, optional interest prefilled from gallery/bead/expert.
+- Original brochure preserved (valid9.22MBPDF), clearly labelled source brochure
+  with a traditional-beliefs/outcomes disclaimer. Not presented as guaranteed advice.
+- Community customer counters supported in CMS but HIDDEN until supplied value,
+  verification acknowledgement and evidence URL. No invented5lakh/90%/52 figures.
+- Reduced-motion fallback, paused offscreen WebGL, mobile sticky consultation,
+  keyboard-accessible dialogs, semantic metadata/canonical/OpenGraph/WebPage JSON-LD.
+- All headline/product copy remain populated; no leftover QA test tagline.
 
-## Implemented — 14 October 2026
-### Redesign
-- Replaced dark/glass presentation with off-white editorial layout and real logo.
-- Full transparent necklace cutout, descending/tilting scroll sequence, real-photo
-  3D bead surfaces instead of previous distorted sphere, no central symbols.
-- Two clear hero chapters with separately reserved title, copy and control regions.
-- Mobile side-lane bead animation; compact screens fade beads before copy regions.
-- Full image always visible without WebGL; reduced-motion keeps static product view.
-- Optional Play/Pause journey; scroll itself remains user-controlled by default.
-- Rebuilt 16-node circle with correct photos, keyboard tabs, next/previous wrapping,
-  detail view, deity, quantity, description and official product links.
-- Replaced inaccurate generic bead mappings (old 6/14/Gauri/Ganesh used other beads).
-- Official product story/benefits adapted without invented customer stories or
-  guaranteed health/wealth claims. Authentic Dimple quote and seven expert bios.
-- Rebuilt enquiry, FAQ, portraits, footer and thank-you. No dead brochure button.
-- Existing admin hero/contact/stats editing preserved; labels match new presentation.
-- Source portraits/editorial images converted to WebP; all visible images served
-  locally. Total public image assets approximately 3.8 MB.
-- Source data/archives: `/app/source_assets/rudralife/`; acquisition scripts:
-  `/app/scripts/source_rudralife_assets.py`, `/app/scripts/prepare_rudralife_images.py`.
-- Full hero necklace is cut out of the existing supplied product photograph.
-  All newly acquired beads/logo/expert/editorial assets have Rudralife source records.
-- Removed unused old Composition and Trusted components to avoid stale Nakshatra
-  copy and references to deleted content arrays.
+### Forms and leads
+- Shared inline/popup form with explicit country selection (all supported countries),
+  client libphonenumber-js and server phonenumbers validation, normalized E.164.
+- Name/email/phone+country required; city/profession/message optional by default;
+  optional-field requirements and labels/placeholders editable in CMS.
+- Actual POST `/api/enquiries`; sourceinline/popup, interest, country and dial code
+  saved in Mongo. UUID submission_id makes retries idempotent.
+- Only accepted API response redirects to thank-you. Error retains entered data,
+  no false success and no localStorage PII fallback. Enter submission supported.
+- Lead inbox: search, status filter,25-rowpagination, details, country/interest,
+  notes/status update, CSV export (formula escaped), confirmed deletion.
+- Any authorized admin can delete a selected lead after confirmation. "Delete only
+  QA leads" was a restriction on testing activity, NOT an app authorization rule.
 
-### Functional fixes
-- Enquiry validation/error/loading flow, thank-you confirmation and contact links.
-- New default brand copy only migrates exact old starter values, preserving custom edits.
-- Critical login lockout fixed: proxy IP rotation no longer splits account counters.
-- Atomic concurrent failures and expiry handling verified; credentials unchanged.
-- Removed obsolete index creation and fixed Framer Motion static-container warning.
-- Final manual check restored a test-agent leftover hero tagline to real brand copy.
-- Necklace-to-play-control clearance verified at 0/20/40/70/100% hero progress:
-  minimum bounding-box gap approximately 25px on tested desktop viewport.
+### Full content studio
+-21 editor groups: brand/header/banner, hero, intro, signature, story, gallery,
+  beads, education, benefits, Milind/Dimple, trust, experts, community/statistics,
+  FAQ, consultation section, form settings, footer, thank-you, SEO, motion, order.
+- Text and image replacement throughout; media previews and selection; array
+  add/remove/reorder; section visibility/order; dirty state, discard and publish.
+- Required structural invariants protect16forms, required lead fields and headline.
+- Versioned Mongo content with optimistic concurrency: stale revision returns409.
+- Legacy `/api/content` updates synchronize relevant hero/contact fields into CMS.
+- Existing admin email/password/hash and JWT-cookie flow preserved, not reset.
 
-## Verification
-- `yarn build`: PASS, final log `/app/test_reports/build.log`.
-- Full API suite + targeted login regressions: **19/19 passed**, sequential run,
-  `/app/test_reports/pytest/final_results.xml`.
-- Testing agent round 1: core flows worked; reported mobile overlap and lockout bug.
-- Testing agent round 2: both fixed, frontend/backend 100% for targeted regression.
-- `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`.
-- UI: 320/390/768/1024/1440/1920 widths, scroll 0/20/40/70%, no horizontal overflow;
-  nonblank moving WebGL canvas verified; all 16 selector nodes and keyboard controls;
-  journey cancellation; mobile navigation; experts; FAQ; enquiry -> thank-you;
-  admin login/guard/leads/delete/content save/logout.
-- Final self-check after round 2: real tagline restored; static-container warning
-  absent; corrected necklace/control spacing passed at five scroll checkpoints.
-- Browser automation produces GPU ReadPixels performance warnings and occasionally
-  aborted platform telemetry requests; no application runtime failure observed.
-- No mocked APIs or integrations. No current known broken implemented flow.
+### Durable media storage
+- Managed object storage via existing INTEGRATION_PROXY_URL and EMERGENT_LLM_KEY
+  from backend environment; STORAGE_APP_NAME configured. No keys exposed to browser.
+- Admin PNG/JPEG/WebP/PDF upload up to12MB; actual signature/image validation;
+  image dimensions bounded and raster images optimized; SVG/HTML rejected.
+- Public `/api/media/{id}` proxy resolves Mongo metadata to durable storage path;
+  identifiers/path/key are not disclosed beyond public media ID/URL.
+- Media library includes original assets and uploaded files; selecting standalone
+  library item opens the real image; CMS picker selects the image for publishing.
+- No mocked services. Managed storage upload/read and CMS image use actually tested.
 
-## Important limits / honest representation
-- The 3D effect uses authentic photo-textured curved geometry and PNG transforms.
-  It is NOT a photogrammetry/scanned 360-degree Rudraksha/necklace model.
-- Full necklace cutout provenance is the pre-existing provided product photo, not
-  a newly scraped official transparent PNG. See source_assets/rudralife/README.md.
-- Admin editor covers hero tagline/description, contact and displayed trust stats;
-  it does not yet edit every bead/profile/section. Do not claim full-page CMS.
-- No team email notification, brochure file or payment integration implemented.
-- Actual source-site product composition includes repeats of 2–7 Mukhi; selector
-  depicts 16 distinct forms, not a necklace containing only 16 beads.
+## Architecture / important files
+- React19, Tailwind/shadcn, Lenis, Framer Motion, R3F/drei/Three, FastAPI, Motor/Mongo.
+- `frontend/src/data/pageDefaults.js`: complete source-backed editable page defaults.
+- `backend/page_defaults.json`: committed server copy generated by
+  `node /app/scripts/sync_page_defaults.js` whenever defaults change.
+- `frontend/src/context/PageContext.jsx`: fetches versioned page and legacy settings.
+- `frontend/src/context/ConsultationContext.jsx`: shared accessible consultation dialog.
+- `frontend/src/components/ConsultationForm.jsx`: country/phone validation and submit.
+- `frontend/src/sections/`: all public sections consume page context (no separate CMS).
+- `frontend/src/experience.css`: current visual refinements over established index.css.
+- `frontend/src/admin/`: PageEditor, recursive ContentField, MediaLibrary, LeadInbox,
+  LeadDetail and admin.css. AdminDashboard owns authenticated tabs.
+- `backend/page_content.py`: schema/structure/link/content validation, seed, CAS save.
+- `backend/enquiry_models.py`: lead data, phone validation and status update models.
+- `backend/media_storage.py`: managed storage init/upload/public proxy and metadata.
+- `backend/server.py`: existing auth preserved plus content/media/lead routes.
+- `backend/login_limits.py`: previous verified account-based atomic lockout unchanged.
 
-## Prioritised next actions
-### P0
-- None currently blocking; functional regression tests pass.
-### P1
-- User visual approval of the redesigned hero and scroll pace.
-- Expand admin editor to all section copy, bead descriptions, experts and FAQs.
-### P2 / Future
-- Obtain/licence a high-detail scanned Rudraksha GLB for true 360° inspection.
-- Optional lead CSV export and team email notification (provider setup required).
-- Optional official downloadable brochure, Hindi toggle.
-- Suggested conversion enhancement: carry selected Mukhi into consultation message.
+## API contracts
+- GET `/api/page-content` → page, revision, updated_at (public).
+- PUT `/api/admin/page-content` {page,revision} (protected;409 stale).
+- POST `/api/enquiries` requires countryISO2 and country_code, valid local/E.164
+  phone, name,email; source, interest,submission_id and optional business fields.
+- GET `/api/admin/leads/page?query=&status=&page=1`; PATCH/DELETE `/api/admin/leads/{id}`.
+- GET `/api/admin/leads/export` authenticated CSV; legacyGET `/api/admin/leads` kept.
+- POST `/api/admin/media` multipartfile; GET `/api/admin/media`; GET `/api/media/{id}`.
+- Existing `/api/auth/login|logout|me`, `/api/content`, `/api/admin/content` retained.
+- Project config from env, no changed MONGO_URL/DB_NAME/REACT_APP_BACKEND_URL values.
 
-## Latest request: reference audit first, then approved implementation
-User supplied `https://siddha-mala-sacred.preview.emergentagent.com/siddha-mala.html`
-and requested a complete section-by-section audit before an implementation plan.
-Additional preferences: longer/richer whole-page scroll journey; better gold Mala
-PNG and bead presentation; stronger Milind/Dimple section; BOTH visible inline and
-button-triggered popup consultation forms with mandatory phone country selection.
-User's clarification response was `Samrt Answer`; implementation approval was not
-explicitly given. Do not claim the remote reference has been modified.
+## Verification and resolved issues
+- Iteration4:20backend passes plus one skipped old module; forms/storage/CMS worked.
+  Its claimed QA-only deletion bug was a test-requirement misunderstanding, corrected.
+- Iteration5: **33/33 backend tests passed** with old payloads updated to required
+  country fields and no silent auth skips. Full functional frontend recheck passed.
+- Actual inline and popup submissions verified in admin and Mongo, E.164+source+
+  interest saved;503 test interception confirms no false success or PII fallback.
+- CMS round-trips cover text, images via real upload, experts, FAQadd/edit/delete,
+  footer, form labels/required flags, gallery, order/visibility, motion and SEO.
+- Existing admin login verified through browser and API; logout returns to login
+  and authenticated lead endpoint returns401 after logout. Credentials unchanged.
+- Responsive checks320/390/768/1024/1440/1920; no horizontal overflow or UI failures.
+- Full product visible with reduced motion; actual canvas has nonblank pixels.
+- Tester centroid heuristic was inconclusive, NOT a product failure. Main agent
+  closed that gap using compositor image subtraction and isolated real bead pixels:
+  normal400pxscroll moved bead centroidY191.48→301.65 (**110.2px downward**), with
+  >11,000 actual rendered changed pixels at both positions. No test renderer/mocks.
+- Bottom controls protected with actual CSS canvas clipping; browser confirmed
+  canvasBottom800−clip100=700 < controlsTop730. Initial broad footer pixel heuristic
+  also picked up animated controls/progress, so use this geometry check instead.
+- Native option markup corrected using React.createElement to avoid dev visual-edit
+  injection of invalidspanchildren. Both forms/admin selects reverified with0 children.
+- Recursive CMS JSX triggered dev-only Babel instrumentation recursion; `x-excluded`
+  DID NOT fix it. Correct fix: React.createElement for recursive ContentField calls.
+  Do not reintroduce self-recursive JSX; production build alone missed this issue.
+- Startup brieflyfailed when generated defaultsJSON didn't exist; file is now
+  committed, startupAPI200. Always generate defaults before loading backend changes.
+- Final published content restored, no QA test image/tagline; source-backed photos intact.
+- Final browser self-check verified media opens, login and logout redirect; the
+  script's lastwait used nonexistent admin-login-form testID (actualadmin-login-page),
+  a test selector typo, NOT auth failure. APIlogout401 independently verified.
+- Reports: `/app/test_reports/iteration_4.json`, `iteration_5.json`,
+  `pytest/pytest_results_iteration5_final.xml`, `final-implementation-build.log`,
+  `final_implementation_verification.md`.
 
-### Audit completed (read-only)
-- All sections reviewed in downloaded HTML plus browser testing at
-  320/390/768/1024/1440/1920. Initial desktop smoke also captured by main agent.
-- Full report/plan: `/app/audit/AUDIT_REPORT.md`; evidence:
-  `/app/audit/reference-audit.json`, `/app/test_reports/iteration_3.json`.
-- No application code, credentials or user data changed for this audit.
-- Reference is a DIFFERENT host/codebase from the editable current app. Readable
-  public HTML archived at `/app/audit/reference/siddha-mala.html`; reference backend
-  and database access unavailable. Its lead persistence has NOT been verified.
-- TEST-SIDE SIMULATED503 proved reference wrongly confirms/redirects after failure
-  and writes personal enquiry fields to localStorage. No actual integration mocked.
-- Reference H1 is blank because public CMS fields are whitespace.
-- Reference FAQ has duplicate conflicting handlers. Expert cards/mobile menu/modal
-  have keyboard/focus issues. Footer policy links are# placeholders.
-- Counters are NOT permanently zero: observed5,00,000+,90%,52+ after scroll. Their
-  accuracy needs evidence; large-target final value has a hardcoded formatting bug.
-- Brochure IS valid PDF,200,%PDF,~9.22MB. Do not call it broken or invent a replacement.
-- Dimple exists in client marquee, not a dedicated block; Milind text implies
-  unsupported motivations/endorsement. Aarav story lacks fictional disclosure.
-- Official listed composition sums28 (18+7+3) across16 forms.27+1 has the same total;
-  rare Nakshatra arrangement needs separate substantiation. Keep rejected hero
-  symbols/pattern out; exact total applies only to source-confirmed SKU.
+## Source material / representation limits
+- Prior read-only reference audit: `/app/audit/AUDIT_REPORT.md` and archived HTML.
+- Assets/provenance: `/app/source_assets/rudralife/`, `/app/source_assets/reference2/`.
+- Gold PNG source is pre-existing supplied real product photograph, not generated.
+- New Milind/Dimple images are from official Rudralife2023blog article; quote from
+  official client voices. No invented quote for Milind or promised personal outcomes.
+- Animation is genuine photo-textured 3D geometry plus PNG scroll transforms, NOT
+  a scanned360degree necklace model. Do not overstate model fidelity.
+- No payments or email/WhatsApp message automation; contactlinks open external apps.
 
-### Proposed next priorities (approval pending)
-P0: Reliable dual-form enquiry, country selection and backend validation; maintain
-current app's existing real error handling, accessible FAQ/experts and admin flows.
-P1: Longer product chapters, better verified golden necklace photography, animated
-bead/detail points, gallery, stronger Milind/Dimple, complete educational content;
-source-confirmed claims only; keyboard/SEO/performance improvements.
-P2: Full-page CMS expansion, real360 scanned assets and optional lead notifications.
-Do not silently change company contact data or publish unverified counters.
+## Next actions / backlog
+P0: None known blocking in implemented scope; user visual approval pending.
+P1: Owner reviews final copy/images and supplies documentary evidence before
+enabling any real customer/repeat-rate/country statistics in CMS.
+P2: Optional new-lead email notifications; high-detail licensed/scanned360GLB;
+Hindi language toggle. Full-pageCMS andCSVexport are DONE, not backlog anymore.
+
+Credentials and current verified URLs: `/app/memory/test_credentials.md`.

@@ -3,13 +3,13 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import { useReducedMotion } from 'framer-motion';
 import * as THREE from 'three';
-import { BEADS } from '../data/content';
+import { mediaUrl } from '../context/PageContext';
 
 // Curved, dimensional photo surfaces preserve the actual Rudralife bead details.
 // These are not scanned 360-degree models; rotations deliberately stay front-facing.
 function PhotoBead({ bead, origin, size, speed, progress, index }) {
   const mesh = useRef();
-  const texture = useTexture(bead.img);
+  const texture = useTexture(mediaUrl(bead.img));
   const geometry = useMemo(() => {
     const g = new THREE.PlaneGeometry(1, 1, 40, 40);
     const positions = g.attributes.position;
@@ -40,7 +40,8 @@ function PhotoBead({ bead, origin, size, speed, progress, index }) {
     const scale = mobile ? viewport.height * 0.074 : Math.min(size, viewport.width * 0.073);
     mesh.current.scale.setScalar(scale);
     const laneFade = mobile ? 1 - THREE.MathUtils.smoothstep(screenY, 0.67, 0.73) : compact ? 1 - THREE.MathUtils.smoothstep(screenY, 0.36, 0.43) : 1;
-    mesh.current.material.opacity = laneFade * (1 - THREE.MathUtils.smoothstep(p, 0.52, 0.88));
+    const footerFade = 1 - THREE.MathUtils.smoothstep(screenY, 0.77, 0.84);
+    mesh.current.material.opacity = laneFade * footerFade * (1 - THREE.MathUtils.smoothstep(p, 0.52, 0.88));
   });
   return <mesh ref={mesh} geometry={geometry} position={[0, 20, 0]}>
     <meshBasicMaterial map={texture} transparent depthWrite={false} side={THREE.DoubleSide} toneMapped={false}/>
@@ -53,7 +54,7 @@ class SceneBoundary extends Component {
   render() { return this.state.failed ? null : this.props.children; }
 }
 
-export default function Scene3D({ progress, visible }) {
+export default function Scene3D({ progress, visible, beads }) {
   const reduced = useReducedMotion();
   const [supported, setSupported] = useState(false);
   useEffect(() => {
@@ -64,13 +65,13 @@ export default function Scene3D({ progress, visible }) {
   }, []);
   if (reduced || !supported) return null;
   const composition = [
-    [4, [-0.39, 0.29], 1.25, 0.72], [10, [0.37, 0.18], 0.78, 0.85],
+    [4, [-0.39, 0.25], 1.25, 0.72], [10, [0.37, 0.18], 0.78, 0.85],
     [6, [-0.45, -0.22], 0.62, 0.9], [13, [0.45, -0.3], 1.05, 0.7],
     [2, [0.44, 0.68], 0.48, 1.15],
   ];
   return <div className="bead-canvas" data-testid="scene-3d" aria-hidden="true">
     <SceneBoundary><Canvas camera={{ position: [0, 0, 10], fov: 38 }} dpr={[1, 1.5]} frameloop={visible ? 'always' : 'never'} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}>
-      <Suspense fallback={null}>{composition.map(([id, origin, size, speed], i) => <PhotoBead key={id} bead={BEADS[id]} origin={origin} size={size} speed={speed} progress={progress} index={i}/>)}</Suspense>
+      <Suspense fallback={null}>{composition.map(([id, origin, size, speed], i) => <PhotoBead key={id} bead={beads[id]} origin={origin} size={size} speed={speed} progress={progress} index={i}/>)}</Suspense>
     </Canvas></SceneBoundary>
   </div>;
 }

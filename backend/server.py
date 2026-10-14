@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends, File, UploadFile
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr
@@ -16,6 +16,9 @@ import logging
 import bcrypt
 import jwt
 from login_limits import account_key, check_lock, record_failure
+from enquiry_models import EnquiryCreate, Enquiry, LeadUpdate, LeadPage
+from page_content import PageSave, PageResponse, read_page, save_page, seed_page
+from media_storage import MediaItem, upload_media, serve_media, init_storage
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -63,24 +66,6 @@ async def get_current_user(request: Request) -> dict:
     return user
 
 # ---------- Models ----------
-class EnquiryCreate(BaseModel):
-    name: str
-    email: EmailStr
-    phone: str
-    city: str
-    profession: str
-    message: Optional[str] = ""
-
-class Enquiry(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    name: str
-    email: str
-    phone: str
-    city: str
-    profession: str
-    message: str = ""
-    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
-
 class LoginInput(BaseModel):
     email: str
     password: str
@@ -106,9 +91,29 @@ async def root():
 
 @api_router.post("/enquiries", response_model=Enquiry)
 async def create_enquiry(input: EnquiryCreate):
+    from pymongo.errors import DuplicateKeyError
+    existing = await db.enquiries.find_one({'submission_id': input.submission_id}, {'_id': 0})
+    if existing: return Enquiry(**existing)
+    settings = await db.page_content.find_one({'key': 'landing'}, {'_id': 0, 'page.form.fields': 1})
+    fields = (settings or {}).get('page', {}).get('form', {}).get('fields', [])
+    for field in fields:
+        if field.get('required') and field.get('key') in ('city', 'profession', 'message') and not getattr(input, field['key']).strip():
+            raise HTTPException(422, f"{field.get('label', field['key'])} is required.")
     enquiry = Enquiry(**input.model_dump())
-    await db.enquiries.insert_one(enquiry.model_dump())
+    try:
+        await db.enquiries.insert_one({**enquiry.model_dump(), 'submission_id': input.submission_id})
+    except DuplicateKeyError:
+        stored = await db.enquiries.find_one({'submission_id': input.submission_id}, {'_id': 0})
+        return Enquiry(**stored)
     return enquiry
+
+@api_router.get('/page-content', response_model=PageResponse)
+async def public_page():
+    return await read_page(db)
+
+@api_router.get('/media/{media_id}')
+async def public_media(media_id: str):
+    return await serve_media(db, media_id)
 
 @api_router.get("/content")
 async def get_content():
@@ -144,6 +149,63 @@ async def logout(response: Response):
     return {"message": "Logged out"}
 
 # ---------- Admin ----------
+def lead_filter(query='', status=''):
+    import re
+    filters = {}
+    if query.strip():
+        pattern = {'$regex': re.escape(query.strip()[:150]), '$options': 'i'}
+        filters['$or'] = [{field: pattern} for field in ('name', 'email', 'phone', 'city')]
+    if status:
+        if status not in ('new', 'contacted', 'qualified', 'closed'):
+            raise HTTPException(422, 'Invalid lead status')
+        filters['status'] = {'$in': ['new', None]} if status == 'new' else status
+    return filters
+
+@api_router.get('/admin/leads/page', response_model=LeadPage)
+async def paged_leads(query: str = '', status: str = '', page: int = 1, user=Depends(get_current_user)):
+    if page < 1: raise HTTPException(422, 'Invalid page')
+    filters = lead_filter(query, status)
+    total = await db.enquiries.count_documents(filters)
+    docs = await db.enquiries.find(filters, {'_id': 0}).sort('created_at', -1).skip((page-1)*25).limit(25).to_list(25)
+    return LeadPage(items=[Enquiry(**d) for d in docs], total=total, page=page, has_more=page*25 < total)
+
+@api_router.get('/admin/leads/export')
+async def lead_export(query: str = '', status: str = '', user=Depends(get_current_user)):
+    import csv, io
+    from starlette.responses import StreamingResponse
+    keys = ['name', 'email', 'country', 'country_code', 'phone', 'city', 'profession', 'message', 'interest', 'source', 'status', 'notes', 'created_at']
+    async def rows():
+        yield '\ufeff'
+        buffer = io.StringIO(); writer = csv.writer(buffer); writer.writerow(keys); yield buffer.getvalue()
+        async for lead in db.enquiries.find(lead_filter(query,status), {'_id':0}).sort('created_at',-1):
+            buffer.seek(0); buffer.truncate()
+            values=[]
+            for key in keys:
+                value=str(lead.get(key, ''))
+                values.append("'"+value if value.lstrip().startswith(('=', '+', '-', '@', '\t', '\r')) else value)
+            writer.writerow(values); yield buffer.getvalue()
+    return StreamingResponse(rows(), media_type='text/csv', headers={'Content-Disposition':'attachment; filename="rudralife-enquiries.csv"'})
+
+@api_router.put('/admin/page-content', response_model=PageResponse)
+async def edit_page(data: PageSave, user=Depends(get_current_user)):
+    return await save_page(db, data)
+
+@api_router.post('/admin/media', response_model=MediaItem)
+async def media_upload(file: UploadFile = File(...), user=Depends(get_current_user)):
+    return await upload_media(db, file, user['id'])
+
+@api_router.get('/admin/media', response_model=List[MediaItem])
+async def media_list(user=Depends(get_current_user)):
+    return await db.media.find({'is_deleted': False}, {'_id': 0, 'storage_path': 0}).sort('created_at', -1).to_list(500)
+
+@api_router.patch('/admin/leads/{lead_id}', response_model=Enquiry)
+async def edit_lead(lead_id: str, data: LeadUpdate, user=Depends(get_current_user)):
+    from pymongo import ReturnDocument
+    lead = await db.enquiries.find_one_and_update({'id': lead_id}, {'$set': data.model_dump()},
+        return_document=ReturnDocument.AFTER, projection={'_id': 0})
+    if not lead: raise HTTPException(404, 'Lead not found')
+    return Enquiry(**lead)
+
 @api_router.get("/admin/leads", response_model=List[Enquiry])
 async def get_leads(user=Depends(get_current_user)):
     leads = await db.enquiries.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
@@ -161,6 +223,11 @@ async def update_content(content: Dict[str, Any], user=Depends(get_current_user)
     content.pop("_id", None)
     content.pop("key", None)
     await db.site_content.update_one({"key": "main"}, {"$set": {**content, "key": "main"}}, upsert=True)
+    mapping = {'hero_title':'page.hero.tagline', 'hero_subtitle':'page.hero.description',
+        **{key:f'page.footer.{key}' for key in ('phone','email','whatsapp','address','hours','website')}}
+    changes = {mapping[key]:value for key,value in content.items() if key in mapping}
+    if changes:
+        await db.page_content.update_one({'key':'landing'}, {'$set':changes, '$inc':{'revision':1}})
     return {"message": "Content updated"}
 
 app.include_router(api_router)
@@ -178,6 +245,15 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("startup")
 async def startup():
+    await db.page_content.create_index('key', unique=True)
+    await db.enquiries.create_index('submission_id', unique=True, sparse=True)
+    await db.enquiries.create_index('created_at')
+    await db.media.create_index('id', unique=True)
+    try:
+        await init_storage()
+        logger.info('Media storage initialized')
+    except Exception:
+        logger.warning('Media storage initialization deferred until next upload')
     await db.users.create_index("email", unique=True)
     await db.login_attempts.create_index("expires_at", expireAfterSeconds=0)
     admin_email = os.environ["ADMIN_EMAIL"].lower()
@@ -207,6 +283,8 @@ async def startup():
         await db.site_content.update_one(
             {"key": "main", field: previous}, {"$set": {field: DEFAULT_CONTENT[field]}}
         )
+    legacy = await db.site_content.find_one({'key':'main'}, {'_id':0})
+    await seed_page(db, legacy or DEFAULT_CONTENT)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

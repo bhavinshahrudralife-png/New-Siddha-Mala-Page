@@ -4,9 +4,13 @@ import uuid
 
 import pytest
 import requests
+from dotenv import dotenv_values
 
 
 BASE_URL = os.environ.get("REACT_APP_BACKEND_URL")
+if not BASE_URL:
+    frontend_env = dotenv_values("/app/frontend/.env")
+    BASE_URL = frontend_env.get("REACT_APP_BACKEND_URL")
 if not BASE_URL:
     pytest.skip("REACT_APP_BACKEND_URL is required", allow_module_level=True)
 BASE_URL = BASE_URL.rstrip("/")
@@ -48,7 +52,9 @@ def test_enquiry_invalid_email_validation(api_client):
     payload = {
         "name": "TEST Invalid Email",
         "email": "invalid-email",
-        "phone": "+919999999999",
+        "phone": "9999999999",
+        "country": "IN",
+        "country_code": "+91",
         "city": "Mumbai",
         "profession": "QA",
         "message": "invalid email test",
@@ -88,8 +94,7 @@ def admin_client(api_client):
         f"{BASE_URL}/api/auth/login",
         json={"email": "admin@rudralife.com", "password": "Rudralife@2025"},
     )
-    if response.status_code != 200:
-        pytest.skip("Admin login failed; skipping authenticated tests")
+    assert response.status_code == 200, f"Admin login failed: {response.status_code} {response.text}"
     return api_client, response
 
 
@@ -135,7 +140,9 @@ def test_enquiry_create_visible_in_admin_then_delete(api_client, admin_client):
     payload = {
         "name": f"TEST Lead {marker}",
         "email": f"test-lead-{marker}@example.com",
-        "phone": "+919876543210",
+        "phone": "9876543210",
+        "country": "IN",
+        "country_code": "+91",
         "city": "Mumbai",
         "profession": "QA Engineer",
         "message": "TEST lead for API verification",

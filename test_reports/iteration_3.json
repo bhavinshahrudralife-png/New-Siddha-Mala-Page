@@ -1,0 +1,91 @@
+{
+  "summary": "Completed READ-ONLY frontend audit of reference URL with responsive, integration, accessibility, SEO, performance, and simulated network-error checks.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Hero",
+        "issue": "H1 renders blank because /api/site-content hero_title_pre and hero_title_gold are whitespace strings and CMS injection does not trim.",
+        "selector": "hero h1",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "FAQ",
+        "issue": "Conflicting FAQ handlers cause inconsistent open styling/state (.open removed while body height expands).",
+        "selector": "[data-testid^='faq-item-'] .faq-head",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Mobile navigation",
+        "issue": "Hamburger is non-semantic div and not keyboard-tab reachable; hidden off-canvas links are tabbable.",
+        "selector": "#hamburger, #mobileMenu a",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Popup modal",
+        "issue": "Focus trap and focus restoration missing; Enter key does not submit form path.",
+        "selector": "#enqModal",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Lead submission failure handling",
+        "issue": "On POST /api/leads failure, code still shows thank-you, writes enquiry PII to localStorage, and redirects to /siddha-mala/thankyou.html.",
+        "affected_selectors": [
+          "#enqSubmit",
+          "[data-testid='thanks-namaste']"
+        ]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "Hero (desktop/mobile)",
+        "issues": [
+          "Blank headline leaves visible whitespace in primary fold.",
+          "Secondary CTA text has low contrast in current hero state."
+        ]
+      },
+      {
+        "screen": "Consultation architecture",
+        "issues": [
+          "Reference page is modal-only for form; inline full consultation form is absent."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/audit/reference-audit.json"
+  ],
+  "action_items": [
+    "Trim/sanitize CMS hero text values before rendering to avoid blank H1.",
+    "Remove fake-success catch path: do not show thank-you or redirect on failed /api/leads; remove localStorage PII fallback.",
+    "Unify FAQ logic (single handler), add aria-expanded updates and correct state class behavior.",
+    "Fix modal accessibility: trap focus, restore opener focus, and support Enter submit.",
+    "Fix mobile nav semantics: convert hamburger to button and prevent hidden menu links from tab order.",
+    "Add canonical, OpenGraph metadata, and JSON-LD structured data.",
+    "Resolve content consistency: 27+1 vs approx 28 wording and unsupported claim/testimonial language."
+  ],
+  "critical_code_review_comments": [
+    "Duplicate event binding in FAQ (addEventListener + onclick overwrite) introduces contradictory state updates.",
+    "Error path stores sensitive lead payload in localStorage and then shows success UX — high-risk anti-pattern.",
+    "Hardcoded large-number counter final value ('5,00,000') for any target >=100000 reduces data integrity.",
+    "Anchor placeholders ('#') remain in production content for legal links and fallback slide link."
+  ],
+  "updated_files": [
+    "/app/audit/reference-audit.json",
+    "/app/test_reports/iteration_3.json"
+  ],
+  "success_rate": {
+    "backend": "N/A (not tested)",
+    "frontend": "72%"
+  },
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "This was a reference-only audit on external URL. Simulated 503 interception for /api/leads confirmed false-success redirect and localStorage fallback. Brochure PDF valid (%PDF, 9.22MB). 7 expert cards and 10 FAQ items exist; FAQ state logic conflicted due duplicate handlers. Landing H1 blank from whitespace CMS fields.",
+  "rca of the issue": "Primary RCA chain: CMS returns whitespace hero fields -> h1 replaced by empty spans -> hero fold appears blank. Secondary RCA: lead submit catch path intentionally calls showThanks + redirect and localStorage setItem; users see success despite network failure. FAQ RCA: initial single-open accordion logic is later overridden by a second onclick binder in CMS merge block, causing class/state mismatch."
+}

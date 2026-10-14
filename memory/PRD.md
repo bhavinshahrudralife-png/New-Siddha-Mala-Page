@@ -106,3 +106,44 @@ for leads and page content.
 - Optional lead CSV export and team email notification (provider setup required).
 - Optional official downloadable brochure, Hindi toggle.
 - Suggested conversion enhancement: carry selected Mukhi into consultation message.
+
+## Latest request: reference audit first, then approved implementation
+User supplied `https://siddha-mala-sacred.preview.emergentagent.com/siddha-mala.html`
+and requested a complete section-by-section audit before an implementation plan.
+Additional preferences: longer/richer whole-page scroll journey; better gold Mala
+PNG and bead presentation; stronger Milind/Dimple section; BOTH visible inline and
+button-triggered popup consultation forms with mandatory phone country selection.
+User's clarification response was `Samrt Answer`; implementation approval was not
+explicitly given. Do not claim the remote reference has been modified.
+
+### Audit completed (read-only)
+- All sections reviewed in downloaded HTML plus browser testing at
+  320/390/768/1024/1440/1920. Initial desktop smoke also captured by main agent.
+- Full report/plan: `/app/audit/AUDIT_REPORT.md`; evidence:
+  `/app/audit/reference-audit.json`, `/app/test_reports/iteration_3.json`.
+- No application code, credentials or user data changed for this audit.
+- Reference is a DIFFERENT host/codebase from the editable current app. Readable
+  public HTML archived at `/app/audit/reference/siddha-mala.html`; reference backend
+  and database access unavailable. Its lead persistence has NOT been verified.
+- TEST-SIDE SIMULATED503 proved reference wrongly confirms/redirects after failure
+  and writes personal enquiry fields to localStorage. No actual integration mocked.
+- Reference H1 is blank because public CMS fields are whitespace.
+- Reference FAQ has duplicate conflicting handlers. Expert cards/mobile menu/modal
+  have keyboard/focus issues. Footer policy links are# placeholders.
+- Counters are NOT permanently zero: observed5,00,000+,90%,52+ after scroll. Their
+  accuracy needs evidence; large-target final value has a hardcoded formatting bug.
+- Brochure IS valid PDF,200,%PDF,~9.22MB. Do not call it broken or invent a replacement.
+- Dimple exists in client marquee, not a dedicated block; Milind text implies
+  unsupported motivations/endorsement. Aarav story lacks fictional disclosure.
+- Official listed composition sums28 (18+7+3) across16 forms.27+1 has the same total;
+  rare Nakshatra arrangement needs separate substantiation. Keep rejected hero
+  symbols/pattern out; exact total applies only to source-confirmed SKU.
+
+### Proposed next priorities (approval pending)
+P0: Reliable dual-form enquiry, country selection and backend validation; maintain
+current app's existing real error handling, accessible FAQ/experts and admin flows.
+P1: Longer product chapters, better verified golden necklace photography, animated
+bead/detail points, gallery, stronger Milind/Dimple, complete educational content;
+source-confirmed claims only; keyboard/SEO/performance improvements.
+P2: Full-page CMS expansion, real360 scanned assets and optional lead notifications.
+Do not silently change company contact data or publish unverified counters.

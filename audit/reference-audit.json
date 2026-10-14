@@ -1,0 +1,173 @@
+{
+  "audit_target": "https://siddha-mala-sacred.preview.emergentagent.com/siddha-mala.html",
+  "scope": "READ-ONLY reference audit (frontend behavior, accessibility, links, performance, SEO, content claims)",
+  "timestamp_note": "Audit evidence captured in browser run 20261014_100258 and subsequent testing-agent runs.",
+  "section_status": [
+    {"section": "Hero", "selector": "[data-testid='hero-section']", "status": "VISIBLE", "notes": "Rendered H1 is blank due to whitespace CMS values."},
+    {"section": "Emotional intro", "selector": "[data-testid='hook-section']", "status": "VISIBLE", "notes": "Content present."},
+    {"section": "Sacred Signature intro", "selector": "[data-testid='siddha-intro-section']", "status": "VISIBLE", "notes": "Contains 27+1 mention and brochure CTA."},
+    {"section": "Story", "selector": "[data-testid='brochure-section']", "status": "VISIBLE", "notes": "Contains fictional Aarav narrative."},
+    {"section": "Collection", "selector": "[data-testid='collection-section']", "status": "VISIBLE", "notes": "Marquee loads."},
+    {"section": "Milind section", "selector": "[data-testid='milind-section']", "status": "VISIBLE", "notes": "Long endorsement-heavy copy. Dimple appears in the client marquee, but has no dedicated editorial/testimonial block."},
+    {"section": "About / Educational", "selector": "[data-testid='about-section'], [data-testid='define-section']", "status": "VISIBLE", "notes": "Both sections present."},
+    {"section": "Composition / Mukhi", "selector": "[data-testid='elements-section'] .bead-card", "status": "VISIBLE", "notes": "16 form cards shown; quantities sum to 28."},
+    {"section": "Benefits", "selector": "[data-testid='benefits-section']", "status": "VISIBLE", "notes": "8 cards shown."},
+    {"section": "Trust strip", "selector": "[data-testid='trust-strip']", "status": "VISIBLE", "notes": "Static trust values present."},
+    {"section": "Experts", "selector": "[data-testid='experts-section']", "status": "VISIBLE", "notes": "7 cards rendered with front/back content."},
+    {"section": "Worldwide counters", "selector": "[data-testid='trusted-section'] [data-count]", "status": "VISIBLE", "notes": "Animate from 0 to displayed values."},
+    {"section": "FAQs", "selector": "[data-testid='faq-section']", "status": "VISIBLE", "notes": "10 items render; open-state class logic conflicts."},
+    {"section": "Consultation", "selector": "[data-testid='enquiry-section']", "status": "VISIBLE", "notes": "CTA opens popup; inline full form absent."},
+    {"section": "Footer", "selector": "[data-testid='footer']", "status": "VISIBLE", "notes": "Contact and social links present; terms/privacy placeholders."},
+    {"section": "Popup form", "selector": "[data-testid='enq-modal']", "status": "VISIBLE", "notes": "Single modal form with country code select."}
+  ],
+  "critical_findings": [
+    {
+      "id": "HERO_H1_BLANK_FROM_CMS_WHITESPACE",
+      "evidence": [
+        "Runtime: h1 text is empty before and after CMS load.",
+        "API snapshot: hero_title_pre and hero_title_gold returned whitespace-only strings.",
+        "Source: lines 3170-3177 build H1 from CMS values without trim guard."
+      ],
+      "impact": "Primary headline area appears blank (hero whitespace issue)."
+    },
+    {
+      "id": "LEAD_FAILURE_STILL_SHOWS_SUCCESS_AND_REDIRECTS",
+      "evidence": [
+        "Source lines 3071-3089: catch() calls showThanks() and redirects to /siddha-mala/thankyou.html.",
+        "Simulated network error: POST /api/leads forced 503.",
+        "Console log: 'Lead submission failed, saving locally'.",
+        "LocalStorage fallback created key lastEnquiry_* containing submitted PII fields.",
+        "Browser redirected to /siddha-mala/thankyou.html despite 503."
+      ],
+      "impact": "False success UX + local PII persistence on submission failure.",
+      "simulation_note": "This was a synthetic network-error test using browser request interception only; real backend persistence NOT VERIFIED."
+    },
+    {
+      "id": "FAQ_TOGGLE_CONFLICT",
+      "evidence": [
+        "Source lines 2943-2957: addEventListener FAQ logic (single-open + maxHeight).",
+        "Source lines 3479-3483: later onclick rebind toggles .open only.",
+        "Observed: faq body maxHeight set while .open class false, aria-expanded absent."
+      ],
+      "impact": "Inconsistent open-state styling/behavior and poor accessibility semantics."
+    },
+    {
+      "id": "COUNTER_FORCED_FINAL_VALUE_LOGIC",
+      "evidence": [
+        "Source line 3146 forces '5,00,000' for targets >=100000.",
+        "Observed counters after scroll: 5,00,000+, 90%, 52+ (normal and reduced-motion)."
+      ],
+      "impact": "Large counter display is hardcoded format path rather than pure target rendering logic."
+    }
+  ],
+  "functional_checks": {
+    "anchors": {
+      "nav_about": "PASS",
+      "nav_collection": "PASS",
+      "nav_experts": "PASS",
+      "nav_faq": "PASS"
+    },
+    "modal_triggers": {
+      "hero_enquiry_btn": "PASS",
+      "nav_cta": "PASS",
+      "trusted_contact_btn": "PASS",
+      "open_enquiry_modal_btn": "PASS"
+    },
+    "faq_count": 10,
+    "expert_card_count": 7,
+    "composition": {
+      "forms_displayed": 16,
+      "quantity_sum": 28,
+      "note": "Matches 3x(2-7) + one each 8-14 + halfmoon 1 Mukhi + Gaurishankar + Ganesh = 28."
+    },
+    "counters": {
+      "initial_markup": ["0", "0", "0"],
+      "data_count_targets": [500000, 90, 52],
+      "after_scroll_2s_plus": ["5,00,000+", "90%", "52+"],
+      "reduced_motion_after_scroll": ["5,00,000+", "90%", "52+"]
+    },
+    "thank_you_route": {
+      "url": "/siddha-mala/thankyou.html",
+      "status": 200
+    }
+  },
+  "links_and_documents": {
+    "brochure_pdf": {
+      "url": "/assets/siddha-mala-brochure.pdf",
+      "status": 200,
+      "content_type": "application/pdf",
+      "magic_bytes": "%PDF",
+      "bytes": 9224883
+    },
+    "placeholder_links": [
+      {"href": "#", "context": "hero fallback slide link", "selector": "[data-testid='hero-slide-0']"},
+      {"href": "#", "context": "Terms & Conditions", "selector": "footer quick links"},
+      {"href": "#", "context": "Privacy Policy", "selector": "footer quick links"}
+    ],
+    "contact_coherence": {
+      "footer_phone": "tel:+919820302028",
+      "footer_email": "mailto:info@rudralife.com",
+      "whatsapp_links": "Primary links point to wa.me/919820302028",
+      "note": "Did not send any external message/call."
+    }
+  },
+  "accessibility_and_responsive": {
+    "viewports_tested": [320, 390, 768, 1024, 1440, 1920],
+    "horizontal_overflow": "NOT OBSERVED in tested widths",
+    "mobile_menu_keyboard": [
+      "Hamburger is a div without keyboard-native button semantics/tab stop.",
+      "Off-canvas mobile menu links remain tabbable in tab sequence even when hidden."
+    ],
+    "experts_keyboard": "Expert flip cards are not keyboard-focusable (0 tabbable cards).",
+    "faq_aria": "No aria-expanded on faq buttons.",
+    "modal_focus": [
+      "Escape closes modal.",
+      "Backdrop click closes modal.",
+      "Focus trap not enforced (focus can escape while modal open).",
+      "Focus restoration to opener not implemented (focus returned to BODY)."
+    ],
+    "enter_submit": "Pressing Enter in fields does not submit (submit control is type=button, not form submit path).",
+    "contrast_observation": "Hero secondary CTA text appears very low contrast on light background when H1 is blank."
+  },
+  "seo_and_metadata": {
+    "landing_title": "Siddha Mala — Sacred Rudraksha by Rudralife®",
+    "meta_description": "PRESENT",
+    "canonical": "MISSING",
+    "open_graph": "MISSING (og:title/og:description/og:image not found)",
+    "structured_data_ld_json": 0,
+    "rendered_h1_on_landing": "empty string observed"
+  },
+  "content_integrity_notes": [
+    "Claims needing substantiation appear in static copy (e.g., 95% two-Mukhi sourcing, vacuum-sealed/refrigerated/non-human touched, large outcome claims).",
+    "Story section presents Aarav narrative as if testimonial-like transformation content.",
+    "Milind section uses strong endorsement tone. Dimple appears in the client marquee only, without the dedicated presentation requested by the user.",
+    "Bead quantity wording inconsistent across sections: '27+1', 'approximately 28', and exact 28 composition all coexist."
+  ],
+  "performance_lab_observations": {
+    "navigation_timing_ms": {"dom_content_loaded": 115.6, "load_event_end": 353.2},
+    "initial_document_bytes_decoded": 169111,
+    "largest_loaded_images_from_sample": [
+      {"name": "siddha-mala-intro.jpg", "transfer_bytes": 521242},
+      {"name": "brochure-dsc04793.jpg", "transfer_bytes": 235734},
+      {"name": "hero-banner-peacock.png", "transfer_bytes": 210664}
+    ],
+    "request_failures_seen": [
+      "Cloudflare RUM beacon request aborted (non-core telemetry)."
+    ],
+    "note": "These are lab observations from this session, not field Core Web Vitals."
+  },
+  "current_app_source_parity_note": {
+    "current_editable_url": "https://rudralife-mala.preview.emergentagent.com",
+    "source_based_diff": [
+      "Current app has inline enquiry form section (frontend/src/sections/Enquiry.jsx) instead of modal-only reference flow.",
+      "Current app enquiry has single phone input (no mandatory country-code dropdown).",
+      "Current app experts use accessible buttons/accordion style, not 3D flip cards.",
+      "Current app FAQ uses shadcn accordion with ARIA-friendly triggers."
+    ]
+  },
+  "artifacts": [
+    "/app/test_reports/artifacts/reference_audit/hero_desktop.jpg",
+    "/app/test_reports/artifacts/reference_audit/mobile_390.jpg",
+    "/app/test_reports/artifacts/reference_audit_run2/after_failure_flow.jpg"
+  ]
+}

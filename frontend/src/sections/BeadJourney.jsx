@@ -1,0 +1,23 @@
+import { useEffect,useRef } from 'react';
+import { AnimatePresence,motion,useScroll,useMotionValueEvent } from 'framer-motion';
+import { ArrowUp,ArrowDown,ArrowUpRight,Pause,Play } from 'lucide-react';
+import { usePage,mediaUrl } from '../context/PageContext';
+import { useVisibleSequence } from '../hooks/useVisibleSequence';
+import { SectionHeading } from '../components/Editorial';
+
+export default function BeadJourney() {
+  const page=usePage(); const s=page.beadJourney; const items=page.beads.items;
+  const ref=useRef(null);const rail=useRef(null);const scrollIndex=useRef(-1);
+  const seq=useVisibleSequence(ref,items.length,s.interval_seconds,s.autoplay&&page.motion.enabled);
+  const bead=items[seq.index];
+  const {scrollYProgress}=useScroll({target:ref,offset:['start 0.65','end 0.35']});
+  // Natural scroll provides a second, deliberate navigation path through the same sequence.
+  useMotionValueEvent(scrollYProgress,'change',p=>{const index=Math.min(items.length-1,Math.floor(p*items.length));if(p>.05&&p<.95&&index!==scrollIndex.current){scrollIndex.current=index;if(!seq.paused&&!seq.reduced&&page.motion.enabled)seq.follow(index);}});
+  useEffect(()=>{const container=rail.current;const item=container?.querySelector(`[data-index="${seq.index}"]`);if(container&&item){container.scrollTo({top:item.offsetTop-container.clientHeight/2+item.clientHeight/2,behavior:seq.reduced?'instant':'smooth'});}},[seq.index,seq.reduced]);
+  const onKey=e=>{if(['ArrowDown','ArrowUp','Home','End'].includes(e.key)){e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?items.length-1:(seq.index+(e.key==='ArrowDown'?1:items.length-1))%items.length;seq.select(n);rail.current?.querySelector(`[data-index="${n}"]`)?.focus({preventScroll:true});}};
+  return <section ref={ref} id="bead-journey" className="bead-journey-section section-space" data-testid="bead-journey-section"><div className="site-container"><SectionHeading section={s} id="bead-journey"/><div className="bead-story-layout" data-autoplay-state={seq.reason} {...seq.events}>
+    <div className="bead-story-rail-shell"><span className="small-index">01—16 / RUDRAKSHA</span><div ref={rail} className="bead-story-rail" role="tablist" aria-label="Sacred bead stories" onKeyDown={onKey} data-testid="bead-journey-rail" data-lenis-prevent>{items.map((b,i)=><button key={b.id} id={`journey-tab-${b.id}`} role="tab" aria-selected={seq.index===i} aria-controls="journey-story-panel" tabIndex={seq.index===i?0:-1} className={`rail-bead ${seq.index===i?'active':''}`} onClick={()=>seq.select(i)} data-index={i} data-testid={`journey-bead-${b.id}`}><span className="rail-count">{String(i+1).padStart(2,'0')}</span><img src={mediaUrl(b.img)} alt="" loading="lazy"/><span>{b.name}</span></button>)}</div></div>
+    <div className="journey-bead-feature"><AnimatePresence mode="wait" initial={false}><motion.img key={bead.id} src={mediaUrl(bead.img)} alt={`${bead.name} Rudraksha`} initial={seq.reduced?false:{opacity:0,y:-35,rotate:-8}} animate={{opacity:1,y:0,rotate:0}} exit={{opacity:0,y:30,rotate:5}} transition={{duration:.6}} data-testid="journey-feature-image"/></AnimatePresence><span>{String(seq.index+1).padStart(2,'0')} / 16</span></div>
+    <div className="journey-story" id="journey-story-panel" role="tabpanel" aria-labelledby={`journey-tab-${bead.id}`}><AnimatePresence mode="wait" initial={false}><motion.div key={bead.id} initial={seq.reduced?false:{opacity:0,y:18}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-12}} transition={{duration:.35}}><p className="eyebrow">{bead.theme}</p><h3 data-testid="journey-bead-name">{bead.name}<em>Rudraksha</em></h3><span className="journey-deity">{s.deity_label} · {bead.deity}</span><p className="journey-description" data-testid="journey-bead-description">{bead.desc}</p><a href="#composition" className="text-link" data-testid="journey-composition-link">{s.cta_label}<ArrowUpRight size={16}/></a></motion.div></AnimatePresence><div className="journey-controls"><button className="icon-button" onClick={()=>seq.select(seq.index-1)} aria-label="Previous bead" data-testid="journey-previous"><ArrowUp size={16}/></button><button className="icon-button" onClick={()=>seq.select(seq.index+1)} aria-label="Next bead" data-testid="journey-next"><ArrowDown size={16}/></button>{!seq.reduced&&<button onClick={seq.toggle} data-testid="journey-autoplay" className="sequence-play" aria-pressed={!seq.paused}>{seq.paused?<Play size={13}/>:<Pause size={13}/>} {seq.paused?s.play_label:s.pause_label}</button>}</div><small>{s.note}</small></div>
+  </div></div></section>;
+}

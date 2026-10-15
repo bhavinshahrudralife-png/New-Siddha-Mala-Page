@@ -34,19 +34,19 @@
     "eyebrow": "RUDRALIFE’S SIGNATURE CREATION",
     "title": "The Siddha Mala.",
     "tagline": "One mala. A complete spiritual companion.",
-    "description": "Handcrafted with authentic Rudraksha. A sacred combination of 1 to 14 Mukhi, Gauri Shankar and Ganesh.",
-    "image": "/assets/rudralife/gold-mala-premium.png",
-    "image_alt": "Complete Siddha Mala with natural Rudraksha and gold fittings",
+    "description": "Natural Rudraksha, thoughtfully brought together. Discover the sixteen sacred forms at the heart of Rudralife’s Siddha Mala.",
+    "image": "/assets/rudralife/siddha-user.png",
+    "image_alt": "The complete Siddha Mala in the product photograph supplied by Rudralife",
     "composition_label": "01 — THE SACRED COMBINATION",
     "composition": "1–14 Mukhi.\nGauri Shankar.\nGanesh.",
     "note": "Every bead, a purpose.\nTogether, a complete whole.",
-    "badge": "AUTHENTIC RUDRAKSHA. PERSONAL GUIDANCE.",
+    "badge": "NATURAL RUDRAKSHA · RUDRALIFE",
     "cta_label": "Find your Siddha Mala",
     "secondary_label": "Discover the beads",
     "scroll_label": "A sacred journey, bead by bead",
-    "edition": "NATURAL RUDRAKSHA · GOLD FITTINGS",
+    "edition": "A SACRED COMBINATION · A PERSONAL CONNECTION",
     "reveal_eyebrow": "MANY SACRED ENERGIES. ONE MALA.",
-    "reveal_title": "A connection\nlike no other.",
+    "reveal_title": "Many sacred forms.\nOne personal connection.",
     "reveal_left_label": "NATURALLY EXTRAORDINARY",
     "reveal_left_text": "Chosen with care.\nJoined by tradition.",
     "reveal_right_label": "THE COMPLETE SIDDHA MALA",
@@ -59,14 +59,14 @@
     "text": "Some connections are felt before they are understood. A quiet moment. A clearer intention. A sacred reminder of what matters to you.",
     "note": "Your journey begins with a conversation.",
     "cta_label": "Begin your connection",
-    "image": "/assets/rudralife/bead-14.png"
+    "image": "/assets/rudralife/bead-clean-14.png"
   },
   "signature": {
     "visible": true,
     "eyebrow": "RUDRALIFE’S SACRED SIGNATURE",
     "title": "Not just worn.\nDeeply connected.",
-    "text": "Siddha Mala is a registered and trademarked creation of Rudralife. It combines carefully selected Rudraksha into one complete spiritual companion.",
-    "image": "/assets/rudralife/gold-mala-premium.png",
+    "text": "Not simply a string of beads, but a considered combination. Siddha Mala brings 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha together, each carrying its own traditional association and natural character.",
+    "image": "/assets/rudralife/siddha-user.png",
     "image_alt": "Full gold-fitted Siddha Mala",
     "points": [
       {
@@ -77,12 +77,12 @@
       {
         "id": "individual",
         "title": "Naturally individual",
-        "text": "Every natural bead has its own shape, surface and character."
+        "text": "The grooves, contours and texture of every bead are shaped by nature. No two natural Rudraksha look exactly alike."
       },
       {
         "id": "guidance",
         "title": "Chosen with understanding",
-        "text": "Personalised recommendations from the Rudralife expert panel."
+        "text": "Understand the bead grades, finish and exact configuration before choosing. Our panel guides you through the details, without obligation."
       }
     ],
     "brochure": "https://www.rudralife.com/siddha-mala/assets/siddha-mala-brochure.pdf",
@@ -98,8 +98,9 @@
     "image_alt": "Rudralife Siddha Mala displayed with its presentation box",
     "caption": "A SIGNATURE CREATION BY RUDRALIFE",
     "paragraphs": [
-      "At the heart of Siddha Mala is a simple idea: bring different forms of Rudraksha together into a single, meaningful combination.",
-      "Rudralife’s product description draws on Vedic traditions and describes its ACE Energization process. Every recommendation begins with understanding the person who will wear the mala."
+      "The Siddha Mala is a registered and trademarked Rudralife creation that brings distinct Rudraksha forms into a single combination. Its composition is not about making every bead identical, but about understanding what each form represents in tradition.",
+      "The listed configuration contains twenty-eight beads across sixteen forms, including repeated 2 to 7 Mukhi beads. Bead grades, natural dimensions and fittings may differ between pieces; your consultant can explain the exact mala you are considering.",
+      "A personal recommendation begins with listening. Whether your intention is a regular spiritual practice, a meaningful gift or simply a deeper understanding of Rudraksha, the conversation belongs to you."
     ],
     "signoff": "Authenticity, before everything.",
     "link_label": "Discover the Rudralife story",
@@ -109,14 +110,14 @@
     "visible": true,
     "eyebrow": "THE SIDDHA MALA COLLECTION",
     "title": "Look closer.\nEvery detail matters.",
-    "text": "Explore the full combination, natural textures and considered finishes. Ask our team about the available grades and fittings.",
+    "text": "The complete mala, its natural texture and its individual details. Explore the photographs, then discuss your preferred grade and finish with our team.",
     "items": [
       {
         "id": "gold",
         "title": "The gold-fitted Siddha Mala",
-        "image": "/assets/rudralife/gold-mala-premium.png",
+        "image": "/assets/rudralife/siddha-user.png",
         "alt": "Full gold-fitted Siddha Mala",
-        "caption": "Natural Rudraksha. A considered finish."
+        "caption": "A complete view of the mala. Each natural bead, each fitting, every considered detail."
       },
       {
         "id": "natural",
@@ -138,10 +139,10 @@
   "beads": {
     "visible": true,
     "eyebrow": "THE SACRED COMPOSITION",
-    "title": "Individually extraordinary.\nTogether, Siddha.",
-    "text": "Sixteen distinct forms. Twenty-eight beads in the listed combination. One complete spiritual companion.",
+    "title": "A closer look.\nA deeper connection.",
+    "text": "Explore each sacred form, its traditional meaning and its place in the complete combination.",
     "centre_label": "THE SIDDHA MALA",
-    "image": "/assets/rudralife/gold-mala-premium.png",
+    "image": "/assets/rudralife/siddha-user.png",
     "description_label": "SACRED RUDRAKSHA",
     "source_label": "Explore at Rudralife",
     "cta_label": "Ask about this bead",
@@ -153,10 +154,11 @@
         "deity": "Lord Shiva",
         "theme": "Spiritual awareness",
         "desc": "The half-moon Rudraksha is traditionally associated with Lord Shiva, inner awareness and a deeper spiritual connection.",
-        "img": "/assets/rudralife/bead-1.png",
+        "img": "/assets/rudralife/bead-clean-1.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/one-mukhi-without-capping",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "2",
@@ -164,10 +166,11 @@
         "deity": "Ardhanareeshwar",
         "theme": "Harmony & unity",
         "desc": "Representing the union of Shiva and Shakti, the two-faced bead is traditionally worn for harmony and togetherness.",
-        "img": "/assets/rudralife/bead-2.png",
+        "img": "/assets/rudralife/bead-clean-2.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/two-mukhi-super-collector-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "3",
@@ -175,10 +178,11 @@
         "deity": "Agni Dev",
         "theme": "A fresh beginning",
         "desc": "Associated with Agni, the three-faced Rudraksha symbolises transformation, confidence and freedom from the past.",
-        "img": "/assets/rudralife/bead-3.png",
+        "img": "/assets/rudralife/bead-clean-3.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/three-mukhi-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "4",
@@ -186,10 +190,11 @@
         "deity": "Lord Brahma",
         "theme": "Knowledge & expression",
         "desc": "The four-faced Rudraksha is associated with Brahma and traditionally chosen for learning, creativity and expression.",
-        "img": "/assets/rudralife/bead-4.png",
+        "img": "/assets/rudralife/bead-clean-4.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/four-mukhi-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "5",
@@ -197,10 +202,11 @@
         "deity": "Kalagni Rudra",
         "theme": "Peace & balance",
         "desc": "Associated with Kalagni Rudra, this bead has a special place in meditation and everyday spiritual practice.",
-        "img": "/assets/rudralife/bead-5.png",
+        "img": "/assets/rudralife/bead-clean-5.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/five-mukhi-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "6",
@@ -208,10 +214,11 @@
         "deity": "Lord Kartikeya",
         "theme": "Focus & determination",
         "desc": "The six-faced Rudraksha represents Kartikeya and is traditionally associated with focus, willpower and discipline.",
-        "img": "/assets/rudralife/bead-6.png",
+        "img": "/assets/rudralife/bead-clean-6.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/six-mukhi-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "7",
@@ -219,10 +226,11 @@
         "deity": "Mahalakshmi",
         "theme": "Prosperity & abundance",
         "desc": "Representing Mahalakshmi, the seven-faced bead is traditionally worn with aspirations for prosperity and abundance.",
-        "img": "/assets/rudralife/bead-7.png",
+        "img": "/assets/rudralife/bead-clean-7.png",
         "qty": "3 beads",
         "source": "https://www.rudralife.com/product/seven-mukhi-rudraksha",
-        "quantity": 3
+        "quantity": 3,
+        "locations": []
       },
       {
         "id": "8",
@@ -230,10 +238,11 @@
         "deity": "Lord Ganesha",
         "theme": "New possibilities",
         "desc": "Associated with Ganesha, this Rudraksha symbolises wisdom and overcoming obstacles on your chosen path.",
-        "img": "/assets/rudralife/bead-8.png",
+        "img": "/assets/rudralife/bead-clean-8.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/eight-mukhi-large-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "9",
@@ -241,10 +250,11 @@
         "deity": "Goddess Durga",
         "theme": "Courage & strength",
         "desc": "The nine-faced Rudraksha represents Durga and is traditionally associated with courage, strength and protection.",
-        "img": "/assets/rudralife/bead-9.png",
+        "img": "/assets/rudralife/bead-clean-9.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/nine-mukhi-small-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "10",
@@ -252,10 +262,11 @@
         "deity": "Lord Vishnu",
         "theme": "Protection & positivity",
         "desc": "Associated with Vishnu, the ten-faced bead is traditionally worn for protection and a sense of inner steadiness.",
-        "img": "/assets/rudralife/bead-10.png",
+        "img": "/assets/rudralife/bead-clean-10.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/ten-mukhi-small-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "11",
@@ -263,10 +274,11 @@
         "deity": "Lord Hanuman",
         "theme": "Devotion & confidence",
         "desc": "The eleven-faced Rudraksha represents Hanuman and symbolises strength, devotion and fearlessness.",
-        "img": "/assets/rudralife/bead-11.png",
+        "img": "/assets/rudralife/bead-clean-11.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/eleven-mukhi-small-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "12",
@@ -274,10 +286,11 @@
         "deity": "Lord Surya",
         "theme": "Leadership & vitality",
         "desc": "Representing the Sun, the twelve-faced Rudraksha is traditionally associated with radiance, leadership and confidence.",
-        "img": "/assets/rudralife/bead-12.png",
+        "img": "/assets/rudralife/bead-clean-12.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/twelve-mukhi-small-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "13",
@@ -285,10 +298,11 @@
         "deity": "Indra & Kamadeva",
         "theme": "Charisma & fulfilment",
         "desc": "The thirteen-faced Rudraksha is associated with Indra and Kamadeva, and traditionally chosen for fulfilment and attraction.",
-        "img": "/assets/rudralife/bead-13.png",
+        "img": "/assets/rudralife/bead-clean-13.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/thirteen-mukhi-small-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "14",
@@ -296,10 +310,11 @@
         "deity": "Lord Hanuman",
         "theme": "Intuition & clarity",
         "desc": "Known as Deva Mani, the fourteen-faced Rudraksha is traditionally associated with intuition, clear judgement and protection.",
-        "img": "/assets/rudralife/bead-14.png",
+        "img": "/assets/rudralife/bead-clean-14.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/fourteen-mukhi-large-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "15",
@@ -307,10 +322,11 @@
         "deity": "Shiva & Parvati",
         "theme": "Connection & harmony",
         "desc": "Two naturally joined Rudraksha beads symbolise the union of Shiva and Parvati, and harmony in family and relationships.",
-        "img": "/assets/rudralife/bead-15.png",
+        "img": "/assets/rudralife/bead-clean-15.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/gaurishankar-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       },
       {
         "id": "16",
@@ -318,13 +334,17 @@
         "deity": "Lord Ganesha",
         "theme": "Wisdom & beginnings",
         "desc": "Distinguished by a natural trunk-like projection, Ganesh Rudraksha symbolises wisdom and the blessing of new beginnings.",
-        "img": "/assets/rudralife/bead-16.png",
+        "img": "/assets/rudralife/bead-clean-16.png",
         "qty": "1 bead",
         "source": "https://www.rudralife.com/product/ganesh-rudraksha",
-        "quantity": 1
+        "quantity": 1,
+        "locations": []
       }
     ],
-    "breakdown": "3 each of 2–7 Mukhi (18) + 1 each of 8–14 Mukhi (7) + Half-Moon 1 Mukhi, Gauri Shankar and Ganesh (3) = 28 beads."
+    "breakdown": "3 each of 2–7 Mukhi (18) + 1 each of 8–14 Mukhi (7) + Half-Moon 1 Mukhi, Gauri Shankar and Ganesh (3) = 28 beads.",
+    "mapping_note": "Exact placement varies by mala. Our experts can identify this bead in your selected piece.",
+    "location_label": "Location in this mala",
+    "full_view_label": "Full mala"
   },
   "education": {
     "visible": true,
@@ -359,25 +379,25 @@
         "title": "Spiritual practice",
         "desc": "A companion for meditation, mantra chanting and a deeper connection with yourself.",
         "id": "1",
-        "image": "/assets/rudralife/bead-5.png"
+        "image": "/assets/rudralife/bead-clean-5.png"
       },
       {
         "title": "Peace & balance",
         "desc": "Traditionally worn with the intention of bringing peace, positivity and balance to life.",
         "id": "2",
-        "image": "/assets/rudralife/bead-9.png"
+        "image": "/assets/rudralife/bead-clean-9.png"
       },
       {
         "title": "Purpose & growth",
         "desc": "Chosen for blessings in career, business and personal growth.",
         "id": "3",
-        "image": "/assets/rudralife/bead-12.png"
+        "image": "/assets/rudralife/bead-clean-12.png"
       },
       {
         "title": "Harmony & connection",
         "desc": "A sacred reminder of togetherness, family harmony and meaningful relationships.",
         "id": "4",
-        "image": "/assets/rudralife/bead-15.png"
+        "image": "/assets/rudralife/bead-clean-15.png"
       }
     ],
     "note": "Spiritual associations are not a promise of medical, financial or other specific outcomes."
@@ -395,7 +415,7 @@
         "image": "/assets/rudralife/milind-visit.webp",
         "image_alt": "Milind Soman during his documented visit to Rudralife",
         "title": "A life of discipline.\nA sacred companion.",
-        "text": "Milind Soman during a visit to Rudralife. Rudralife’s published Siddha Mala story documents his visit and selection of the mala.",
+        "text": "Rudralife’s published Siddha Mala story documents Milind Soman’s visit and his selection of the mala. The photograph captures a real moment at Rudralife, rather than a promise of what wearing Rudraksha will achieve.\n\nFor a personality associated with discipline and fitness, the image offers a personal glimpse into an enduring tradition. His own spiritual experience remains his to describe; no health, performance or financial result is claimed here.",
         "quote": "",
         "quote_source": "https://rudralife.com/blog/what-is-sidhhamala-benefits-energising-fake-vs-genuine/"
       },
@@ -406,12 +426,25 @@
         "image": "/assets/rudralife/dimple-visit.webp",
         "image_alt": "Dimple Kapadia with the Rudralife team during her documented visit",
         "title": "An enduring tradition.\nA personal connection.",
-        "text": "Dimple Kapadia with the Rudralife team. Her visit is documented in Rudralife’s Siddha Mala story; the quote below is from its published client voices.",
+        "text": "Dimple Kapadia is pictured with the Rudralife team during a visit documented in its published Siddha Mala story. Her brief reflection also appears in Rudralife’s client voices.\n\nThe photograph and her words are a record of that connection—not a claim that every wearer will have the same experience. What makes a mala meaningful is ultimately personal: the intention, understanding and care with which it is chosen.",
         "quote": "Rudraksha from Mr. Tanay is very fascinating.",
         "quote_source": "https://www.rudralife.com"
+      },
+      {
+        "id": "sunanda",
+        "name": "Sunanda Shetty",
+        "role": "Businesswoman",
+        "image": "/assets/rudralife/sunanda.webp",
+        "image_alt": "Sunanda Shetty in Rudralife’s official client gallery",
+        "title": "A shared tradition.\nAn individual journey.",
+        "text": "Sunanda Shetty appears in Rudralife’s official client gallery. Her photograph is part of the brand’s published community of people from different walks of life.\n\nNo personal testimonial or specific outcome is attributed to her here. Her inclusion is a reminder that the relationship with Rudraksha is individual—one that can begin with curiosity, a conversation and an informed choice.",
+        "quote": "",
+        "quote_source": "https://rudralife.com/rudraksha-recommendation/"
       }
     ],
-    "source_label": "Voices from Rudralife"
+    "source_label": "Voices from Rudralife",
+    "interval_seconds": 5,
+    "autoplay": true
   },
   "trust": {
     "visible": true,
@@ -439,7 +472,7 @@
   "experts": {
     "visible": true,
     "eyebrow": "KNOWLEDGE. EXPERIENCE. EMPATHY.",
-    "title": "Real people.\nThoughtful guidance.",
+    "title": "Guided by knowledge.\nGrounded in care.",
     "cta_label": "Meet your guide",
     "profile_cta": "Consult this expert",
     "items": [
@@ -447,49 +480,49 @@
         "name": "Dr. Tanay Seetha",
         "role": "Founder of Rudralife",
         "desc": "A life dedicated to studying Rudraksha. Dr. Tanay Seetha brings deep knowledge, commitment and spiritual understanding to Rudralife.",
-        "img": "/assets/rudralife/expert-1.webp",
+        "img": "/assets/rudralife/portrait-1.webp",
         "id": "1"
       },
       {
         "name": "Hemlata Sojitra",
         "role": "Director — Operations & Head Panel Expert",
         "desc": "At Rudralife since 2007, Hemlata brings her knowledge of astronumerology and a compassionate approach to personalised guidance.",
-        "img": "/assets/rudralife/expert-2.webp",
+        "img": "/assets/rudralife/portrait-2.webp",
         "id": "2"
       },
       {
         "name": "Saumil Seetha",
         "role": "Director & Head Panel Expert",
         "desc": "Known for his calm approach, Saumil listens without judgement and supports people with thoughtful Rudraksha recommendations.",
-        "img": "/assets/rudralife/expert-3.webp",
+        "img": "/assets/rudralife/portrait-4.webp",
         "id": "3"
       },
       {
         "name": "Dhruv Prakash Sinha",
         "role": "Senior Panel Expert",
         "desc": "A postgraduate in physics and a spiritual seeker, Dhruv has shared his expertise in Rudraksha and meditation at Rudralife since 2009.",
-        "img": "/assets/rudralife/expert-4.webp",
+        "img": "/assets/rudralife/portrait-6.webp",
         "id": "4"
       },
       {
         "name": "Shruti Sharma",
         "role": "Senior Panel Expert",
         "desc": "Shruti brings her knowledge of Vedic practices, astrology and numerology to thoughtful, personal consultations.",
-        "img": "/assets/rudralife/expert-5.webp",
+        "img": "/assets/rudralife/portrait-5.webp",
         "id": "5"
       },
       {
         "name": "Madhulika Namboodiri",
         "role": "Senior Panel Expert",
         "desc": "An Arts graduate from Jesus and Mary College, Madhulika leads Delhi operations and brings years of compassionate counselling experience.",
-        "img": "/assets/rudralife/expert-6.webp",
+        "img": "/assets/rudralife/portrait-7.webp",
         "id": "6"
       },
       {
         "name": "Shilpa Aggarwal",
         "role": "Panel Expert",
         "desc": "Shilpa puts customer happiness first, offering dedicated guidance and a people-centred approach to Rudraksha.",
-        "img": "/assets/rudralife/expert-7.webp",
+        "img": "/assets/rudralife/portrait-3.webp",
         "id": "7"
       }
     ]
@@ -701,7 +734,7 @@
     "text": "Your enquiry has been received. The Rudralife team will be in touch to help you find the right Rudraksha for your journey.",
     "home_label": "Back to the mala",
     "whatsapp_label": "Continue on WhatsApp",
-    "image": "/assets/rudralife/bead-5.png"
+    "image": "/assets/rudralife/bead-clean-5.png"
   },
   "seo": {
     "title": "Siddha Mala — A Sacred Connection | Rudralife",
@@ -710,12 +743,14 @@
   },
   "motion": {
     "enabled": true,
-    "journey_length": 3.8,
+    "journey_length": 3.2,
     "section_reveals": true
   },
   "order": [
     "intro",
+    "beadJourney",
     "signature",
+    "spiritual",
     "story",
     "gallery",
     "beads",
@@ -727,5 +762,43 @@
     "community",
     "faq",
     "consultation"
-  ]
+  ],
+  "appearance": {
+    "background": "#fae7dc",
+    "alternate": "#f3d8c8",
+    "surface": "#fff1e7",
+    "heading": "#642c2b",
+    "body": "#795048",
+    "accent": "#a25737",
+    "muted": "#88665b",
+    "border": "#d8b7a4"
+  },
+  "beadJourney": {
+    "visible": true,
+    "eyebrow": "SIXTEEN FORMS. MANY MEANINGS.",
+    "title": "Every bead\nhas a story.",
+    "text": "Meet the sacred forms that make the Siddha Mala complete.",
+    "interval_seconds": 5,
+    "autoplay": true,
+    "play_label": "Play bead journey",
+    "pause_label": "Pause bead journey",
+    "cta_label": "Explore the complete mala",
+    "deity_label": "TRADITIONAL ASSOCIATION",
+    "note": "Spiritual associations, not guaranteed outcomes."
+  },
+  "spiritual": {
+    "visible": true,
+    "eyebrow": "RUDRAKSHA & SHIVA",
+    "title": "Born of compassion.\nWorn with intention.",
+    "image": "/assets/rudralife/shiva-banner.webp",
+    "image_alt": "Lord Shiva and Rudraksha, from Rudralife’s Mahashivratri article",
+    "caption": "A SACRED STORY, PASSED THROUGH GENERATIONS",
+    "paragraphs": [
+      "In the tradition retold by Rudralife, Shiva meditates for the well-being of humanity. His tears of compassion fall to the earth and become the first Rudraksha trees—a sacred story that gives these beads their enduring association with devotion.",
+      "The name brings together Rudra, a name of Shiva, and Aksha, associated with his eyes or tears. For a wearer, the mala can be a quiet reminder of compassion, reflection and a regular spiritual practice.",
+      "Siddha Mala gathers different Rudraksha forms into one personal companion. The story is a matter of religious tradition, not a scientific account or a promise of particular results."
+    ],
+    "source": "https://rudralife.com/blog/rudraksha-and-shiva-a-divine-connection-celebrated-on-mahashivratri/",
+    "source_label": "The tradition, from Rudralife"
+  }
 }

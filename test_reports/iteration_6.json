@@ -1,0 +1,47 @@
+{
+  "summary": "Completed iteration-6 backend + frontend regression on public preview URL with auth, CMS, mapping, forms, leads, responsive visual checks, and carousel/sequence behavior validation.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "BeadJourney autoplay controls",
+        "issue": "After manual bead selection, clicking Play does not resume automatic 5s progression (active bead remains unchanged).",
+        "selector": "[data-testid='journey-autoplay'], [data-testid='bead-journey-rail'] [role='tab'][aria-selected='true']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_rudralife_iteration6_regression.py",
+    "/app/backend/tests/test_login_limit_regression.py",
+    "/app/test_reports/pytest/pytest_results_iteration6.xml"
+  ],
+  "action_items": [
+    "Fix BeadJourney play/pause logic so autoplay reliably resumes after manual selection as required.",
+    "Re-verify bead-journey pause/resume matrix: visible, hover, focus, manual select, play button, and offscreen transitions.",
+    "Keep current restored state (no QA mapping marker left published) and re-run a final UX pass after the autoplay fix."
+  ],
+  "critical_code_review_comments": [
+    "useVisibleSequence + BeadJourney interaction currently allows a state where manual select pauses sequence and Play UI toggles but sequence does not advance.",
+    "BeadJourney/BeadSelector keyboard logic uses fixed modulo/terminal index assumptions (16 hardcoded), which is brittle if bead count changes in CMS.",
+    "Backend validation and auth hardening checks passed: bcrypt $2b$, explicit CORS origin with credentials, lockout behavior, interval/color/marker validation rules."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_rudralife_iteration6_regression.py",
+    "/app/test_reports/iteration_6.json"
+  ],
+  "success_rate": {
+    "backend": "100% (15/15)",
+    "frontend": "93%"
+  },
+  "seed_data_creation": "Created one QA inline lead and deleted it via admin inbox. Added temporary verified mapping marker during CMS test, then restored full baseline page-content via API revision restore.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Validated peach theme/background, hero user PNG, WebGL scene presence, no horizontal overflow at 320/390/768/1024/1440/1920, experts portrait mapping order, spiritual 3-paragraph content, modal Escape close, inline success + popup 503 retention behavior, admin login/leads/CMS save persistence, mapping publish and restore. Brochure URL returns HTTP 200 and application/pdf via HEAD. Current public page-content bead[1].locations is empty after restore.",
+  "rca of the issue": "Repro: open Bead Journey -> click any rail bead (manual select) -> click Play bead journey -> wait >5s. Active tab remains unchanged. Expected: auto-advance resumes every 5s while section is visible and not hovered. Likely cause: pause/focus state interplay in useVisibleSequence events keeps playing=false after manual interactions; Play button visual state changes but interval path does not execute."
+}

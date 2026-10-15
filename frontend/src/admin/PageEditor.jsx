@@ -4,8 +4,9 @@ import { toast } from 'sonner';
 import { fetchPage,fetchContent,savePage,formatApiError } from '../lib/api';
 import { mergePage } from '../data/pageDefaults';
 import { ContentField } from './ContentField';
+import { BeadMappingEditor } from './BeadMappingEditor';
 
-const SECTIONS=[['brand','Brand & header'],['hero','Hero & banner'],['intro','Emotional introduction'],['signature','Sacred signature'],['story','Mala story'],['gallery','Mala collection'],['beads','Beads & composition'],['education','Educational content'],['benefits','Spiritual benefits'],['patrons','Milind & Dimple'],['trust','Trust & authenticity'],['experts','Panel experts'],['community','Community & statistics'],['faq','FAQ'],['consultation','Consultation section'],['form','Forms & field settings'],['footer','Footer & contacts'],['thankyou','Thank-you page'],['seo','Search & sharing'],['motion','Animation settings'],['order','Section order']];
+const SECTIONS=[['appearance','Page colours'],['brand','Brand & header'],['hero','Hero & banner'],['intro','Emotional introduction'],['beadJourney','Scrolling bead stories'],['signature','Sacred signature'],['spiritual','Shiva & Rudraksha'],['story','Mala story'],['gallery','Mala collection'],['beads','Beads & placement map'],['education','Educational content'],['benefits','Spiritual benefits'],['patrons','Client stories'],['trust','Trust & authenticity'],['experts','Panel experts'],['community','Community & statistics'],['faq','FAQ'],['consultation','Consultation section'],['form','Forms & field settings'],['footer','Footer & contacts'],['thankyou','Thank-you page'],['seo','Search & sharing'],['motion','Animation settings'],['order','Section order']];
 
 export function PageEditor() {
   const [draft,setDraft]=useState(null);const [saved,setSaved]=useState(null);const [revision,setRevision]=useState(0);const [selected,setSelected]=useState('hero');const [saving,setSaving]=useState(false);const [error,setError]=useState('');

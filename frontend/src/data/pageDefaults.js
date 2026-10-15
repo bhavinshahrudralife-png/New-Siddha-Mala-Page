@@ -78,6 +78,45 @@ export const DEFAULT_PAGE = {
   order: ['intro','signature','story','gallery','beads','education','benefits','patrons','trust','experts','community','faq','consultation'],
 };
 
+// Third edition: user-supplied product and source-confirmed imagery.
+const MALA_PNG = '/assets/rudralife/siddha-user.png';
+DEFAULT_PAGE.appearance = { background:'#fae7dc', alternate:'#f3d8c8', surface:'#fff1e7', heading:'#642c2b', body:'#795048', accent:'#a25737', muted:'#88665b', border:'#d8b7a4' };
+DEFAULT_PAGE.hero.image = MALA_PNG;
+DEFAULT_PAGE.hero.image_alt = 'The complete Siddha Mala in the product photograph supplied by Rudralife';
+DEFAULT_PAGE.hero.reveal_title = 'Many sacred forms.\nOne personal connection.';
+DEFAULT_PAGE.hero.description = 'Natural Rudraksha, thoughtfully brought together. Discover the sixteen sacred forms at the heart of Rudralife’s Siddha Mala.';
+DEFAULT_PAGE.hero.badge = 'NATURAL RUDRAKSHA · RUDRALIFE';
+DEFAULT_PAGE.hero.edition = 'A SACRED COMBINATION · A PERSONAL CONNECTION';
+DEFAULT_PAGE.motion.journey_length = 3.2;
+DEFAULT_PAGE.signature.image = MALA_PNG;
+DEFAULT_PAGE.signature.text = 'Not simply a string of beads, but a considered combination. Siddha Mala brings 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha together, each carrying its own traditional association and natural character.';
+DEFAULT_PAGE.signature.points[1].text = 'The grooves, contours and texture of every bead are shaped by nature. No two natural Rudraksha look exactly alike.';
+DEFAULT_PAGE.signature.points[2].text = 'Understand the bead grades, finish and exact configuration before choosing. Our panel guides you through the details, without obligation.';
+DEFAULT_PAGE.beads.image = MALA_PNG;
+DEFAULT_PAGE.beads.title = 'A closer look.\nA deeper connection.';
+DEFAULT_PAGE.beads.text = 'Explore each sacred form, its traditional meaning and its place in the complete combination.';
+DEFAULT_PAGE.beads.mapping_note = 'Exact placement varies by mala. Our experts can identify this bead in your selected piece.';
+DEFAULT_PAGE.beads.location_label = 'Location in this mala';
+DEFAULT_PAGE.beads.full_view_label = 'Full mala';
+DEFAULT_PAGE.beads.items = DEFAULT_PAGE.beads.items.map((b,i) => ({...b,img:`/assets/rudralife/bead-clean-${i+1}.png`,locations:[]}));
+DEFAULT_PAGE.intro.image = '/assets/rudralife/bead-clean-14.png';
+DEFAULT_PAGE.benefits.items = DEFAULT_PAGE.benefits.items.map((b,i)=>({...b,image:`/assets/rudralife/bead-clean-${[5,9,12,15][i]}.png`}));
+DEFAULT_PAGE.thankyou.image = '/assets/rudralife/bead-clean-5.png';
+DEFAULT_PAGE.gallery.items[0].image = MALA_PNG;
+DEFAULT_PAGE.gallery.items[0].caption = 'A complete view of the mala. Each natural bead, each fitting, every considered detail.';
+DEFAULT_PAGE.gallery.text = 'The complete mala, its natural texture and its individual details. Explore the photographs, then discuss your preferred grade and finish with our team.';
+DEFAULT_PAGE.story.paragraphs = ['The Siddha Mala is a registered and trademarked Rudralife creation that brings distinct Rudraksha forms into a single combination. Its composition is not about making every bead identical, but about understanding what each form represents in tradition.', 'The listed configuration contains twenty-eight beads across sixteen forms, including repeated 2 to 7 Mukhi beads. Bead grades, natural dimensions and fittings may differ between pieces; your consultant can explain the exact mala you are considering.', 'A personal recommendation begins with listening. Whether your intention is a regular spiritual practice, a meaningful gift or simply a deeper understanding of Rudraksha, the conversation belongs to you.'];
+DEFAULT_PAGE.experts.items = DEFAULT_PAGE.experts.items.map((e,i)=>({...e,img:`/assets/rudralife/portrait-${[1,2,4,6,5,7,3][i]}.webp`}));
+DEFAULT_PAGE.experts.title = 'Guided by knowledge.\nGrounded in care.';
+DEFAULT_PAGE.patrons.interval_seconds = 5;
+DEFAULT_PAGE.patrons.autoplay = true;
+DEFAULT_PAGE.patrons.items[0].text = 'Rudralife’s published Siddha Mala story documents Milind Soman’s visit and his selection of the mala. The photograph captures a real moment at Rudralife, rather than a promise of what wearing Rudraksha will achieve.\n\nFor a personality associated with discipline and fitness, the image offers a personal glimpse into an enduring tradition. His own spiritual experience remains his to describe; no health, performance or financial result is claimed here.';
+DEFAULT_PAGE.patrons.items[1].text = 'Dimple Kapadia is pictured with the Rudralife team during a visit documented in its published Siddha Mala story. Her brief reflection also appears in Rudralife’s client voices.\n\nThe photograph and her words are a record of that connection—not a claim that every wearer will have the same experience. What makes a mala meaningful is ultimately personal: the intention, understanding and care with which it is chosen.';
+DEFAULT_PAGE.patrons.items.push({id:'sunanda',name:'Sunanda Shetty',role:'Businesswoman',image:'/assets/rudralife/sunanda.webp',image_alt:'Sunanda Shetty in Rudralife’s official client gallery',title:'A shared tradition.\nAn individual journey.',text:'Sunanda Shetty appears in Rudralife’s official client gallery. Her photograph is part of the brand’s published community of people from different walks of life.\n\nNo personal testimonial or specific outcome is attributed to her here. Her inclusion is a reminder that the relationship with Rudraksha is individual—one that can begin with curiosity, a conversation and an informed choice.',quote:'',quote_source:'https://rudralife.com/rudraksha-recommendation/'});
+DEFAULT_PAGE.beadJourney = {visible:true,eyebrow:'SIXTEEN FORMS. MANY MEANINGS.',title:'Every bead\nhas a story.',text:'Meet the sacred forms that make the Siddha Mala complete.',interval_seconds:5,autoplay:true,play_label:'Play bead journey',pause_label:'Pause bead journey',cta_label:'Explore the complete mala',deity_label:'TRADITIONAL ASSOCIATION',note:'Spiritual associations, not guaranteed outcomes.'};
+DEFAULT_PAGE.spiritual = {visible:true,eyebrow:'RUDRAKSHA & SHIVA',title:'Born of compassion.\nWorn with intention.',image:'/assets/rudralife/shiva-banner.webp',image_alt:'Lord Shiva and Rudraksha, from Rudralife’s Mahashivratri article',caption:'A SACRED STORY, PASSED THROUGH GENERATIONS',paragraphs:['In the tradition retold by Rudralife, Shiva meditates for the well-being of humanity. His tears of compassion fall to the earth and become the first Rudraksha trees—a sacred story that gives these beads their enduring association with devotion.', 'The name brings together Rudra, a name of Shiva, and Aksha, associated with his eyes or tears. For a wearer, the mala can be a quiet reminder of compassion, reflection and a regular spiritual practice.', 'Siddha Mala gathers different Rudraksha forms into one personal companion. The story is a matter of religious tradition, not a scientific account or a promise of particular results.'],source:'https://rudralife.com/blog/rudraksha-and-shiva-a-divine-connection-celebrated-on-mahashivratri/',source_label:'The tradition, from Rudralife'};
+DEFAULT_PAGE.order = ['intro','beadJourney','signature','spiritual','story','gallery','beads','education','benefits','patrons','trust','experts','community','faq','consultation'];
+
 export function mergePage(saved, legacy = {}) {
   const defaults = structuredClone(DEFAULT_PAGE);
   if (legacy.hero_title) defaults.hero.tagline = legacy.hero_title;

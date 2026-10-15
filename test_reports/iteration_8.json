@@ -1,0 +1,62 @@
+{
+  "summary": "Iteration-8 narrow retest executed on public preview for shared autoplay hover/focus/play matrix only. Prior high bug (hover pause while pointer inside) is fixed, but two Celebrity focus-related behaviors still fail; BeadJourney and reduced-motion checks pass.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Celebrity carousel focus pause",
+        "issue": "Keyboard focus on another carousel control does not pause autoplay. Repro: start Play on Milind, move mouse outside, focus [data-testid='patron-next'], wait 6.2s => Milind advances to Dimple.",
+        "selector": "[data-testid='patron-next'], .patron-carousel, [data-testid='patron-autoplay']",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Celebrity manual select -> Play with retained focus",
+        "issue": "After manual selection pause, clicking Play then keeping focus on Play and pointer outside does not resume after 5.6s (remains Milind).",
+        "selector": "[data-testid='patron-select-milind'], [data-testid='patron-autoplay']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Mobile touch context verification (has_touch=true/is_mobile=true)",
+        "issue": "browser automation tool context does not support true tap/hasTouch; synthetic touch fallback used. Celebrity did not advance in fallback while BeadJourney advanced.",
+        "affected_selectors": [
+          "[data-testid='patron-autoplay']",
+          "[data-testid='journey-autoplay']"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_7.json",
+    "/app/frontend/src/hooks/useVisibleSequence.js",
+    "/app/frontend/src/sections/Celebrity.jsx",
+    "/app/frontend/src/sections/BeadJourney.jsx"
+  ],
+  "action_items": [
+    "Fix Celebrity focus-state interaction so non-Play keyboard focus pauses autoplay until blur.",
+    "Fix Celebrity manual-select->Play flow so explicitPlay reliably resumes while Play button focus is retained and pointer is outside.",
+    "Run one true mobile touch-context verification (has_touch=true, is_mobile=true) outside current automation limitation to confirm Celebrity touch behavior."
+  ],
+  "critical_code_review_comments": [
+    "useVisibleSequence toggle/focus interplay appears order-sensitive: explicitPlay can be cleared by focus capture around Play interactions, causing inconsistent focused-play behavior in Celebrity.",
+    "The exact prior failure is resolved: while hovered inside carousel for >6s, Milind remains stable; leaving hover resumes Dimple then Sunanda.",
+    "BeadJourney matrix remains healthy after shared-hook change (manual select pause + Play with focus held + pointer outside resumes correctly)."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_8.json"
+  ],
+  "success_rate": {
+    "backend": "Not run (out of scope)",
+    "frontend": "~70% (focused matrix: key hover fix PASS, 2 celebrity focus-path FAIL, reduced-motion PASS, BeadJourney PASS)"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Reliable PASS from final run: Case1 exact reproduction now passes (Milind held during hover >6s; after pointer leave at ~6.6s Dimple; next tick Sunanda). BeadJourney manual-select pause + Play+pointer-outside while focus held passes. Reduced-motion no-auto passes for both sections. Remaining deterministic fails are Celebrity focus pause and Celebrity manual-select->Play focused resume paths.",
+  "rca of the issue": "Likely race/order issue between focus capture and explicitPlay state in shared hook usage: expected gate is enabled&&!reduced&&!paused&&!hovered&&(!focused||explicitPlay)&&!hidden&&visible&&count>1. Observed failures indicate focused states in Celebrity can both (a) continue when they should pause (focus another control) and (b) block when they should resume (manual-select then Play with retained focus). This suggests explicitPlay/focused transitions are not consistently synchronized during control focus changes in Celebrity interactions."
+}

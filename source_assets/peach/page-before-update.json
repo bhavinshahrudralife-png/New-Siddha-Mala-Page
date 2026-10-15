@@ -1,0 +1,740 @@
+{
+  "page": {
+    "brand": {
+      "logo": "/assets/rudralife/logo.png",
+      "name": "Rudralife",
+      "tagline": "Rudraksha power for you.",
+      "announcement": "A sacred tradition. A personal connection.",
+      "show_announcement": true,
+      "consultation_label": "Free consultation",
+      "mobile_consultation_label": "Speak with an expert",
+      "nav": [
+        {
+          "id": "about",
+          "label": "The Mala",
+          "href": "#about"
+        },
+        {
+          "id": "beads",
+          "label": "Sacred Beads",
+          "href": "#composition"
+        },
+        {
+          "id": "experts",
+          "label": "Our Experts",
+          "href": "#experts"
+        },
+        {
+          "id": "faq",
+          "label": "Your Questions",
+          "href": "#faq"
+        }
+      ]
+    },
+    "hero": {
+      "eyebrow": "RUDRALIFE\u2019S SIGNATURE CREATION",
+      "title": "The Siddha Mala.",
+      "tagline": "One mala. A complete spiritual companion.",
+      "description": "Handcrafted with authentic Rudraksha. A sacred combination of 1 to 14 Mukhi, Gauri Shankar and Ganesh.",
+      "image": "/assets/rudralife/gold-mala-premium.png",
+      "image_alt": "Complete Siddha Mala with natural Rudraksha and gold fittings",
+      "composition_label": "01 \u2014 THE SACRED COMBINATION",
+      "composition": "1\u201314 Mukhi.\nGauri Shankar.\nGanesh.",
+      "note": "Every bead, a purpose.\nTogether, a complete whole.",
+      "badge": "AUTHENTIC RUDRAKSHA. PERSONAL GUIDANCE.",
+      "cta_label": "Find your Siddha Mala",
+      "secondary_label": "Discover the beads",
+      "scroll_label": "A sacred journey, bead by bead",
+      "edition": "NATURAL RUDRAKSHA \u00b7 GOLD FITTINGS",
+      "reveal_eyebrow": "MANY SACRED ENERGIES. ONE MALA.",
+      "reveal_title": "A connection\nlike no other.",
+      "reveal_left_label": "NATURALLY EXTRAORDINARY",
+      "reveal_left_text": "Chosen with care.\nJoined by tradition.",
+      "reveal_right_label": "THE COMPLETE SIDDHA MALA",
+      "reveal_right_text": "1 to 14 Mukhi\nGauri Shankar & Ganesh"
+    },
+    "intro": {
+      "visible": true,
+      "eyebrow": "A MOMENT FOR YOURSELF",
+      "title": "Beyond the everyday.\nCloser to yourself.",
+      "text": "Some connections are felt before they are understood. A quiet moment. A clearer intention. A sacred reminder of what matters to you.",
+      "note": "Your journey begins with a conversation.",
+      "cta_label": "Begin your connection",
+      "image": "/assets/rudralife/bead-14.png"
+    },
+    "signature": {
+      "visible": true,
+      "eyebrow": "RUDRALIFE\u2019S SACRED SIGNATURE",
+      "title": "Not just worn.\nDeeply connected.",
+      "text": "Siddha Mala is a registered and trademarked creation of Rudralife. It combines carefully selected Rudraksha into one complete spiritual companion.",
+      "image": "/assets/rudralife/gold-mala-premium.png",
+      "image_alt": "Full gold-fitted Siddha Mala",
+      "points": [
+        {
+          "id": "composition",
+          "title": "A complete combination",
+          "text": "1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha."
+        },
+        {
+          "id": "individual",
+          "title": "Naturally individual",
+          "text": "Every natural bead has its own shape, surface and character."
+        },
+        {
+          "id": "guidance",
+          "title": "Chosen with understanding",
+          "text": "Personalised recommendations from the Rudralife expert panel."
+        }
+      ],
+      "brochure": "https://www.rudralife.com/siddha-mala/assets/siddha-mala-brochure.pdf",
+      "brochure_label": "Original Rudralife brochure",
+      "brochure_note": "PDF \u00b7 9.22 MB. Traditional claims in the source brochure reflect spiritual beliefs, not guaranteed outcomes.",
+      "cta_label": "Speak with an expert"
+    },
+    "story": {
+      "visible": true,
+      "eyebrow": "THE STORY BEHIND THE COMBINATION",
+      "title": "Rooted in tradition.\nMade with intention.",
+      "image": "/assets/rudralife/mala-gallery-0.webp",
+      "image_alt": "Rudralife Siddha Mala displayed with its presentation box",
+      "caption": "A SIGNATURE CREATION BY RUDRALIFE",
+      "paragraphs": [
+        "At the heart of Siddha Mala is a simple idea: bring different forms of Rudraksha together into a single, meaningful combination.",
+        "Rudralife\u2019s product description draws on Vedic traditions and describes its ACE Energization process. Every recommendation begins with understanding the person who will wear the mala."
+      ],
+      "signoff": "Authenticity, before everything.",
+      "link_label": "Discover the Rudralife story",
+      "source": "https://www.rudralife.com/profile-mission"
+    },
+    "gallery": {
+      "visible": true,
+      "eyebrow": "THE SIDDHA MALA COLLECTION",
+      "title": "Look closer.\nEvery detail matters.",
+      "text": "Explore the full combination, natural textures and considered finishes. Ask our team about the available grades and fittings.",
+      "items": [
+        {
+          "id": "gold",
+          "title": "The gold-fitted Siddha Mala",
+          "image": "/assets/rudralife/gold-mala-premium.png",
+          "alt": "Full gold-fitted Siddha Mala",
+          "caption": "Natural Rudraksha. A considered finish."
+        },
+        {
+          "id": "natural",
+          "title": "The complete combination",
+          "image": "/assets/rudralife/mala-gallery-1.webp",
+          "alt": "Complete Rudralife Rudraksha necklace",
+          "caption": "Every form, thoughtfully brought together."
+        },
+        {
+          "id": "detail",
+          "title": "A closer connection",
+          "image": "/assets/rudralife/mala-gallery-2.webp",
+          "alt": "Rudralife Siddha Mala product photograph",
+          "caption": "Textures shaped by nature."
+        }
+      ],
+      "cta_label": "Enquire about this mala"
+    },
+    "beads": {
+      "visible": true,
+      "eyebrow": "THE SACRED COMPOSITION",
+      "title": "Individually extraordinary.\nTogether, Siddha.",
+      "text": "Sixteen distinct forms. Twenty-eight beads in the listed combination. One complete spiritual companion.",
+      "centre_label": "THE SIDDHA MALA",
+      "image": "/assets/rudralife/gold-mala-premium.png",
+      "description_label": "SACRED RUDRAKSHA",
+      "source_label": "Explore at Rudralife",
+      "cta_label": "Ask about this bead",
+      "note": "Traditional associations are based on spiritual beliefs. Individual experiences vary.",
+      "items": [
+        {
+          "id": "1",
+          "name": "1 Mukhi",
+          "deity": "Lord Shiva",
+          "theme": "Spiritual awareness",
+          "desc": "The half-moon Rudraksha is traditionally associated with Lord Shiva, inner awareness and a deeper spiritual connection.",
+          "img": "/assets/rudralife/bead-1.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/one-mukhi-without-capping",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "2 Mukhi",
+          "deity": "Ardhanareeshwar",
+          "theme": "Harmony & unity",
+          "desc": "Representing the union of Shiva and Shakti, the two-faced bead is traditionally worn for harmony and togetherness.",
+          "img": "/assets/rudralife/bead-2.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/two-mukhi-super-collector-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "3",
+          "name": "3 Mukhi",
+          "deity": "Agni Dev",
+          "theme": "A fresh beginning",
+          "desc": "Associated with Agni, the three-faced Rudraksha symbolises transformation, confidence and freedom from the past.",
+          "img": "/assets/rudralife/bead-3.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/three-mukhi-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "4",
+          "name": "4 Mukhi",
+          "deity": "Lord Brahma",
+          "theme": "Knowledge & expression",
+          "desc": "The four-faced Rudraksha is associated with Brahma and traditionally chosen for learning, creativity and expression.",
+          "img": "/assets/rudralife/bead-4.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/four-mukhi-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "5",
+          "name": "5 Mukhi",
+          "deity": "Kalagni Rudra",
+          "theme": "Peace & balance",
+          "desc": "Associated with Kalagni Rudra, this bead has a special place in meditation and everyday spiritual practice.",
+          "img": "/assets/rudralife/bead-5.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/five-mukhi-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "6",
+          "name": "6 Mukhi",
+          "deity": "Lord Kartikeya",
+          "theme": "Focus & determination",
+          "desc": "The six-faced Rudraksha represents Kartikeya and is traditionally associated with focus, willpower and discipline.",
+          "img": "/assets/rudralife/bead-6.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/six-mukhi-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "7",
+          "name": "7 Mukhi",
+          "deity": "Mahalakshmi",
+          "theme": "Prosperity & abundance",
+          "desc": "Representing Mahalakshmi, the seven-faced bead is traditionally worn with aspirations for prosperity and abundance.",
+          "img": "/assets/rudralife/bead-7.png",
+          "qty": "3 beads",
+          "source": "https://www.rudralife.com/product/seven-mukhi-rudraksha",
+          "quantity": 3
+        },
+        {
+          "id": "8",
+          "name": "8 Mukhi",
+          "deity": "Lord Ganesha",
+          "theme": "New possibilities",
+          "desc": "Associated with Ganesha, this Rudraksha symbolises wisdom and overcoming obstacles on your chosen path.",
+          "img": "/assets/rudralife/bead-8.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/eight-mukhi-large-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "9",
+          "name": "9 Mukhi",
+          "deity": "Goddess Durga",
+          "theme": "Courage & strength",
+          "desc": "The nine-faced Rudraksha represents Durga and is traditionally associated with courage, strength and protection.",
+          "img": "/assets/rudralife/bead-9.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/nine-mukhi-small-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "name": "10 Mukhi",
+          "deity": "Lord Vishnu",
+          "theme": "Protection & positivity",
+          "desc": "Associated with Vishnu, the ten-faced bead is traditionally worn for protection and a sense of inner steadiness.",
+          "img": "/assets/rudralife/bead-10.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/ten-mukhi-small-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "11",
+          "name": "11 Mukhi",
+          "deity": "Lord Hanuman",
+          "theme": "Devotion & confidence",
+          "desc": "The eleven-faced Rudraksha represents Hanuman and symbolises strength, devotion and fearlessness.",
+          "img": "/assets/rudralife/bead-11.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/eleven-mukhi-small-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "12",
+          "name": "12 Mukhi",
+          "deity": "Lord Surya",
+          "theme": "Leadership & vitality",
+          "desc": "Representing the Sun, the twelve-faced Rudraksha is traditionally associated with radiance, leadership and confidence.",
+          "img": "/assets/rudralife/bead-12.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/twelve-mukhi-small-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "13",
+          "name": "13 Mukhi",
+          "deity": "Indra & Kamadeva",
+          "theme": "Charisma & fulfilment",
+          "desc": "The thirteen-faced Rudraksha is associated with Indra and Kamadeva, and traditionally chosen for fulfilment and attraction.",
+          "img": "/assets/rudralife/bead-13.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/thirteen-mukhi-small-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "14",
+          "name": "14 Mukhi",
+          "deity": "Lord Hanuman",
+          "theme": "Intuition & clarity",
+          "desc": "Known as Deva Mani, the fourteen-faced Rudraksha is traditionally associated with intuition, clear judgement and protection.",
+          "img": "/assets/rudralife/bead-14.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/fourteen-mukhi-large-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "15",
+          "name": "Gauri Shankar",
+          "deity": "Shiva & Parvati",
+          "theme": "Connection & harmony",
+          "desc": "Two naturally joined Rudraksha beads symbolise the union of Shiva and Parvati, and harmony in family and relationships.",
+          "img": "/assets/rudralife/bead-15.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/gaurishankar-rudraksha",
+          "quantity": 1
+        },
+        {
+          "id": "16",
+          "name": "Ganesh",
+          "deity": "Lord Ganesha",
+          "theme": "Wisdom & beginnings",
+          "desc": "Distinguished by a natural trunk-like projection, Ganesh Rudraksha symbolises wisdom and the blessing of new beginnings.",
+          "img": "/assets/rudralife/bead-16.png",
+          "qty": "1 bead",
+          "source": "https://www.rudralife.com/product/ganesh-rudraksha",
+          "quantity": 1
+        }
+      ],
+      "breakdown": "3 each of 2\u20137 Mukhi (18) + 1 each of 8\u201314 Mukhi (7) + Half-Moon 1 Mukhi, Gauri Shankar and Ganesh (3) = 28 beads."
+    },
+    "education": {
+      "visible": true,
+      "eyebrow": "SACRED KNOWLEDGE",
+      "title": "Understanding\nyour Siddha Mala.",
+      "text": "A little understanding makes the connection more meaningful.",
+      "items": [
+        {
+          "id": "meaning",
+          "q": "What makes this combination distinct?",
+          "a": "The Siddha Mala brings together 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha. The listed composition contains 28 beads across 16 distinct forms. Repeated Mukhi forms are part of that composition, not separate varieties."
+        },
+        {
+          "id": "composition",
+          "q": "How many beads does the mala contain?",
+          "a": "The source-confirmed configuration contains three each of 2 to 7 Mukhi, one each of 8 to 14 Mukhi, one Half-Moon 1 Mukhi, one Gauri Shankar and one Ganesh: 28 in total. Ask your consultant to confirm the exact configuration of the variant you choose."
+        },
+        {
+          "id": "personal",
+          "q": "How should I choose my mala?",
+          "a": "Your intentions, preferences and the available bead grades and finishes can guide your choice. A Rudralife expert can explain these differences and recommend an appropriate combination without a consultation charge."
+        }
+      ]
+    },
+    "benefits": {
+      "visible": true,
+      "eyebrow": "A PURPOSE IN EVERY BEAD",
+      "title": "For the life you lead.\nAnd the peace you seek.",
+      "text": "Sacred intentions. An everyday connection.",
+      "items": [
+        {
+          "title": "Spiritual practice",
+          "desc": "A companion for meditation, mantra chanting and a deeper connection with yourself.",
+          "id": "1",
+          "image": "/assets/rudralife/bead-5.png"
+        },
+        {
+          "title": "Peace & balance",
+          "desc": "Traditionally worn with the intention of bringing peace, positivity and balance to life.",
+          "id": "2",
+          "image": "/assets/rudralife/bead-9.png"
+        },
+        {
+          "title": "Purpose & growth",
+          "desc": "Chosen for blessings in career, business and personal growth.",
+          "id": "3",
+          "image": "/assets/rudralife/bead-12.png"
+        },
+        {
+          "title": "Harmony & connection",
+          "desc": "A sacred reminder of togetherness, family harmony and meaningful relationships.",
+          "id": "4",
+          "image": "/assets/rudralife/bead-15.png"
+        }
+      ],
+      "note": "Spiritual associations are not a promise of medical, financial or other specific outcomes."
+    },
+    "patrons": {
+      "visible": true,
+      "eyebrow": "PERSONAL JOURNEYS. SHARED FAITH.",
+      "title": "A connection that\nspeaks for itself.",
+      "text": "FROM THE RUDRALIFE FAMILY",
+      "items": [
+        {
+          "id": "milind",
+          "name": "Milind Soman",
+          "role": "Model & fitness enthusiast",
+          "image": "/assets/rudralife/milind-visit.webp",
+          "image_alt": "Milind Soman during his documented visit to Rudralife",
+          "title": "A life of discipline.\nA sacred companion.",
+          "text": "Milind Soman during a visit to Rudralife. Rudralife\u2019s published Siddha Mala story documents his visit and selection of the mala.",
+          "quote": "",
+          "quote_source": "https://rudralife.com/blog/what-is-sidhhamala-benefits-energising-fake-vs-genuine/"
+        },
+        {
+          "id": "dimple",
+          "name": "Dimple Kapadia",
+          "role": "Actress",
+          "image": "/assets/rudralife/dimple-visit.webp",
+          "image_alt": "Dimple Kapadia with the Rudralife team during her documented visit",
+          "title": "An enduring tradition.\nA personal connection.",
+          "text": "Dimple Kapadia with the Rudralife team. Her visit is documented in Rudralife\u2019s Siddha Mala story; the quote below is from its published client voices.",
+          "quote": "Rudraksha from Mr. Tanay is very fascinating.",
+          "quote_source": "https://www.rudralife.com"
+        }
+      ],
+      "source_label": "Voices from Rudralife"
+    },
+    "trust": {
+      "visible": true,
+      "eyebrow": "KNOW YOUR RUDRAKSHA",
+      "title": "Clarity is part\nof the connection.",
+      "items": [
+        {
+          "id": "authenticity",
+          "title": "Authenticity",
+          "text": "Ask our team about the testing and certificate supplied with your selected mala."
+        },
+        {
+          "id": "configuration",
+          "title": "The right configuration",
+          "text": "Understand every Mukhi form, bead grade and finish before choosing."
+        },
+        {
+          "id": "care",
+          "title": "Care that continues",
+          "text": "Receive personal guidance on wearing and looking after your Rudraksha."
+        }
+      ],
+      "cta_label": "Ask an expert"
+    },
+    "experts": {
+      "visible": true,
+      "eyebrow": "KNOWLEDGE. EXPERIENCE. EMPATHY.",
+      "title": "Real people.\nThoughtful guidance.",
+      "cta_label": "Meet your guide",
+      "profile_cta": "Consult this expert",
+      "items": [
+        {
+          "name": "Dr. Tanay Seetha",
+          "role": "Founder of Rudralife",
+          "desc": "A life dedicated to studying Rudraksha. Dr. Tanay Seetha brings deep knowledge, commitment and spiritual understanding to Rudralife.",
+          "img": "/assets/rudralife/expert-1.webp",
+          "id": "1"
+        },
+        {
+          "name": "Hemlata Sojitra",
+          "role": "Director \u2014 Operations & Head Panel Expert",
+          "desc": "At Rudralife since 2007, Hemlata brings her knowledge of astronumerology and a compassionate approach to personalised guidance.",
+          "img": "/assets/rudralife/expert-2.webp",
+          "id": "2"
+        },
+        {
+          "name": "Saumil Seetha",
+          "role": "Director & Head Panel Expert",
+          "desc": "Known for his calm approach, Saumil listens without judgement and supports people with thoughtful Rudraksha recommendations.",
+          "img": "/assets/rudralife/expert-3.webp",
+          "id": "3"
+        },
+        {
+          "name": "Dhruv Prakash Sinha",
+          "role": "Senior Panel Expert",
+          "desc": "A postgraduate in physics and a spiritual seeker, Dhruv has shared his expertise in Rudraksha and meditation at Rudralife since 2009.",
+          "img": "/assets/rudralife/expert-4.webp",
+          "id": "4"
+        },
+        {
+          "name": "Shruti Sharma",
+          "role": "Senior Panel Expert",
+          "desc": "Shruti brings her knowledge of Vedic practices, astrology and numerology to thoughtful, personal consultations.",
+          "img": "/assets/rudralife/expert-5.webp",
+          "id": "5"
+        },
+        {
+          "name": "Madhulika Namboodiri",
+          "role": "Senior Panel Expert",
+          "desc": "An Arts graduate from Jesus and Mary College, Madhulika leads Delhi operations and brings years of compassionate counselling experience.",
+          "img": "/assets/rudralife/expert-6.webp",
+          "id": "6"
+        },
+        {
+          "name": "Shilpa Aggarwal",
+          "role": "Panel Expert",
+          "desc": "Shilpa puts customer happiness first, offering dedicated guidance and a people-centred approach to Rudraksha.",
+          "img": "/assets/rudralife/expert-7.webp",
+          "id": "7"
+        }
+      ]
+    },
+    "community": {
+      "visible": true,
+      "eyebrow": "A SHARED TRADITION",
+      "title": "Wherever you begin,\nmake it personal.",
+      "text": "From spiritual practice to the rhythms of everyday life, every seeker brings a different story. Our team begins by listening to yours.",
+      "cta_label": "Start a conversation",
+      "points": [
+        {
+          "id": "listen",
+          "title": "We listen",
+          "text": "Your aspirations and questions come first."
+        },
+        {
+          "id": "explain",
+          "title": "We explain",
+          "text": "Understand the beads, grades and finishes."
+        },
+        {
+          "id": "guide",
+          "title": "We guide",
+          "text": "A personal recommendation, without obligation."
+        }
+      ],
+      "stats": [
+        {
+          "id": "clients",
+          "label": "Clients",
+          "value": "",
+          "suffix": "",
+          "visible": false,
+          "verified": false,
+          "source": ""
+        },
+        {
+          "id": "repeat",
+          "label": "Repeat customers",
+          "value": "",
+          "suffix": "%",
+          "visible": false,
+          "verified": false,
+          "source": ""
+        },
+        {
+          "id": "countries",
+          "label": "Countries served",
+          "value": "",
+          "suffix": "+",
+          "visible": false,
+          "verified": false,
+          "source": ""
+        }
+      ]
+    },
+    "faq": {
+      "visible": true,
+      "eyebrow": "A LITTLE MORE CLARITY",
+      "title": "Naturally,\nyou have questions.",
+      "cta_label": "Ask our experts",
+      "items": [
+        {
+          "q": "What is the Siddha Mala?",
+          "a": "Siddha Mala is a registered and trademarked creation of Rudralife. It combines 1 to 14 Mukhi Rudraksha with Gauri Shankar and Ganesh Rudraksha into one complete spiritual companion.",
+          "id": "1"
+        },
+        {
+          "q": "Which Rudraksha beads are included?",
+          "a": "The combination includes one Half Moon 1 Mukhi, three each of 2 to 7 Mukhi, one each of 8 to 14 Mukhi, one Gauri Shankar and one Ganesh Rudraksha. Our experts can guide you through the available grades and finishes.",
+          "id": "2"
+        },
+        {
+          "q": "Who can wear a Siddha Mala?",
+          "a": "Rudralife recommends Rudraksha for people from all walks of life. The expert panel can help you choose a combination according to your personal needs and spiritual aspirations.",
+          "id": "3"
+        },
+        {
+          "q": "How is its authenticity verified?",
+          "a": "Rudralife offers lab-certified Rudraksha. Speak with the team about the certificate and verification details supplied with your selected mala.",
+          "id": "4"
+        },
+        {
+          "q": "How should I care for my mala?",
+          "a": "Keep your Rudraksha clean and handle it with care. Rudralife provides guidance on cleaning, wearing and ongoing maintenance. Your consultant can advise on the right care for your mala and its finish.",
+          "id": "5"
+        },
+        {
+          "q": "Is the consultation free?",
+          "a": "Yes. Rudralife provides personalised Rudraksha recommendations and mala-making guidance at no consultation charge. Send an enquiry to speak with the expert panel.",
+          "id": "6"
+        },
+        {
+          "q": "Can I wear my mala every day?",
+          "a": "Your consultant can guide you on daily wear and care for the bead grade and finish you select. Handle the mala gently and follow the specific care instructions supplied with it.",
+          "id": "7"
+        },
+        {
+          "q": "Can women wear Rudraksha?",
+          "a": "Rudralife offers Rudraksha guidance to people from all walks of life. Speak with the expert panel about any personal or traditional wearing questions you may have.",
+          "id": "8"
+        },
+        {
+          "q": "Can I choose gold fittings?",
+          "a": "Ask the team about currently available fittings, customisation and pricing. The photographs show particular finishes; availability and the exact configuration should be confirmed during consultation.",
+          "id": "9"
+        },
+        {
+          "q": "Are particular results guaranteed?",
+          "a": "No. Rudraksha is worn as a matter of faith and personal belief. Traditional spiritual associations do not guarantee health, wealth or other outcomes, and are not a substitute for medical or financial advice.",
+          "id": "10"
+        }
+      ]
+    },
+    "consultation": {
+      "visible": true,
+      "eyebrow": "YOUR JOURNEY IS PERSONAL",
+      "title": "Let\u2019s find\nyour connection.",
+      "text": "A conversation, not a commitment. Our expert panel is here to understand you and recommend the right Rudraksha for your journey.",
+      "note": "Personalised guidance. Always complimentary.",
+      "whatsapp_label": "Prefer WhatsApp?",
+      "popup_label": "Open consultation form"
+    },
+    "form": {
+      "title": "Your personal consultation",
+      "description": "Tell us a little about yourself. The Rudralife team will respond to your enquiry.",
+      "submit_label": "Request a free consultation",
+      "sending_label": "Sending your enquiry",
+      "privacy": "Your details are used to respond to your enquiry.",
+      "country_label": "Country / dialling code",
+      "country_placeholder": "Select country code",
+      "interest_label": "Your interest",
+      "success_label": "Your enquiry has been received.",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Full name",
+          "placeholder": "Your name",
+          "required": true
+        },
+        {
+          "key": "email",
+          "label": "Email address",
+          "placeholder": "you@example.com",
+          "required": true
+        },
+        {
+          "key": "phone",
+          "label": "Phone number",
+          "placeholder": "Your phone number",
+          "required": true
+        },
+        {
+          "key": "city",
+          "label": "City",
+          "placeholder": "Your city",
+          "required": false
+        },
+        {
+          "key": "profession",
+          "label": "Profession",
+          "placeholder": "What do you do?",
+          "required": false
+        },
+        {
+          "key": "message",
+          "label": "Your message",
+          "placeholder": "What brings you to Rudraksha?",
+          "required": false
+        }
+      ]
+    },
+    "footer": {
+      "phone": "+91 72088 19922",
+      "email": "info@rudralife.com",
+      "whatsapp": "919619990717",
+      "address": "901, Sri Krishna, New Link Road, Andheri (West), Mumbai \u2014 400 053",
+      "hours": "Mon \u2013 Sat \u00b7 10:00 AM to 7:00 PM (IST)",
+      "website": "www.rudralife.com",
+      "title": "Rudraksha power for you.",
+      "copyright": "Rudralife Services Pvt Ltd. All rights reserved.",
+      "privacy_url": "https://www.rudralife.com/privacy-policy",
+      "privacy_label": "Privacy",
+      "terms_url": "https://www.rudralife.com/terms-and-conditions",
+      "terms_label": "Terms",
+      "disclaimer": "Rudraksha is worn as a matter of faith and belief. Traditional associations are based on scriptures and individual experiences, not guaranteed outcomes or medical advice. Rudralife guarantees the quality of its beads, not their effects.",
+      "links": [
+        {
+          "id": "beads",
+          "label": "The sacred beads",
+          "href": "#composition"
+        },
+        {
+          "id": "experts",
+          "label": "Our experts",
+          "href": "#experts"
+        },
+        {
+          "id": "faq",
+          "label": "Your questions",
+          "href": "#faq"
+        }
+      ],
+      "hero_title": "One mala. A complete spiritual companion.",
+      "hero_subtitle": "Handcrafted with authentic Rudraksha. A sacred combination of 1 to 14 Mukhi, Gauri Shankar and Ganesh.",
+      "stat_certified": "100%",
+      "stat_years": "25+",
+      "stat_souls": "16"
+    },
+    "thankyou": {
+      "eyebrow": "A NEW CONNECTION BEGINS",
+      "title": "Thank you",
+      "text": "Your enquiry has been received. The Rudralife team will be in touch to help you find the right Rudraksha for your journey.",
+      "home_label": "Back to the mala",
+      "whatsapp_label": "Continue on WhatsApp",
+      "image": "/assets/rudralife/bead-5.png"
+    },
+    "seo": {
+      "title": "Siddha Mala \u2014 A Sacred Connection | Rudralife",
+      "description": "Discover Rudralife\u2019s Siddha Mala: authentic 1\u201314 Mukhi, Gauri Shankar and Ganesh Rudraksha. Explore the full combination and request a free personal consultation.",
+      "image": "/assets/rudralife/mala-gallery-0.webp"
+    },
+    "motion": {
+      "enabled": true,
+      "journey_length": 3.8,
+      "section_reveals": true
+    },
+    "order": [
+      "intro",
+      "signature",
+      "story",
+      "gallery",
+      "beads",
+      "education",
+      "benefits",
+      "patrons",
+      "trust",
+      "experts",
+      "community",
+      "faq",
+      "consultation"
+    ]
+  },
+  "revision": 58,
+  "updated_at": "2026-10-14T11:17:30.209161+00:00"
+}

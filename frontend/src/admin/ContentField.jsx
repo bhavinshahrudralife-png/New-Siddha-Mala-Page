@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react';
 import { createElement } from 'react';
 import { MediaField } from './MediaLibrary';
+import { BeadMappingEditor } from './BeadMappingEditor';
 
 export const fieldLabel = value => value.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 const mediaKeys = ['image', 'img', 'logo', 'brochure'];
@@ -16,6 +17,9 @@ function newValue(value) {
 
 export function ContentField({ value, onChange, path, name, locked = false }) {
   const label = fieldLabel(name);
+  if(name==='locations'&&path.startsWith('beads-items-'))return null;
+  if(path==='beads')return <><BeadMappingEditor beads={value} onChange={onChange}/><div className="cms-object">{Object.entries(value).map(([k,v])=>createElement(ContentField,{key:k,value:v,name:k,path:`${path}-${k}`,onChange:next=>onChange(k==='image'&&next!==value.image?{...value,image:next,items:value.items.map(item=>({...item,locations:(item.locations||[]).map(p=>({...p,verified:false}))}))}:{...value,[k]:next})}))}</div></>;
+  if(path.startsWith('appearance-'))return <div className="cms-field cms-colour"><label htmlFor={path}>{label}</label><div><input type="color" id={path} value={value} onChange={e=>onChange(e.target.value)} data-testid={`cms-color-${path}`}/><input aria-label={`${label} hex colour`} value={value} onChange={e=>onChange(e.target.value)} data-testid={`cms-field-${path}`}/></div></div>;
   if (Array.isArray(value)) {
     const fixed = path === 'beads-items' || path === 'form-fields' || path === 'order';
     const move = (index, delta) => {

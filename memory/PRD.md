@@ -12,7 +12,7 @@ Current frontend origin MUST come from frontend/.env REACT_APP_BACKEND_URL.
 
 ## Explicit preferences and approval
 - User primarily uses Hinglish; latest approval was in English.
-- Off-white background, brown text, gold details; no dark template, Om/mantra or
+- Latest: peach-white (not white), mahogany/copper text; no dark template, Om/mantra or
   decorative 27+1 Nakshatra pattern.
 - Genuine, better-quality gold-fitted Mala PNG and Rudraksha photos; longer smooth
   scroll journey with animated content; stronger Milind/Dimple presentation.
@@ -165,3 +165,80 @@ P2: Optional new-lead email notifications; high-detail licensed/scanned360GLB;
 Hindi language toggle. Full-pageCMS andCSVexport are DONE, not backlog anymore.
 
 Credentials and current verified URLs: `/app/memory/test_credentials.md`.
+
+## Peach edition — 15 October 2026 (latest approved work)
+User rejected the remaining white theme and previous necklace, supplied a PNG,
+requested a left-scrolling16-form bead rail with synchronized right-side stories,
+click-to-locate actual beads,5secondMilind/Dimple/Sunanda stories, sharper expert
+portraits, Shiva content and richer but compact content. Asked to proceed without
+further clarification. All existing CMS/form/lead functionality preserved.
+
+### Implemented
+- Actual peach palette: background#fae7dc, alternate#f3d8c8, surface#fff1e7,
+  mahogany#642c2b, body#795048, copper#a25737. Editable under Page colours.
+- User's exact supplied transparent Mala PNG (`siddha-user.png`,408×612) replaces
+  hero/signature/composition andfirstgallery. Do NOTcallthisgeneratedorhigherresolution.
+-16official bead sourcephotos regenerated via segmentation + filledmatte to remove
+  previous chroma-cutout holes; originalrealbead texture preserved (`bead-clean-N.png`).
+- `BeadJourney.jsx`: leftvertical16-beadrail, largerPNG and synchronizedname/deity/
+  description,5secondautoplay, scroll-linkedselection,keyboard/manualnavigation.
+- `useVisibleSequence.js`: reducer-based playback state, only visible/documentactive;
+  mousehoverpauses,touchdoesn'tcreatehover,focusednonPlaycontrolpauses,explicitPlay
+  owns ONLY thatPlaybuttonfocus. Manualselectionpauses;Playresumesafterpointerleaves.
+- `Celebrity.jsx`: one compact alternating-layout5secondcarousel: Milindleft,
+  Dimpleright,Sunandaleft; fullerfactualcopy,officialphotos,source links. No invented
+  Sunanda testimonial. Exit0.12s/enter0.28s meets visibleT+5.5s requirement.
+- Replaced oldcircularselector with16phototabs + full-mala locator + isolateddetailPNG.
+- `MalaLocator.jsx` andadmin`BeadMappingEditor.jsx`: clickphoto/addcenter,editpercentXY,
+  multiplepositionsforrepeatedtypes,verificationnote+checkbox,fullview/reset+1.75xzoom.
+  Onlyverifiedpositions matchingcurrentimage appearpublic; changingphoto invalidates
+  alloldconfirmations. No AI-inferred or inventedphysicalMukhi labels.
+- **Content dependency remains:** actual Mukhi-to-photo positions were NOT supplied
+  or verified. AllrealbaselinepositionsremainEMPTY. Publicshows honest placement
+  note instead of falselylabellingnecklace. Owner can confirmpositions inadmin.
+  Do NOTclaim exactphysicalbeadidentificationcompleted untilowner verifieslocations.
+- `SpiritualStory.jsx`: official Shivaimage and3source-groundedparagraphs, explicitly
+  traditionalstory/notmedicalorscientificclaims. More detailedMala/signature/storycopy.
+- Expertportraits replaced withofficial recommendation403×470/400×540sources;
+  mappings Tanay1,Hemlata2,Saumil4,Dhruv6,Shruti5,Madhulika7,Shilpa3.
+- NewPagecolours/Scrollingbeadstories/Shiva/CMSmapping controls;24editorgroups,
+ 15configurablebodysections+hero/footer. Compactmobilegalleryandone-storycarousel
+  balanceadditionalcopywithoutstackingallthreefullcelebritystories.
+- Currentbodyregistry includes `beadJourney` and`spiritual`; `appearance` isNOTinorder.
+- New files: `frontend/src/peach.css`, `components/PageTheme.jsx`, `components/MalaLocator.jsx`,
+  `sections/BeadJourney.jsx`, `sections/SpiritualStory.jsx`, `hooks/useVisibleSequence.js`,
+  `admin/BeadMappingEditor.jsx`, `scripts/clean_bead_photos.py`, `scripts/publish_peach_update.py`.
+- Backendvalidateshexcolours,3–30secondintervals,locations0..100,quantitylimits,
+  verifiedcurrentimage+note. Updated committed defaultsJSON using existing syncscript.
+- Migrationcomparesolddefaultsnapshotwithcurrentpage to preservecustomedits; explicitly
+  swapsapprovedimages,addsnewsections. Snapshot `/app/source_assets/peach/defaults-before.json`.
+
+### Testing / fixes
+- Mandatory testingagents used foruserreportedvisualbug; reportsiteration6through10.
+- Iteration6 broadresponsive/CMS/marker/APIverified; foundPlayfocusblock.
+- Iteration7 fixedbeadresume,foundcelebrityhoveroverride. Iteration8 foundfurtherfocus
+  edges; its syntheticmobilecheck was NON-authoritative and replacedbyrealcontext.
+- RCAtool consulted forpersistentplaybackissues. Finalfixwas deterministicreducer
+  tracking actualfocusedcontrol andPlayowner, nota fragileexplicit boolean override.
+- Iteration9: focuspause,hoverpause,beadresume,reducedmotionandTRUEtouchcontextPASS
+  (`has_touch`, `is_mobile`, maxTouchPoints1, coarsepointer, realtapactions).
+- Iteration10 FINALPASS: Milind→DimplevisibleT+5.5s,SunandaT+11s;focusretainedonPlay;
+  hover6secondsstayssame,leaveadvances;stable535pxstagewithnooverlap/heightshift.
+- ActualWebGLrenderer proofiteration7: centroidshift142.93px,notjustaCSSanimation.
+- Responsive320/390/768/1024/1440/1920,nohorizontaloverflowreported;suppliedPNGwhole.
+- Finalfocusedbackend suite **18/18PASS**, `/app/test_reports/pytest/peach_final.xml`.
+- FinalbuildPASS `/app/test_reports/peach-final-build.log`.
+- Publiccontentverifiedaftercleanup: revision71, suppliedPNG,peach#fae7dc,threepatrons,
+  zeroQAmarkers,originaltagline,noQAcontent. Existingadminlogin200verifiedagain;
+  credentials unchanged. Authcookie/logout,realinline/popup leads,adminsearch and
+  leadcleanupverifiedbyagents. No brokenimplementedflow leftinfinalreport.
+- Reports `/app/test_reports/iteration_6.json`…`iteration_10.json`; finalsummary
+  `/app/test_reports/peach_verification.md`. Do not changeplaybacktimingswithoutretest.
+
+### Source limitations / next actions
+- Reference `siddha-divine-shop.preview...` returnedawakeserverpage; do NOTclaimits
+  actualdesignwasreviewed. ThethreeofficialRudralifeURLs were successfullyscraped.
+- Sunandaofficialclientphoto300×300;do notclaimhigher-resoriginalorpersonalresults.
+- Noexactplacementmappingprovided: thisis thepriorityownerconfirmationnextstep.
+- Futureoption: new-leademailnotifications,licensedtrue360GLB. Currenteffectis
+  realphoto-texturedThree.jsdepth+PNGmotion,notaphotogrammetrynecklacemodel.

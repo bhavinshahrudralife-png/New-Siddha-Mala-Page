@@ -1,0 +1,90 @@
+{
+  "summary": "Focused iteration-7 retest completed on public preview for autoplay regression, celebrity shared-hook behavior, CMS marker/image safety, WebGL motion proof, and enquiry/auth backend sanity. BeadJourney fix is validated; one residual issue remains in Celebrity hover-pause behavior.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Celebrity section autoplay controls",
+        "issue": "Autoplay does not pause on pointer hover. Repro: select Milind -> click Play stories -> keep cursor over .patron-carousel for 6.2s -> story still advances to Dimple.",
+        "selector": ".patron-carousel, [data-testid='patron-autoplay'], [data-testid^='patron-'][class*='patron-feature']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_rudralife_iteration7_focused.py",
+    "/app/test_reports/pytest/pytest_results_iteration7.xml"
+  ],
+  "action_items": [
+    "Fix shared useVisibleSequence hover pause behavior for Celebrity section so pointer hover reliably blocks autoplay ticks.",
+    "Re-run only celebrity autoplay matrix after fix: hover/focus/manual/play/reduced-motion.",
+    "Keep restored baseline page-content (bead[1] locations empty) as current canonical state."
+  ],
+  "critical_code_review_comments": [
+    "BeadJourney autoplay fix works as intended after manual select + focused Play click.",
+    "Shared hook is still not behaving consistently in Celebrity hover scenario; likely event-state/timer interaction in carousel host.",
+    "ContentField beads-image change correctly invalidates previous marker verification flags before publish (no stale verified marker rendered publicly)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_rudralife_iteration7_focused.py",
+    "/app/test_reports/iteration_7.json"
+  ],
+  "success_rate": {
+    "backend": "100% (3/3)",
+    "frontend": "95% (focused matrix; 1 high-priority fail)"
+  },
+  "seed_data_creation": "Created temporary QA verified bead marker in admin mapping workflow; published, validated publicly, then restored full baseline revision. Created 2 QA_TEST Iter7 leads (inline/popup) in backend test and deleted both.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Validated BeadJourney matrix: auto-advance visible, manual-select pause + Play resume while button retains focus, pause stop, prev wrap, ArrowUp/ArrowDown keyboard, offscreen/doc-hidden pause, reduced-motion no-auto, and no page jump during rail auto-centering. Celebrity checks: autoplay timing Milind->Dimple->Sunanda at ~5.5s intervals, manual tab then Play resumes, focus pause works, reduced-motion no-auto works, desktop left/right alternation works, mobile 390 stacked readable with no portrait/editorial overlap, all 3 photos+story texts present, Sunanda source points to Rudralife domain and has no personal quote block, hidden focusable control count is 0. Residual bug: hover pause fails consistently in Celebrity section.",
+  "rca of the issue": "Celebrity hover-pause bug reproduced in 3 runs. Most deterministic repro: open /siddha-mala.html -> scroll to celebrity -> click patron-select-milind -> click patron-autoplay (Play stories) -> keep pointer inside .patron-carousel for >6s. Expected: active panel unchanged while hovered. Actual: patron-milind advances to patron-dimple. Likely root cause is shared sequence timer continuing despite hover state in this section (event-state/timer synchronization issue).",
+  "focused_matrix": {
+    "bead_journey": {
+      "auto_5s_visible": "PASS",
+      "hover_pause": "PASS",
+      "focus_pause": "PASS",
+      "manual_select_then_click_play_with_focus_advances_after_5_5s": "PASS",
+      "pause_again_stops": "PASS",
+      "next_prev_wrap": "PASS",
+      "arrow_keyboard": "PASS",
+      "rail_active_autocenter_no_page_jump": "PASS",
+      "offscreen_pause": "PASS",
+      "doc_hidden_pause": "PASS",
+      "reduced_motion_no_auto": "PASS"
+    },
+    "celebrity": {
+      "autoplay_5s_milind_dimple_sunanda": "PASS",
+      "desktop_alternating_columns": "PASS",
+      "mobile_stacked_readable_no_overlap": "PASS",
+      "manual_tabs_then_play_resumes": "PASS",
+      "hover_pause": "FAIL",
+      "focus_pause": "PASS",
+      "reduced_motion_no_auto": "PASS",
+      "three_photos_and_story_texts_present": "PASS",
+      "sunanda_source_official_and_no_invented_quote": "PASS",
+      "hidden_panel_buttons_accessibility_confusion": "PASS"
+    },
+    "cms_mapping_image_reset": {
+      "qa_verified_marker_publish": "PASS",
+      "public_zoom_1_75_and_marker_visible_before_image_change": "PASS",
+      "beads_image_change_resets_verification_and_saves": "PASS",
+      "public_old_marker_removed_after_image_change": "PASS",
+      "restore_full_original_page_with_empty_real_coords": "PASS"
+    },
+    "webgl_motion_proof": {
+      "scene_uses_webgl_not_2d": "PASS",
+      "visible_hidden_pixel_difference_present": "PASS",
+      "left_bead_centroid_motion_after_400px_wheel": "PASS (~142.85px)"
+    },
+    "forms_and_backend_quick": {
+      "inline_enquiry_accepted_and_visible_in_admin": "PASS",
+      "popup_enquiry_accepted_and_visible_in_admin": "PASS",
+      "invalid_country_returns_422": "PASS"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import "@/App.css";
 import './experience.css';
+import './peach.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 import { MotionConfig, useReducedMotion } from "framer-motion";

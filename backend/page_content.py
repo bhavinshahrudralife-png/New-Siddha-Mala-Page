@@ -32,7 +32,8 @@ def validate_page(page):
         raise HTTPException(422, 'Page content is too large.')
     required = ['brand', 'hero', 'intro', 'signature', 'story', 'gallery', 'beads',
                 'education', 'benefits', 'patrons', 'trust', 'experts', 'community',
-                'faq', 'consultation', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order']
+                'faq', 'consultation', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order',
+                'appearance', 'beadJourney', 'spiritual']
     if any(key not in page for key in required):
         raise HTTPException(422, 'The page is missing a required section.')
     template = json.loads((Path(__file__).parent/'page_defaults.json').read_text())
@@ -87,7 +88,7 @@ def validate_page(page):
     field_keys=[field.get('key') for field in page['form']['fields']]
     if set(field_keys) != {'name','email','phone','city','profession','message'} or len(field_keys) != 6:
         raise HTTPException(422, 'Keep each of the six consultation fields exactly once.')
-    sections = set(required) - {'brand', 'hero', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order'}
+    sections = set(required) - {'brand', 'hero', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order', 'appearance'}
     order = page['order']
     if len(order) != len(set(order)) or set(order) != sections:
         raise HTTPException(422, 'Page order must contain each content section exactly once.')
@@ -99,6 +100,24 @@ def validate_page(page):
     for stat in page['community'].get('stats', []):
         if stat.get('visible') and (not stat.get('verified') or not stat.get('source', '').strip()):
             raise HTTPException(422, 'Visible customer statistics need verified status and an evidence source.')
+    for colour in page['appearance'].values():
+        if not re.fullmatch(r'#[0-9a-fA-F]{6}', colour):
+            raise HTTPException(422, 'Page colours must be six-digit hex colours.')
+    for section in ('patrons','beadJourney'):
+        if not 3 <= page[section]['interval_seconds'] <= 30:
+            raise HTTPException(422, 'Story intervals must be between 3 and 30 seconds.')
+    for bead in page['beads']['items']:
+        if len(bead['locations']) > bead['quantity']:
+            raise HTTPException(422, f"{bead['name']}: marker count cannot exceed the listed quantity.")
+        for point in bead['locations']:
+            if not isinstance(point,dict) or set(point) != {'id','x','y','verified','image','note'}:
+                raise HTTPException(422, 'Invalid bead-placement marker.')
+            if any(isinstance(point[a],bool) or not isinstance(point[a],(int,float)) or not 0 <= point[a] <= 100 for a in ('x','y')):
+                raise HTTPException(422, 'Marker coordinates must be between 0 and 100.')
+            if not isinstance(point['verified'],bool) or not isinstance(point['note'],str):
+                raise HTTPException(422, 'Invalid placement confirmation.')
+            if point['verified'] and (point['image'] != page['beads']['image'] or not point['note'].strip()):
+                raise HTTPException(422, 'Confirmed markers need a verification note and must match the current mala image.')
 
 async def read_page(db):
     doc = await db.page_content.find_one({'key': 'landing'}, {'_id': 0})

@@ -66,25 +66,9 @@ def test_page_defaults_reflect_peach_release_and_15_body_sections(api_client):
     assert page["signature"]["image"] == "/assets/rudralife/siddha-user.png"
     assert page["beads"]["image"] == "/assets/rudralife/siddha-user.png"
 
-    expected_order = {
-        "intro",
-        "beadJourney",
-        "signature",
-        "spiritual",
-        "story",
-        "gallery",
-        "beads",
-        "education",
-        "benefits",
-        "patrons",
-        "trust",
-        "experts",
-        "community",
-        "faq",
-        "consultation",
-    }
-    assert len(page["order"]) == 15
-    assert set(page["order"]) == expected_order
+    expected_order = ["signature","spiritual","gallery","story","beads","patrons","benefits","trust","founder","faq","featured"]
+    assert page["order"] == expected_order
+
 
 
 def test_auth_login_cookie_and_me_endpoint(admin_client):

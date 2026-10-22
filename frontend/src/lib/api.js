@@ -19,6 +19,7 @@ export const fetchMedia = () => client.get('/admin/media');
 export const uploadMedia = (file) => { const data = new FormData(); data.append('file', file); return client.post('/admin/media', data, { headers:{'Content-Type':undefined} }); };
 export const fetchLeadPage = (params) => client.get('/admin/leads/page', { params });
 export const exportLeads = (params) => client.get('/admin/leads/export', { params, responseType:'blob' });
+export const exportLeadsExcel = (params) => client.get('/admin/leads/export.xlsx', { params, responseType:'blob' });
 
 export function formatApiError(err) {
   const detail = err?.response?.data?.detail;

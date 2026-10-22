@@ -19,13 +19,18 @@
         "href": "#composition"
       },
       {
+        "id": "patrons",
+        "label": "Our Clients",
+        "href": "#patrons"
+      },
+      {
         "id": "experts",
-        "label": "Our Experts",
+        "label": "Founder",
         "href": "#experts"
       },
       {
         "id": "faq",
-        "label": "Your Questions",
+        "label": "FAQ",
         "href": "#faq"
       }
     ]
@@ -92,19 +97,22 @@
   },
   "story": {
     "visible": true,
-    "eyebrow": "THE STORY BEHIND THE COMBINATION",
+    "eyebrow": "25 YEARS OF RUDRALIFE",
     "title": "Rooted in tradition.\nMade with intention.",
     "image": "/assets/rudralife/mala-gallery-0.webp",
     "image_alt": "Rudralife Siddha Mala displayed with its presentation box",
-    "caption": "A SIGNATURE CREATION BY RUDRALIFE",
+    "caption": "SINCE 2001 · A RUDRALIFE SIGNATURE CREATION",
     "paragraphs": [
-      "The Siddha Mala is a registered and trademarked Rudralife creation that brings distinct Rudraksha forms into a single combination. Its composition is not about making every bead identical, but about understanding what each form represents in tradition.",
-      "The listed configuration contains twenty-eight beads across sixteen forms, including repeated 2 to 7 Mukhi beads. Bead grades, natural dimensions and fittings may differ between pieces; your consultant can explain the exact mala you are considering.",
-      "A personal recommendation begins with listening. Whether your intention is a regular spiritual practice, a meaningful gift or simply a deeper understanding of Rudraksha, the conversation belongs to you."
+      "Rudralife was founded in 2001 by Dr. Tanay Seetha with a single purpose: to make authentic Rudraksha, and honest guidance about it, available to every seeker.",
+      "Twenty-five years on, the Siddha Mala remains one of its signature creations—a registered Rudralife combination that brings 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha together in one mala.",
+      "Every recommendation still begins the same way it did in 2001: by listening to the person who will wear the mala."
     ],
-    "signoff": "Authenticity, before everything.",
+    "signoff": "25 years. One commitment: authenticity.",
     "link_label": "Discover the Rudralife story",
-    "source": "https://www.rudralife.com/profile-mission"
+    "source": "https://rudralife.com/about-founder",
+    "anniversary_number": "25",
+    "anniversary_label": "Years of Rudralife",
+    "anniversary_since": "Since 2001"
   },
   "gallery": {
     "visible": true,
@@ -133,8 +141,7 @@
         "alt": "Rudralife Siddha Mala product photograph",
         "caption": "Textures shaped by nature."
       }
-    ],
-    "cta_label": "Enquire about this mala"
+    ]
   },
   "beads": {
     "visible": true,
@@ -344,7 +351,11 @@
     "breakdown": "3 each of 2–7 Mukhi (18) + 1 each of 8–14 Mukhi (7) + Half-Moon 1 Mukhi, Gauri Shankar and Ganesh (3) = 28 beads.",
     "mapping_note": "Exact placement varies by mala. Our experts can identify this bead in your selected piece.",
     "location_label": "Location in this mala",
-    "full_view_label": "Full mala"
+    "full_view_label": "Full mala",
+    "orbit_seconds": 70,
+    "interval_seconds": 5,
+    "autoplay": true,
+    "orbit_hint": "Tap any bead around the mala to explore it"
   },
   "education": {
     "visible": true,
@@ -404,42 +415,41 @@
   },
   "patrons": {
     "visible": true,
-    "eyebrow": "PERSONAL JOURNEYS. SHARED FAITH.",
-    "title": "A connection that\nspeaks for itself.",
-    "text": "FROM THE RUDRALIFE FAMILY",
+    "eyebrow": "THEY CHOSE THE SIDDHA MALA",
+    "title": "Personal journeys.\nOne sacred mala.",
+    "text": "From the Rudralife family",
     "items": [
       {
         "id": "milind",
         "name": "Milind Soman",
-        "role": "Model & fitness enthusiast",
+        "role": "Model, actor & fitness icon",
         "image": "/assets/rudralife/milind-visit.webp",
-        "image_alt": "Milind Soman during his documented visit to Rudralife",
-        "title": "A life of discipline.\nA sacred companion.",
-        "text": "Rudralife’s published Siddha Mala story documents Milind Soman’s visit and his selection of the mala. The photograph captures a real moment at Rudralife, rather than a promise of what wearing Rudraksha will achieve.\n\nFor a personality associated with discipline and fitness, the image offers a personal glimpse into an enduring tradition. His own spiritual experience remains his to describe; no health, performance or financial result is claimed here.",
-        "quote": "",
-        "quote_source": "https://rudralife.com/blog/what-is-sidhhamala-benefits-energising-fake-vs-genuine/"
+        "image_alt": "Milind Soman during his visit to Rudralife",
+        "text": "Milind Soman visited Rudralife and chose the Siddha Mala as his personal companion. Known for a life built on discipline, endurance and mindful living, he spent time with the Rudralife team understanding the different Rudraksha forms in the combination. His visit is documented in Rudralife’s published Siddha Mala story. For him, the mala is a quiet, personal part of a very active life—chosen with understanding rather than impulse."
       },
       {
         "id": "dimple",
         "name": "Dimple Kapadia",
         "role": "Actress",
         "image": "/assets/rudralife/dimple-visit.webp",
-        "image_alt": "Dimple Kapadia with the Rudralife team during her documented visit",
-        "title": "An enduring tradition.\nA personal connection.",
-        "text": "Dimple Kapadia is pictured with the Rudralife team during a visit documented in its published Siddha Mala story. Her brief reflection also appears in Rudralife’s client voices.\n\nThe photograph and her words are a record of that connection—not a claim that every wearer will have the same experience. What makes a mala meaningful is ultimately personal: the intention, understanding and care with which it is chosen.",
-        "quote": "Rudraksha from Mr. Tanay is very fascinating.",
-        "quote_source": "https://www.rudralife.com"
+        "image_alt": "Dimple Kapadia with the Rudralife team",
+        "text": "Dimple Kapadia met the Rudralife team and selected the Siddha Mala after a personal consultation. Her visit is part of Rudralife’s published Siddha Mala story, and her words appear among its client voices: “Rudraksha from Mr. Tanay is very fascinating.” Her connection with Rudraksha is her own—a reminder that a meaningful mala is chosen with intention, care and a clear understanding of every bead."
       },
       {
-        "id": "sunanda",
-        "name": "Sunanda Shetty",
-        "role": "Businesswoman",
-        "image": "/assets/rudralife/sunanda.webp",
-        "image_alt": "Sunanda Shetty in Rudralife’s official client gallery",
-        "title": "A shared tradition.\nAn individual journey.",
-        "text": "Sunanda Shetty appears in Rudralife’s official client gallery. Her photograph is part of the brand’s published community of people from different walks of life.\n\nNo personal testimonial or specific outcome is attributed to her here. Her inclusion is a reminder that the relationship with Rudraksha is individual—one that can begin with curiosity, a conversation and an informed choice.",
-        "quote": "",
-        "quote_source": "https://rudralife.com/rudraksha-recommendation/"
+        "id": "archana",
+        "name": "Archana Wani",
+        "role": "Rudralife client",
+        "image": "",
+        "image_alt": "Archana Wani, Rudralife client",
+        "text": "Archana Wani chose the Rudralife Siddha Mala after a personal conversation with the expert panel. She wanted to understand every bead before deciding—its form, its traditional association and its place in the complete combination. The team walked her through the grades, the fittings and the care her mala would need. Today her Siddha Mala is part of her daily spiritual routine, worn with faith and a personal intention."
+      },
+      {
+        "id": "sunil",
+        "name": "Sunil Kumar",
+        "role": "Rudralife client",
+        "image": "",
+        "image_alt": "Sunil Kumar, Rudralife client",
+        "text": "Sunil Kumar came to Rudralife looking for an authentic, complete combination rather than a single bead. After his consultation he selected the Siddha Mala, with 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha brought together in one piece. He valued the clarity of the guidance—what each form represents in tradition and how to wear and look after it. His mala is now a constant, personal reminder of that journey."
       }
     ],
     "source_label": "Voices from Rudralife",
@@ -584,7 +594,7 @@
     "visible": true,
     "eyebrow": "A LITTLE MORE CLARITY",
     "title": "Naturally,\nyou have questions.",
-    "cta_label": "Ask our experts",
+    "cta_label": "Request a free consultation",
     "items": [
       {
         "q": "What is the Siddha Mala?",
@@ -648,25 +658,25 @@
     "popup_label": "Open consultation form"
   },
   "form": {
-    "title": "Your personal consultation",
-    "description": "Tell us a little about yourself. The Rudralife team will respond to your enquiry.",
-    "submit_label": "Request a free consultation",
-    "sending_label": "Sending your enquiry",
+    "title": "Free consultation",
+    "description": "Share a few details and a Rudralife expert will personally get in touch with you.",
+    "submit_label": "Submit your form",
+    "sending_label": "Submitting",
     "privacy": "Your details are used to respond to your enquiry.",
-    "country_label": "Country / dialling code",
-    "country_placeholder": "Select country code",
+    "country_label": "Country code",
+    "country_placeholder": "Code",
     "interest_label": "Your interest",
     "success_label": "Your enquiry has been received.",
     "fields": [
       {
         "key": "name",
         "label": "Full name",
-        "placeholder": "Your name",
+        "placeholder": "Your full name",
         "required": true
       },
       {
         "key": "email",
-        "label": "Email address",
+        "label": "Email ID",
         "placeholder": "you@example.com",
         "required": true
       },
@@ -677,21 +687,21 @@
         "required": true
       },
       {
-        "key": "city",
-        "label": "City",
-        "placeholder": "Your city",
+        "key": "company",
+        "label": "Company",
+        "placeholder": "Company name",
         "required": false
       },
       {
         "key": "profession",
         "label": "Profession",
-        "placeholder": "What do you do?",
+        "placeholder": "Your profession",
         "required": false
       },
       {
         "key": "message",
         "label": "Your message",
-        "placeholder": "What brings you to Rudraksha?",
+        "placeholder": "Tell us what you are looking for",
         "required": false
       }
     ]
@@ -729,12 +739,30 @@
     ]
   },
   "thankyou": {
-    "eyebrow": "A NEW CONNECTION BEGINS",
+    "eyebrow": "YOUR FORM HAS BEEN SUBMITTED",
     "title": "Thank you",
-    "text": "Your enquiry has been received. The Rudralife team will be in touch to help you find the right Rudraksha for your journey.",
-    "home_label": "Back to the mala",
+    "text": "Your consultation request has reached the Rudralife team. An expert will personally get in touch with you shortly.",
+    "home_label": "Back to the Siddha Mala",
     "whatsapp_label": "Continue on WhatsApp",
-    "image": "/assets/rudralife/bead-clean-5.png"
+    "image": "/assets/rudralife/siddha-user.png",
+    "steps_title": "What happens next",
+    "steps": [
+      {
+        "id": "review",
+        "title": "We review your details",
+        "text": "Our team reads your message and understands what you are looking for."
+      },
+      {
+        "id": "call",
+        "title": "An expert calls you",
+        "text": "A Rudralife expert reaches out on the phone number you shared."
+      },
+      {
+        "id": "guide",
+        "title": "Personal guidance",
+        "text": "Understand the Siddha Mala, its beads and options—without obligation."
+      }
+    ]
   },
   "seo": {
     "title": "Siddha Mala — A Sacred Connection | Rudralife",
@@ -747,21 +775,17 @@
     "section_reveals": true
   },
   "order": [
-    "intro",
-    "beadJourney",
     "signature",
     "spiritual",
-    "story",
     "gallery",
+    "story",
     "beads",
-    "education",
-    "benefits",
     "patrons",
+    "benefits",
     "trust",
-    "experts",
-    "community",
+    "founder",
     "faq",
-    "consultation"
+    "featured"
   ],
   "appearance": {
     "background": "#fae7dc",
@@ -800,5 +824,99 @@
     ],
     "source": "https://rudralife.com/blog/rudraksha-and-shiva-a-divine-connection-celebrated-on-mahashivratri/",
     "source_label": "The tradition, from Rudralife"
+  },
+  "founder": {
+    "visible": true,
+    "eyebrow": "THE FOUNDER OF RUDRALIFE",
+    "name": "Dr. Tanay Seetha",
+    "role": "Founder & Rudraksha expert",
+    "title": "A life dedicated\nto Rudraksha.",
+    "paragraphs": [
+      "Dr. Tanay Seetha founded Rudralife in 2001 and has spent more than 25 years in Rudraksha research and spiritual guidance. His work began with a simple conviction: every seeker deserves authentic Rudraksha and honest advice about it.",
+      "Under his guidance, Rudralife created the Siddha Mala as a complete combination of 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha. He has shared his knowledge on national platforms including Republic Bharat, and continues to lead the Rudralife expert panel."
+    ],
+    "stats": [
+      {
+        "id": "founded",
+        "value": "2001",
+        "label": "Founded Rudralife"
+      },
+      {
+        "id": "years",
+        "value": "25+",
+        "label": "Years in Rudraksha research"
+      }
+    ],
+    "interval_seconds": 2,
+    "cta_label": "Consult the Rudralife experts",
+    "images": [
+      {
+        "id": "portrait",
+        "image": "/assets/rudralife/tanay-1.png",
+        "alt": "Dr. Tanay Seetha, founder of Rudralife"
+      },
+      {
+        "id": "bharat",
+        "image": "/assets/rudralife/tanay-2.jpg",
+        "alt": "Dr. Tanay Seetha on Republic Bharat Samwad"
+      },
+      {
+        "id": "podcast",
+        "image": "/assets/rudralife/tanay-4.jpg",
+        "alt": "Dr. Tanay Seetha in conversation on Rudraksha"
+      }
+    ]
+  },
+  "featured": {
+    "visible": true,
+    "label": "As Featured In",
+    "speed_seconds": 40,
+    "items": [
+      {
+        "id": "1",
+        "image": "/assets/rudralife/media-1.jpg",
+        "alt": "The Times of India"
+      },
+      {
+        "id": "2",
+        "image": "/assets/rudralife/media-2.jpg",
+        "alt": "Lokmat"
+      },
+      {
+        "id": "3",
+        "image": "/assets/rudralife/media-3.jpg",
+        "alt": "Deccan Chronicle"
+      },
+      {
+        "id": "4",
+        "image": "/assets/rudralife/media-4.jpg",
+        "alt": "Hindustan Times"
+      },
+      {
+        "id": "5",
+        "image": "/assets/rudralife/media-5.jpg",
+        "alt": "Garavi Gujarat"
+      },
+      {
+        "id": "6",
+        "image": "/assets/rudralife/media-6.jpg",
+        "alt": "The Economic Times"
+      },
+      {
+        "id": "7",
+        "image": "/assets/rudralife/media-7.jpg",
+        "alt": "Sunrise Radio"
+      },
+      {
+        "id": "8",
+        "image": "/assets/rudralife/media-8.jpg",
+        "alt": "Navbharat Times"
+      },
+      {
+        "id": "9",
+        "image": "/assets/rudralife/media-9.jpg",
+        "alt": "The Hindu"
+      }
+    ]
   }
 }

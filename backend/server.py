@@ -97,7 +97,7 @@ async def create_enquiry(input: EnquiryCreate):
     settings = await db.page_content.find_one({'key': 'landing'}, {'_id': 0, 'page.form.fields': 1})
     fields = (settings or {}).get('page', {}).get('form', {}).get('fields', [])
     for field in fields:
-        if field.get('required') and field.get('key') in ('city', 'profession', 'message') and not getattr(input, field['key']).strip():
+        if field.get('required') and field.get('key') in ('city', 'company', 'profession', 'message') and not getattr(input, field['key']).strip():
             raise HTTPException(422, f"{field.get('label', field['key'])} is required.")
     enquiry = Enquiry(**input.model_dump())
     try:
@@ -154,7 +154,7 @@ def lead_filter(query='', status=''):
     filters = {}
     if query.strip():
         pattern = {'$regex': re.escape(query.strip()[:150]), '$options': 'i'}
-        filters['$or'] = [{field: pattern} for field in ('name', 'email', 'phone', 'city')]
+        filters['$or'] = [{field: pattern} for field in ('name', 'email', 'phone', 'city', 'company', 'profession')]
     if status:
         if status not in ('new', 'contacted', 'qualified', 'closed'):
             raise HTTPException(422, 'Invalid lead status')
@@ -173,7 +173,7 @@ async def paged_leads(query: str = '', status: str = '', page: int = 1, user=Dep
 async def lead_export(query: str = '', status: str = '', user=Depends(get_current_user)):
     import csv, io
     from starlette.responses import StreamingResponse
-    keys = ['name', 'email', 'country', 'country_code', 'phone', 'city', 'profession', 'message', 'interest', 'source', 'status', 'notes', 'created_at']
+    keys = ['name', 'email', 'country', 'country_code', 'phone', 'company', 'profession', 'city', 'message', 'interest', 'source', 'status', 'notes', 'created_at']
     async def rows():
         yield '\ufeff'
         buffer = io.StringIO(); writer = csv.writer(buffer); writer.writerow(keys); yield buffer.getvalue()
@@ -186,6 +186,32 @@ async def lead_export(query: str = '', status: str = '', user=Depends(get_curren
             writer.writerow(values); yield buffer.getvalue()
     return StreamingResponse(rows(), media_type='text/csv', headers={'Content-Disposition':'attachment; filename="rudralife-enquiries.csv"'})
 
+LEAD_COLUMNS = [('Received', 'created_at'), ('Full name', 'name'), ('Email', 'email'), ('Country', 'country'), ('Country code', 'country_code'), ('Phone', 'phone'), ('Company', 'company'), ('Profession', 'profession'), ('City', 'city'), ('Message', 'message'), ('Interest', 'interest'), ('Form', 'source'), ('Status', 'status'), ('Notes', 'notes')]
+
+@api_router.get('/admin/leads/export.xlsx')
+async def lead_export_excel(query: str = '', status: str = '', user=Depends(get_current_user)):
+    import io
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill
+    from starlette.responses import Response as RawResponse
+    wb = Workbook(); ws = wb.active; ws.title = 'Enquiries'
+    ws.append([title for title, _ in LEAD_COLUMNS])
+    for cell in ws[1]:
+        cell.font = Font(bold=True, color='FFFFFF'); cell.fill = PatternFill('solid', fgColor='642C2B')
+    async for lead in db.enquiries.find(lead_filter(query, status), {'_id': 0}).sort('created_at', -1):
+        row = []
+        for _, key in LEAD_COLUMNS:
+            value = str(lead.get(key) or '')
+            if key == 'created_at' and value:
+                value = value[:19].replace('T', ' ')
+            row.append("'" + value if value.startswith(('=', '+', '-', '@')) and key not in ('phone', 'country_code') else value)
+        ws.append(row)
+    for column, width in zip('ABCDEFGHIJKLMN', (20, 24, 30, 9, 12, 18, 24, 20, 16, 50, 24, 10, 12, 30)):
+        ws.column_dimensions[column].width = width
+    ws.freeze_panes = 'A2'
+    buffer = io.BytesIO(); wb.save(buffer)
+    return RawResponse(buffer.getvalue(), media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', headers={'Content-Disposition': 'attachment; filename="rudralife-enquiries.xlsx"'})
+
 @api_router.put('/admin/page-content', response_model=PageResponse)
 async def edit_page(data: PageSave, user=Depends(get_current_user)):
     return await save_page(db, data)
@@ -196,7 +222,7 @@ async def media_upload(file: UploadFile = File(...), user=Depends(get_current_us
 
 @api_router.get('/admin/media', response_model=List[MediaItem])
 async def media_list(user=Depends(get_current_user)):
-    return await db.media.find({'is_deleted': False}, {'_id': 0, 'storage_path': 0}).sort('created_at', -1).to_list(500)
+    return await db.media.find({'is_deleted': False}, {'_id': 0, 'storage_path': 0, 'gridfs_id': 0}).sort('created_at', -1).to_list(500)
 
 @api_router.patch('/admin/leads/{lead_id}', response_model=Enquiry)
 async def edit_lead(lead_id: str, data: LeadUpdate, user=Depends(get_current_user)):

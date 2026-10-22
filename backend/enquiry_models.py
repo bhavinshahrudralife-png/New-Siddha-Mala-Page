@@ -13,6 +13,7 @@ class EnquiryCreate(BaseModel):
     country: str = Field(pattern=r'^[A-Z]{2}$')
     country_code: str = Field(pattern=r'^\+\d{1,4}$')
     city: str = Field(default='', max_length=150)
+    company: str = Field(default='', max_length=150)
     profession: str = Field(default='', max_length=150)
     message: str = Field(default='', max_length=4000)
     source: Literal['inline', 'popup'] = 'inline'
@@ -42,6 +43,7 @@ class Enquiry(BaseModel):
     country: str = ''
     country_code: str = ''
     city: str = ''
+    company: str = ''
     profession: str = ''
     message: str = ''
     source: str = 'legacy'

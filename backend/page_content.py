@@ -33,7 +33,7 @@ def validate_page(page):
     required = ['brand', 'hero', 'intro', 'signature', 'story', 'gallery', 'beads',
                 'education', 'benefits', 'patrons', 'trust', 'experts', 'community',
                 'faq', 'consultation', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order',
-                'appearance', 'beadJourney', 'spiritual']
+                'appearance', 'beadJourney', 'spiritual', 'founder', 'featured']
     if any(key not in page for key in required):
         raise HTTPException(422, 'The page is missing a required section.')
     template = json.loads((Path(__file__).parent/'page_defaults.json').read_text())
@@ -77,7 +77,7 @@ def validate_page(page):
         raise HTTPException(422, 'The hero image and brand logo are required.')
     if len(page['beads'].get('items', [])) != 16:
         raise HTTPException(422, 'Keep all 16 distinct Rudraksha forms in the composition.')
-    for section in ('beads', 'experts', 'faq', 'benefits', 'gallery', 'patrons'):
+    for section in ('beads', 'experts', 'faq', 'benefits', 'gallery', 'patrons', 'featured'):
         ids = [str(item.get('id', '')) for item in page[section].get('items', [])]
         if '' in ids or len(ids) != len(set(ids)):
             raise HTTPException(422, f'{section}: item IDs must be non-empty and unique.')
@@ -86,12 +86,14 @@ def validate_page(page):
     if any(not isinstance(b['quantity'],int) or not 1 <= b['quantity'] <= 10 for b in page['beads']['items']):
         raise HTTPException(422, 'Bead quantities must be whole numbers from 1 to 10.')
     field_keys=[field.get('key') for field in page['form']['fields']]
-    if set(field_keys) != {'name','email','phone','city','profession','message'} or len(field_keys) != 6:
+    if set(field_keys) != {'name','email','phone','company','profession','message'} or len(field_keys) != 6:
         raise HTTPException(422, 'Keep each of the six consultation fields exactly once.')
     sections = set(required) - {'brand', 'hero', 'form', 'footer', 'thankyou', 'seo', 'motion', 'order', 'appearance'}
     order = page['order']
-    if len(order) != len(set(order)) or set(order) != sections:
-        raise HTTPException(422, 'Page order must contain each content section exactly once.')
+    if not order or len(order) != len(set(order)) or not set(order) <= sections:
+        raise HTTPException(422, 'Page order must list content sections at most once.')
+    if not page['founder']['images'] or not 1 <= page['founder']['interval_seconds'] <= 30:
+        raise HTTPException(422, 'Add at least one founder photo; slide interval must be 1 to 30 seconds.')
     if not 2 <= float(page['motion'].get('journey_length', 3.5)) <= 6:
         raise HTTPException(422, 'Journey length must be between 2 and 6 screen heights.')
     for field in page['form'].get('fields', []):

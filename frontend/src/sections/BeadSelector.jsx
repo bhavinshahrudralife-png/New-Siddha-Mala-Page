@@ -1,18 +1,37 @@
-import { useState } from 'react';
-import { AnimatePresence,motion,useReducedMotion } from 'framer-motion';
-import { ArrowLeft,ArrowRight,ArrowUpRight } from 'lucide-react';
+import { useRef } from 'react';
+import { AnimatePresence,motion } from 'framer-motion';
+import { ArrowLeft,ArrowRight } from 'lucide-react';
 import { usePage,mediaUrl } from '../context/PageContext';
-import { useConsultation } from '../context/ConsultationContext';
 import { SectionHeading } from '../components/Editorial';
-import { MalaLocator } from '../components/MalaLocator';
+import { useVisibleSequence } from '../hooks/useVisibleSequence';
+
+function BeadDetail({bead,index,total,s}) {
+  return <AnimatePresence mode="wait" initial={false}><motion.div key={bead.id} initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} transition={{duration:.32}}>
+    <div className="orbit-detail-top"><span className="small-index" data-testid="bead-counter">{String(index+1).padStart(2,'0')} / {total}</span><span className="detail-rule"/><span className="small-index">{s.description_label}</span></div>
+    <div className="orbit-detail-bead"><img src={mediaUrl(bead.img)} alt={`${bead.name} Rudraksha`} data-testid="bead-display-image"/></div>
+    <p className="eyebrow" data-testid="bead-display-theme">{bead.theme}</p>
+    <h3 className="bead-detail-name" data-testid="bead-display-name">{bead.name}<em>Rudraksha</em></h3>
+    <p className="bead-deity" data-testid="bead-display-deity">{bead.deity}<span>·</span>{bead.quantity} {bead.quantity===1?'bead':'beads'} in the listed combination</p>
+    <p className="orbit-description" data-testid="bead-display-description">{bead.desc}</p>
+  </motion.div></AnimatePresence>;
+}
 
 export default function BeadSelector() {
-  const {beads:s}=usePage(); const items=s.items; const {openConsultation}=useConsultation();
-  const [selected,setSelected]=useState(0);const bead=items[selected];const reduced=useReducedMotion();
-  const next=delta=>setSelected(i=>(i+delta+items.length)%items.length);
-  const onKey=e=>{if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(e.key)){e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?items.length-1:(selected+(['ArrowRight','ArrowDown'].includes(e.key)?1:items.length-1))%items.length;setSelected(n);document.getElementById(`bead-tab-${items[n].id}`)?.focus({preventScroll:true});}};
-  return <section id="composition" className="collection-section section-space" data-testid="bead-selector-section"><div className="site-container"><SectionHeading section={s} id="beads"/>
-    <div className="composition-tabs" role="tablist" aria-label="Select Rudraksha form" onKeyDown={onKey} data-testid="bead-selector-tabs">{items.map((b,i)=><button key={b.id} id={`bead-tab-${b.id}`} role="tab" aria-selected={selected===i} aria-controls="bead-detail" tabIndex={selected===i?0:-1} onClick={()=>setSelected(i)} data-testid={`bead-slot-${b.id}`} className={selected===i?'active':''}><img src={mediaUrl(b.img)} alt="" loading="lazy"/><span>{b.name}</span></button>)}</div>
-    <div className="mala-focus-layout"><MalaLocator image={s.image} bead={bead} label={s.location_label} fullLabel={s.full_view_label} note={s.mapping_note}/><div className="bead-detail" id="bead-detail" role="tabpanel" aria-labelledby={`bead-tab-${bead.id}`} data-testid="bead-detail-panel"><div className="bead-detail-top"><span className="small-index" data-testid="bead-counter">{String(selected+1).padStart(2,'0')} / 16</span><span className="detail-rule"/><span className="small-index">{s.description_label}</span></div><AnimatePresence mode="wait" initial={false}><motion.div key={bead.id} initial={reduced?false:{opacity:0,y:15}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} transition={{duration:.3}}><div className="bead-feature-image"><img src={mediaUrl(bead.img)} alt={`${bead.name} Rudraksha`} data-testid="bead-display-image"/></div><p className="eyebrow" data-testid="bead-display-theme">{bead.theme}</p><h3 className="bead-detail-name" data-testid="bead-display-name">{bead.name}<em>Rudraksha</em></h3><p className="bead-deity" data-testid="bead-display-deity">{bead.deity}<span>·</span>{bead.quantity} {bead.quantity===1?'bead':'beads'} in the listed combination</p><p className="bead-description" data-testid="bead-display-description">{bead.desc}</p><button className="text-link" onClick={()=>openConsultation(bead.name)} data-testid="bead-consult-button">{s.cta_label}<ArrowUpRight size={15}/></button><a href={bead.source} target="_blank" rel="noopener noreferrer" className="bead-source-link" data-testid="bead-source-link">{s.source_label}<ArrowUpRight size={13}/></a></motion.div></AnimatePresence><div className="bead-controls"><button onClick={()=>next(-1)} className="icon-button" aria-label="Previous bead" data-testid="bead-previous"><ArrowLeft size={18}/></button><span>{bead.name.toUpperCase()}</span><button onClick={()=>next(1)} className="icon-button" aria-label="Next bead" data-testid="bead-next"><ArrowRight size={18}/></button></div></div></div><div className="composition-breakdown" data-testid="composition-breakdown"><strong data-testid="composition-total">{items.reduce((sum,b)=>sum+b.quantity,0)} beads</strong><p>{s.breakdown}</p></div><p className="belief-note">{s.note}</p>
+  const page=usePage();const s=page.beads;const items=s.items;const ref=useRef(null);
+  const seq=useVisibleSequence(ref,items.length,s.interval_seconds||5,s.autoplay!==false&&page.motion.enabled);
+  const bead=items[seq.index];const step=360/items.length;
+  return <section ref={ref} id="composition" className="orbit-section section-space" data-testid="bead-selector-section"><div className="site-container"><SectionHeading section={s} id="beads"/>
+    <div className="orbit-layout">
+      <div className={`orbit-stage ${seq.reduced?'orbit-static':''}`} style={{'--orbit-seconds':`${s.orbit_seconds||70}s`}} data-testid="bead-orbit" {...seq.events}>
+        <div className="orbit-halo" aria-hidden="true"/>
+        <img className="orbit-mala" src={mediaUrl(s.image)} alt="The complete Siddha Mala" data-testid="orbit-mala-image"/>
+        <div className="orbit-ring" role="tablist" aria-label="Select Rudraksha form">{items.map((b,i)=><button key={b.id} role="tab" aria-selected={seq.index===i} aria-label={b.name} onClick={()=>seq.select(i)} data-testid={`bead-slot-${b.id}`} className={`orbit-bead ${seq.index===i?'active':''}`} style={{'--angle':`${i*step}deg`}}><span className="orbit-bead-inner"><img src={mediaUrl(b.img)} alt="" loading="lazy"/><small>{b.name.replace(' Mukhi','')}</small></span></button>)}</div>
+      </div>
+      <div className="orbit-detail" id="bead-detail" role="tabpanel" data-testid="bead-detail-panel">
+        <BeadDetail bead={bead} index={seq.index} total={items.length} s={s}/>
+        <div className="bead-controls"><button onClick={()=>seq.select(seq.index-1)} className="icon-button" aria-label="Previous bead" data-testid="bead-previous"><ArrowLeft size={18}/></button><span>{s.orbit_hint}</span><button onClick={()=>seq.select(seq.index+1)} className="icon-button" aria-label="Next bead" data-testid="bead-next"><ArrowRight size={18}/></button></div>
+      </div>
+    </div>
+    <div className="composition-breakdown" data-testid="composition-breakdown"><strong data-testid="composition-total">{items.reduce((sum,b)=>sum+b.quantity,0)} beads</strong><p>{s.breakdown}</p></div><p className="belief-note">{s.note}</p>
   </div></section>;
 }

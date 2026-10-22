@@ -13,7 +13,9 @@ export function LeadDetail({selected,setSelected,busy,onSave,onDelete}) {
         <div className="lead-contact-links"><a href={`mailto:${selected.email}`} data-testid="lead-email-link"><Mail size={15}/>{selected.email}</a><a href={`tel:${selected.phone}`} data-testid="lead-phone-link"><Phone size={15}/>{selected.phone}</a></div>
         <dl className="lead-details">
           <div><dt>Country</dt><dd data-testid="lead-country">{selected.country} {selected.country_code}</dd></div>
-          <div><dt>City / profession</dt><dd>{selected.city||'—'} / {selected.profession||'—'}</dd></div>
+          <div><dt>Company</dt><dd data-testid="lead-company">{selected.company||'—'}</dd></div>
+          <div><dt>Profession</dt><dd data-testid="lead-profession">{selected.profession||'—'}</dd></div>
+          {selected.city&&<div><dt>City</dt><dd>{selected.city}</dd></div>}
           <div><dt>Interest</dt><dd data-testid="lead-interest">{selected.interest||'General consultation'}</dd></div>
           <div><dt>Message</dt><dd data-testid="lead-message">{selected.message||'No message provided'}</dd></div>
           <div><dt>Received</dt><dd>{new Date(selected.created_at).toLocaleString('en-IN')}</dd></div>

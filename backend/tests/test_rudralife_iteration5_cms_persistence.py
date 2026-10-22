@@ -134,15 +134,15 @@ def test_cms_api_persistence_for_iteration5_scope(admin_client):
         assert saved["page"]["footer"]["phone"] == "+91 70000 00000"
         assert saved["page"]["footer"]["email"] == f"qa-{marker}@example.com"
 
-        # FORM label + city required toggle
+        # FORM label + company required toggle
         draft = copy.deepcopy(saved["page"])
-        city_field = next(f for f in draft["form"]["fields"] if f["key"] == "city")
-        city_field["label"] = f"City / State {marker}"
+        city_field = next(f for f in draft["form"]["fields"] if f["key"] == "company")
+        city_field["label"] = f"Company / Firm {marker}"
         city_field["required"] = True
         saved = save_page(admin_client, draft, revision)
         revision = saved["revision"]
-        city_field_saved = next(f for f in saved["page"]["form"]["fields"] if f["key"] == "city")
-        assert city_field_saved["label"] == f"City / State {marker}"
+        city_field_saved = next(f for f in saved["page"]["form"]["fields"] if f["key"] == "company")
+        assert city_field_saved["label"] == f"Company / Firm {marker}"
         assert city_field_saved["required"] is True
 
         # GALLERY caption
@@ -199,5 +199,5 @@ def test_cms_api_persistence_for_iteration5_scope(admin_client):
     end_page = end_state.json()["page"]
     assert end_page["hero"]["tagline"] == "One mala. A complete spiritual companion."
     assert end_page["hero"]["tagline"] == original_hero_tagline
-    assert end_page["hero"]["image"] == "/assets/rudralife/gold-mala-premium.png"
+    assert end_page["hero"]["image"] == "/assets/rudralife/siddha-user.png"
     assert end_page["hero"]["image"] == original_hero_image

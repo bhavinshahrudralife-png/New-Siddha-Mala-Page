@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { AnimatePresence,motion } from 'framer-motion';
-import { ArrowLeft,ArrowRight } from 'lucide-react';
+import { ArrowLeft,ArrowRight,Pause,Play } from 'lucide-react';
 import { usePage,mediaUrl } from '../context/PageContext';
 import { SectionHeading } from '../components/Editorial';
 import { useVisibleSequence } from '../hooks/useVisibleSequence';
@@ -29,7 +29,7 @@ export default function BeadSelector() {
       </div>
       <div className="orbit-detail" id="bead-detail" role="tabpanel" data-testid="bead-detail-panel">
         <BeadDetail bead={bead} index={seq.index} total={items.length} s={s}/>
-        <div className="bead-controls"><button onClick={()=>seq.select(seq.index-1)} className="icon-button" aria-label="Previous bead" data-testid="bead-previous"><ArrowLeft size={18}/></button><span>{s.orbit_hint}</span><button onClick={()=>seq.select(seq.index+1)} className="icon-button" aria-label="Next bead" data-testid="bead-next"><ArrowRight size={18}/></button></div>
+        <div className="bead-controls"><button onClick={()=>seq.select(seq.index-1)} className="icon-button" aria-label="Previous bead" data-testid="bead-previous"><ArrowLeft size={18}/></button><span>{s.orbit_hint}</span>{!seq.reduced&&<button className="icon-button" onClick={seq.toggle} aria-pressed={!seq.paused} aria-label={seq.paused?'Play bead tour':'Pause bead tour'} data-testid="bead-autoplay">{seq.paused?<Play size={14}/>:<Pause size={14}/>}</button>}<button onClick={()=>seq.select(seq.index+1)} className="icon-button" aria-label="Next bead" data-testid="bead-next"><ArrowRight size={18}/></button></div>
       </div>
     </div>
     <div className="composition-breakdown" data-testid="composition-breakdown"><strong data-testid="composition-total">{items.reduce((sum,b)=>sum+b.quantity,0)} beads</strong><p>{s.breakdown}</p></div><p className="belief-note">{s.note}</p>

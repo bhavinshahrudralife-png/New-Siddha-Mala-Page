@@ -119,6 +119,7 @@ DEFAULT_PAGE.order = ['intro','beadJourney','signature','spiritual','story','gal
 
 // Fifth edition: owner-requested structure.
 delete DEFAULT_PAGE.gallery.cta_label;
+DEFAULT_PAGE.gallery.text = 'The complete mala, its natural texture and its individual details. Tap any photograph to see it up close.';
 Object.assign(DEFAULT_PAGE.story, { eyebrow:'25 YEARS OF RUDRALIFE', title:'Rooted in tradition.\nMade with intention.', caption:'SINCE 2001 · A RUDRALIFE SIGNATURE CREATION', anniversary_number:'25', anniversary_label:'Years of Rudralife', anniversary_since:'Since 2001',
   paragraphs:['Rudralife was founded in 2001 by Dr. Tanay Seetha with a single purpose: to make authentic Rudraksha, and honest guidance about it, available to every seeker.', 'Twenty-five years on, the Siddha Mala remains one of its signature creations—a registered Rudralife combination that brings 1 to 14 Mukhi, Gauri Shankar and Ganesh Rudraksha together in one mala.', 'Every recommendation still begins the same way it did in 2001: by listening to the person who will wear the mala.'],
   signoff:'25 years. One commitment: authenticity.', link_label:'Discover the Rudralife story', source:'https://rudralife.com/about-founder' });

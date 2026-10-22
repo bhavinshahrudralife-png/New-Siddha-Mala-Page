@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation,Link } from 'react-router-dom';
+import { useLocation,Link,Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check,ArrowUpRight,ArrowLeft,MessageCircle } from 'lucide-react';
 import { usePage,mediaUrl } from '../context/PageContext';
@@ -7,6 +7,7 @@ import { PageTheme } from '../components/PageTheme';
 export default function ThankYou() {
   const {state}=useLocation(); const {thankyou:s,brand,footer}=usePage();
   useEffect(()=>{window.scrollTo(0,0);document.title=`${s.title} | ${brand.name}`;},[s.title,brand.name]);
+  if(!state?.submitted)return <Navigate to="/" replace/>;
   const rise=(d)=>({initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.7,delay:d,ease:[.22,1,.36,1]}});
   return <main className="thanks-page peach-edition" data-testid="thankyou-page"><PageTheme/>
     <header className="thanks-header"><Link to="/" data-testid="thankyou-logo"><img src={mediaUrl(brand.logo)} alt={brand.name} className="brand-logo"/></Link></header>

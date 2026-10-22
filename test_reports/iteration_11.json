@@ -1,0 +1,43 @@
+{
+  "summary": "Fifth edition (restructured landing + admin) tested end to end. Backend: 53 pytest tests (45 existing + 8 new for iteration 11) all pass, with 1 flaky parallel test. Covered: page order, company field stored, xlsx/csv export, PNG/JPG upload to GridFS and serving, SVG rejected. Frontend (1920 and 390px): section order is correct and all removed sections/phrases are gone. Gallery has no consult buttons and the lightbox opens. Orbit shows the mala with 16 beads in a circle; click, prev/next with wraparound and 5s auto-advance work. Client carousel runs Milind→Dimple→Archana→Sunil every 5s; Archana and Sunil show monograms. Founder images change every 2s, dots work, consult button opens popup with interest set. Featured strip has 9 logos and sits right above the footer. Popup has 6 fields, defaults to +91 India and validates. Valid submit goes to /thank-you with name, 3 steps, WhatsApp and home buttons. Admin works: login, lead detail with company/profession/country, Excel and CSV downloads, all CMS sections listed, founder-name edit published to the landing page and was restored, media library upload. No horizontal overflow on mobile, no broken images, no page errors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/admin/media", "issue": "No API or UI to delete or mark media unused. QA media had to be flagged is_deleted=True straight in MongoDB, so test uploads pile up in the media library."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "BeadSelector orbit", "issue": "Clicking any bead, or prev/next, sets paused=true for good (useVisibleSequence 'select'). The orbit has no play/resume button (patrons do), so auto-advance never comes back until reload.", "selector": "[data-testid=bead-orbit]", "priority": "LOW"},
+      {"component": "Founder gallery", "issue": "Clicking a dot does not reset the 2s interval, so the image can change again right after a manual pick.", "selector": "[data-testid^=founder-dot-]", "priority": "LOW"}
+    ],
+    "integration_issues": [
+      {"flow": "Thank-you page", "issue": "/thank-you opens directly without a submission (state.submitted is never checked) and shows a generic 'Thank you.' page. This could inflate conversion tracking.", "affected_selectors": ["[data-testid=thankyou-title]"]}
+    ],
+    "design_issues": [
+      {"screen": "Popup form (desktop)", "issues": ["Country code select is narrow and cuts its text to '+91 In...'. Widen it or show only '+91' when closed."]},
+      {"screen": "Gallery subtitle", "issues": ["Copy still says 'then discuss your preferred grade and finish with our team' even though the enquire buttons were removed. Optional copy tweak."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_rudralife_iteration11_edition5.py", "/app/test_reports/pytest/pytest_results_iter11.xml"],
+  "action_items": [
+    "Optional: add a resume/play control for the bead orbit, or resume autoplay after N seconds idle",
+    "Optional: reset the founder interval when a dot is clicked",
+    "Optional: guard /thank-you (redirect to / when there is no submitted state) if analytics depends on it",
+    "Optional: add DELETE /api/admin/media/{id} (soft delete) plus a UI button",
+    "Optional: widen the popup country-code select"
+  ],
+  "critical_code_review_comments": [
+    "Landing.jsx still imports EmotionalIntro, BeadJourney, Education, Experts, Community and Enquiry and keeps them in the SECTIONS map. Removed sections come back if those keys are re-added to the order through the CMS. That may be intended, but it is dead code otherwise.",
+    "The xlsx export adds an apostrophe in front of values starting with =,+,-,@ except phone/country_code. This is good CSV/formula-injection hygiene.",
+    "Flaky: test_rudralife_iteration7_focused.py::test_inline_and_popup_enquiries_visible_in_admin_then_cleanup failed 2 of about 5 full parallel (xdist) runs and passes alone. Likely interference between tests under parallel execution; not an app bug."
+  ],
+  "flaky_tests": ["test_rudralife_iteration7_focused.py::test_inline_and_popup_enquiries_visible_in_admin_then_cleanup (~40% under xdist full suite, 0% alone)"],
+  "updated_files": ["/app/backend/tests/test_rudralife_iteration11_edition5.py"],
+  "success_rate": {"backend": "100% (53/53, 1 flaky parallel test)", "frontend": "100% of requested flows; 5 low-priority polish items"},
+  "test_credentials": "admin@rudralife.com / Rudralife@2025 from /app/memory/test_credentials.md. Login 200, httpOnly cookie set, bcrypt hash starts with $2b$. Credentials unchanged; admin not locked out.",
+  "seed_data_creation": "None left behind. QA leads (TEST_QA Thanks plus pytest TEST_ leads) were deleted. QA media (TEST_qa*.png/jpg) set is_deleted=True. Founder name edited to 'Dr. Tanay Seetha QA' (rev 154) and restored to 'Dr. Tanay Seetha' (rev 155).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Page order: signature, spiritual, gallery, story, beads, patrons, benefits, trust, founder, faq, featured. Nav CTA testid is nav-cta-button. Admin tabs: admin-tab-leads/content/media. CMS fields use cms-field-{section}-{key}. Autoplay hooks pause for good after manual select. Run pytest from /app/backend/tests (pytest.ini enables xdist)."
+}

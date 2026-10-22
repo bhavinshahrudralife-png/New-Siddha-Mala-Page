@@ -224,6 +224,12 @@ async def media_upload(file: UploadFile = File(...), user=Depends(get_current_us
 async def media_list(user=Depends(get_current_user)):
     return await db.media.find({'is_deleted': False}, {'_id': 0, 'storage_path': 0, 'gridfs_id': 0}).sort('created_at', -1).to_list(500)
 
+@api_router.delete('/admin/media/{media_id}')
+async def media_delete(media_id: str, user=Depends(get_current_user)):
+    result = await db.media.update_one({'id': media_id, 'is_deleted': False}, {'$set': {'is_deleted': True}})
+    if not result.matched_count: raise HTTPException(404, 'Media not found.')
+    return {'deleted': True}
+
 @api_router.patch('/admin/leads/{lead_id}', response_model=Enquiry)
 async def edit_lead(lead_id: str, data: LeadUpdate, user=Depends(get_current_user)):
     from pymongo import ReturnDocument

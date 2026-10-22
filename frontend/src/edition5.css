@@ -88,7 +88,7 @@
 .consultation-form .form-field input,.consultation-form .form-field textarea,.phone-combo select { border:1px solid var(--warm-border)!important; background:#fffaf6!important; border-radius:10px!important; padding:12px 14px!important; font-size:14px!important; height:auto; color:var(--wine); transition:border-color .2s, box-shadow .2s; }
 .consultation-form .form-field input:focus-visible,.consultation-form .form-field textarea:focus-visible,.phone-combo select:focus-visible { outline:none!important; border-color:var(--copper)!important; box-shadow:0 0 0 3px color-mix(in srgb,var(--copper) 18%,transparent)!important; }
 .phone-combo { display:flex; gap:8px; }
-.phone-combo select { width:96px; flex:none; min-width:0; text-overflow:ellipsis; }
+.phone-combo select { width:124px; flex:none; min-width:0; text-overflow:ellipsis; }
 .phone-combo input { flex:1; min-width:0; }
 .consultation-form > .primary-button { border-radius:999px; padding:16px 24px; justify-content:center; font-size:12px; letter-spacing:.12em; text-transform:uppercase; transition:background-color .25s, transform .25s; }
 .consultation-form > .primary-button:hover { transform:translateY(-2px); }

@@ -242,3 +242,24 @@ further clarification. All existing CMS/form/lead functionality preserved.
 - Noexactplacementmappingprovided: thisis thepriorityownerconfirmationnextstep.
 - Futureoption: new-leademailnotifications,licensedtrue360GLB. Currenteffectis
   realphoto-texturedThree.jsdepth+PNGmotion,notaphotogrammetrynecklacemodel.
+## Fifth edition — owner restructure (22 October 2026) — implemented & tested (iteration_11 PASS)
+- Removed from page order: intro ("A moment for yourself"), beadJourney ("Sixteen forms"), education,
+  old patrons copy, expert grid, community, inline consultation section. Data kept in CMS, not rendered.
+- New order: signature, spiritual, gallery (no enquire buttons), story = 25 years of Rudralife (since 2001,
+  badge), beads = mala in centre with 16 beads rotating around it (click, prev/next, play/pause, 5s tour),
+  patrons = Milind Soman, Dimple Kapadia, Archana Wani, Sunil Kumar (photo left, name + paragraph, 5s auto),
+  benefits, trust, founder = Dr. Tanay Seetha (3 images, 2s slideshow), FAQ, featured = "As Featured In"
+  marquee (9 official logos from rudralife.com/rudraksha-recommendation) above footer.
+- Archana Wani / Sunil Kumar have NO photos yet: monogram shown until owner uploads images in admin.
+- Popup form: Full name, Email ID, Phone + mandatory country code (default +91), Company, Profession, Message.
+  Success → /thank-you (redesigned; direct visits without a submission redirect to /).
+- Leads store company; admin lead detail shows company/profession; CSV + Excel (.xlsx) download.
+- Media: managed object storage key currently INACTIVE (401) → uploads fall back to MongoDB GridFS
+  (durable, served by /api/media/{id}). Admin can remove uploaded media (soft delete).
+- Validator: form keys name/email/phone/company/profession/message; order = unique subset of sections;
+  founder needs ≥1 image. Migration script: scripts/publish_edition5.py (backup in source_assets/).
+
+## Backlog
+- P1: Owner uploads Archana Wani & Sunil Kumar photos, extra Tanay photos.
+- P1: Verified bead-marker positions on the mala (admin map editor exists; currently 0 markers).
+- P2: Email/WhatsApp alert to the team on each new lead.
